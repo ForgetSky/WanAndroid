@@ -35,6 +35,7 @@ dependencies {
     implementation rootProject.ext.dependencies["VerticalTabLayout"]
     implementation rootProject.ext.dependencies["flowlayout-lib"]
     implementation rootProject.ext.dependencies["agentweb"]
+    implementation rootProject.ext.dependencies["autosize"]
 
     //net
     implementation rootProject.ext.dependencies["gson"]
@@ -74,7 +75,7 @@ dependencies {
     testImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
 
     //kotlin
-    implementation rootProject.ext.dependencies["kotlin-stdlib"]
+//    implementation rootProject.ext.dependencies["kotlin-stdlib"]
 
     //other
     implementation rootProject.ext.dependencies["lottie"]
@@ -89,28 +90,28 @@ dependencies {
     implementation rootProject.ext.dependencies["PersistentCookieJar"]
 
     // ui test
-    androidTestImplementation (rootProject.ext.dependencies["espresso-core"]) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    implementation (rootProject.ext.dependencies["espresso-idling-resource"]) {
-        exclude module: 'support-annotations'
-    }
-    androidTestImplementation rootProject.ext.dependencies["espresso-contrib"]
-    androidTestImplementation rootProject.ext.dependencies["espresso-intents"]
-    androidTestImplementation rootProject.ext.dependencies["espresso-accessibility"]
-    androidTestImplementation rootProject.ext.dependencies["espresso-web"]
-    androidTestImplementation rootProject.ext.dependencies["idling-concurrent"]
+//    androidTestImplementation (rootProject.ext.dependencies["espresso-core"]) {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    }
+//    implementation (rootProject.ext.dependencies["espresso-idling-resource"]) {
+//        exclude module: 'support-annotations'
+//    }
+//    androidTestImplementation rootProject.ext.dependencies["espresso-contrib"]
+//    androidTestImplementation rootProject.ext.dependencies["espresso-intents"]
+//    androidTestImplementation rootProject.ext.dependencies["espresso-accessibility"]
+//    androidTestImplementation rootProject.ext.dependencies["espresso-web"]
+//    androidTestImplementation rootProject.ext.dependencies["idling-concurrent"]
 
     //unit test
-    testImplementation rootProject.ext.dependencies["junit"]
-    testImplementation rootProject.ext.dependencies["mockito"]
-    testImplementation rootProject.ext.dependencies["powermock-module-junit4"]
-    testImplementation rootProject.ext.dependencies["powermock-module-junit4-rule"]
-    testImplementation rootProject.ext.dependencies["powermock-api-mockito2"] //注意这里是mockito2
-    testImplementation rootProject.ext.dependencies["powermock-classloading-xstream"]
-    testImplementation rootProject.ext.dependencies["robolectric"]
-    testImplementation rootProject.ext.dependencies["shadows-support-v4"]
-    testImplementation rootProject.ext.dependencies["shadows-multidex"] //支持Multidex功能
-    androidTestImplementation rootProject.ext.dependencies["runner"]
+//    testImplementation rootProject.ext.dependencies["junit"]
+//    testImplementation rootProject.ext.dependencies["mockito"]
+//    testImplementation rootProject.ext.dependencies["powermock-module-junit4"]
+//    testImplementation rootProject.ext.dependencies["powermock-module-junit4-rule"]
+//    testImplementation rootProject.ext.dependencies["powermock-api-mockito2"] //注意这里是mockito2
+//    testImplementation rootProject.ext.dependencies["powermock-classloading-xstream"]
+//    testImplementation rootProject.ext.dependencies["robolectric"]
+//    testImplementation rootProject.ext.dependencies["shadows-support-v4"]
+//    testImplementation rootProject.ext.dependencies["shadows-multidex"] //支持Multidex功能
+//    androidTestImplementation rootProject.ext.dependencies["runner"]
 
 }
