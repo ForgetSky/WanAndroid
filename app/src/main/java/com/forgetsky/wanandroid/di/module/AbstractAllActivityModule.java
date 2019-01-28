@@ -1,0 +1,14 @@
+package com.forgetsky.wanandroid.di.module;
+
+import com.forgetsky.wanandroid.di.component.BaseActivityComponent;
+import com.forgetsky.wanandroid.main.ui.MainActivity;
+
+import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
+
+@Module(subcomponents = {BaseActivityComponent.class})
+public abstract class AbstractAllActivityModule {
+
+    @ContributesAndroidInjector(modules = MainActivityModule.class)
+    abstract MainActivity contributesMainActivityInjector();
+}
