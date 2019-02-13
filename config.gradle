@@ -16,7 +16,7 @@ ext {
             okhttpVersion           : "3.9.0",
             retrofitVersion         : "2.4.0",
             glideVersion            : "4.8.0",
-            dagger2Version          : "2.19",
+            dagger2Version          : "2.17",
             butterknifeVersion      : "8.8.1",
             fragmentationVersion    : "1.3.6",
             leakcanaryVersion       : "1.5.4",

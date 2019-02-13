@@ -1,6 +1,7 @@
 package com.forgetsky.wanandroid.di.component;
 
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
+import com.forgetsky.wanandroid.base.presenter.AbstractPresenter;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjectionModule;

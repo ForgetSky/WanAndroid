@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">ForgetSkyWanAndroid</string>
+    //navigation
+    <string name="my_collect">Collect</string>
+    <string name="setting">Setting</string>
+    <string name="about_us">About Us</string>
+    <string name="logout">Logout</string>
+    <string name="login_in">Login</string>
+
+    //toolbar
+    <string name="action_search">Search</string>
+    <string name="history_search">Search History</string>
+    <string name="hot_search">Top Search</string>
+    <string name="useful_sites">Useful Sites</string>
+
+    //home pager
+    <string name="home_pager">Home pager</string>
+    <string name="knowledge_hierarchy">Knowledge hierarchy</string>
+    <string name="wx_article">WX article</string>
+    <string name="navigation">Navigation</string>
+    <string name="project">Project</string>
+
+    //behavior
+    <string name="scale_down_show_behavior">com.forgetsky.wanandroid.widget.behavior.ScaleDownShowBehavior</string>
 </resources>

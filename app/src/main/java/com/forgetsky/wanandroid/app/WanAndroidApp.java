@@ -3,6 +3,7 @@ package com.forgetsky.wanandroid.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.forgetsky.wanandroid.di.component.DaggerAppComponent;
 import com.forgetsky.wanandroid.di.module.AppModule;
 
 import javax.inject.Inject;
@@ -10,7 +11,6 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
-import com.forgetsky.wanandroid.di.component.DaggerAppComponent;
 
 public class WanAndroidApp extends Application implements HasActivityInjector {
 
