@@ -3,10 +3,9 @@ package com.forgetsky.wanandroid.base.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
-import com.forgetsky.wanandroid.base.presenter.AbstractPresenter;
-import com.forgetsky.wanandroid.base.view.AbstractView;
+import com.forgetsky.wanandroid.base.presenter.IPresenter;
+import com.forgetsky.wanandroid.base.view.IView;
 
 import javax.inject.Inject;
 
@@ -20,9 +19,9 @@ import dagger.android.support.HasSupportFragmentInjector;
  *
  */
 
-public abstract class BaseActivity<T extends AbstractPresenter> extends AbstractSimpleActivity implements
+public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleActivity implements
         HasSupportFragmentInjector,
-        AbstractView {
+        IView {
     @Inject
     DispatchingAndroidInjector<Fragment> mFragmentDispatchingAndroidInjector;
     @Inject
@@ -31,14 +30,12 @@ public abstract class BaseActivity<T extends AbstractPresenter> extends Abstract
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
-        Log.d("jiahui", "onCreate: " + this);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onViewCreated() {
         if (mPresenter != null) {
-            Log.d("jiahui", "onViewCreated: " + this);
             mPresenter.attachView(this);
         }
     }

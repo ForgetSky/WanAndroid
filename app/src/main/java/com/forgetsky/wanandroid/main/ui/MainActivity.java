@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -13,11 +14,13 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
+import com.forgetsky.wanandroid.homepager.ui.HomePagerFragment;
 import com.forgetsky.wanandroid.main.contract.MainContract;
 import com.forgetsky.wanandroid.main.presenter.MainPresenter;
 
@@ -37,11 +40,26 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     FloatingActionButton mFloatingActionButton;
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView mBottomNavigationView;
+    @BindView(R.id.fragment_group)
+    FrameLayout mFrameGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initNavigationView();
+        HomePagerFragment targetFg = findFragment(HomePagerFragment.class);
+        if (targetFg == null) {
+            targetFg = HomePagerFragment.getInstance();
+        }
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (!targetFg.isAdded()) {
+            getSupportFragmentManager().beginTransaction().remove(targetFg).commitAllowingStateLoss();
+            ft.add(R.id.fragment_group, targetFg);
+        }
+        ft.show(targetFg);
+        ft.commitAllowingStateLoss();
+
     }
 
 

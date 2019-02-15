@@ -1,8 +1,8 @@
 package com.forgetsky.wanandroid.base.presenter;
 
-import com.forgetsky.wanandroid.base.view.AbstractView;
+import com.forgetsky.wanandroid.base.view.IView;
 
-public class BasePresenter<T extends AbstractView> implements AbstractPresenter<T> {
+public class BasePresenter<T extends IView> implements IPresenter<T> {
     protected T mView;
     @Override
     public void attachView(T view) {

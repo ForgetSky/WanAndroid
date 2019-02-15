@@ -1,8 +1,8 @@
 package com.forgetsky.wanandroid.base.presenter;
 
-import com.forgetsky.wanandroid.base.view.AbstractView;
+import com.forgetsky.wanandroid.base.view.IView;
 
-public interface AbstractPresenter<T extends AbstractView> {
+public interface IPresenter<T extends IView> {
 
     /**
      * 注入View

@@ -1,6 +1,6 @@
 package com.forgetsky.wanandroid.base.view;
 
-public interface AbstractView {
+public interface IView {
     /**
      * Show error message
      *
