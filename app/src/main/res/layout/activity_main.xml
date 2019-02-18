@@ -47,7 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="60dp"
             android:src="@drawable/icon_up_arrow"
             app:layout_behavior="@string/scale_down_show_behavior" />
 
@@ -61,7 +62,8 @@
             app:itemIconTint="@drawable/nav_item_color_selector"
             app:itemTextColor="@drawable/nav_item_color_selector"
             app:layout_behavior="@string/bye_burger_bottom_behavior"
-            app:menu="@menu/bottom_navigation" />
+            app:menu="@menu/bottom_navigation"
+            app:labelVisibilityMode="labeled"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
