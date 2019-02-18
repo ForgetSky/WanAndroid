@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:color="@color/yellow" android:state_checked="true" />
+    <item android:color="@color/bottom_nav_checked" android:state_checked="true" />
 
-    <item android:color="@color/bottom_nav_icon" android:state_checked="false" />
+    <item android:color="@color/bottom_nav_not_checked" android:state_checked="false" />
 </selector>

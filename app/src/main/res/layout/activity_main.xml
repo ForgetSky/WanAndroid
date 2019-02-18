@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.ui.MainActivity">
+    tools:context=".modules.main.ui.MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -23,7 +23,6 @@
                 android:theme="@style/ToolBarTheme"
 
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <TextView
@@ -48,8 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="60dp"
-            android:src="@drawable/icon_up_arrow"
+            android:src="@drawable/ic_arrow_upward_white_24dp"
             app:layout_behavior="@string/scale_down_show_behavior" />
 
         <android.support.design.widget.BottomNavigationView
@@ -73,6 +73,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
+        android:fitsSystemWindows="true"
+        app:itemIconTint="@color/nav_item_color_ic"
+        app:itemTextColor="@color/nav_item_color_tv"
         app:menu="@menu/nav_menu">
 
     </android.support.design.widget.NavigationView>

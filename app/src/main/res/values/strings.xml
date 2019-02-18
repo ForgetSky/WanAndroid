@@ -2,10 +2,14 @@
     <string name="app_name">ForgetSkyWanAndroid</string>
     //navigation
     <string name="my_collect">Collect</string>
+    <string name="nav_todo">TODO</string>
+    <string name="nav_night_mode">Night mode</string>
     <string name="setting">Setting</string>
     <string name="about_us">About Us</string>
     <string name="logout">Logout</string>
     <string name="login_in">Login</string>
+    <string name="navigation_drawer_open">Open drawer</string>
+    <string name="navigation_drawer_close">Close drawer</string>
 
     //toolbar
     <string name="action_search">Search</string>
