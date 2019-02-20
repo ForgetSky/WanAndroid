@@ -30,8 +30,13 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home_pager;
+        return R.layout.fragment_project;
     }
 
     @Override

@@ -5,14 +5,21 @@ import com.forgetsky.wanandroid.base.view.IView;
 public interface IPresenter<T extends IView> {
 
     /**
-     * 注入View
+     * attachView
      *
      * @param view view
      */
     void attachView(T view);
 
     /**
-     * 回收View
+     * detachView
      */
     void detachView();
+
+    /**
+     * Get current page
+     *
+     * @return current page
+     */
+    int getCurrentPage();
 }

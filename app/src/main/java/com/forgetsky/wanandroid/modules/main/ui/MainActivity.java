@@ -11,7 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +34,7 @@ import com.forgetsky.wanandroid.modules.wxarticle.ui.WxArticleFragment;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
@@ -120,7 +121,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             switch (item.getItemId()) {
                 case R.id.tab_main_pager:
                     loadPager(getString(R.string.home_pager), 0,
-                            mHomePagerFragment, Constants.TYPE_MAIN_PAGER);
+                            mHomePagerFragment, Constants.TYPE_HOME_PAGER);
                     break;
                 case R.id.tab_knowledge_hierarchy:
                     loadPager(getString(R.string.knowledge_hierarchy), 1,
@@ -224,6 +225,47 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         return true;
     }
 
+    @OnClick({R.id.main_floating_action_btn})
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.main_floating_action_btn:
+                jumpToTheTop();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void jumpToTheTop() {
+        switch (mPresenter.getCurrentPage()) {
+            case Constants.TYPE_HOME_PAGER:
+                if (mHomePagerFragment != null) {
+                    mHomePagerFragment.jumpToTheTop();
+                }
+                break;
+//            case Constants.TYPE_KNOWLEDGE:
+//                if (mKnowledgeHierarchyFragment != null) {
+//                    mKnowledgeHierarchyFragment.jumpToTheTop();
+//                }
+//                break;
+//            case Constants.TYPE_WX_ARTICLE:
+//                if (mWxArticleFragment != null) {
+//                    mWxArticleFragment.jumpToTheTop();
+//                }
+//            case Constants.TYPE_NAVIGATION:
+//                if (mNavigationFragment != null) {
+//                    mNavigationFragment.jumpToTheTop();
+//                }
+//                break;
+//            case Constants.TYPE_PROJECT:
+//                if (mProjectFragment != null) {
+//                    mProjectFragment.jumpToTheTop();
+//                }
+//                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     protected void initEventAndData() {

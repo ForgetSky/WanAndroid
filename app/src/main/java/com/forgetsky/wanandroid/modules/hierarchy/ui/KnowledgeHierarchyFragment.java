@@ -30,6 +30,11 @@ public class KnowledgeHierarchyFragment extends BaseFragment<KnowledgeHierarchyP
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_knowledge_hierarchy;
     }

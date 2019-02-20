@@ -8,4 +8,5 @@
     <color name="bottom_nav_not_checked">#cccccc</color>
     <color name="nav_item_color_ic">#616161</color>
     <color name="nav_item_color_tv">#19191B</color>
+    <color name="colorCard">#FFFFFF</color>
 </resources>

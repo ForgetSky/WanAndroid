@@ -21,5 +21,9 @@ public interface HomePagerContract {
 
         int getCurrentPage();
 
+        void refreshLayout(boolean isShowError);
+
+        void loadMore();
+
     }
 }

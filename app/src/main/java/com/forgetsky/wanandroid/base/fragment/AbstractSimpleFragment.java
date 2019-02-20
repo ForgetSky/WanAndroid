@@ -43,8 +43,8 @@ public abstract class AbstractSimpleFragment extends SupportFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        RefWatcher refWatcher = WanAndroidApp.getRefWatcher(_mActivity);
-//        refWatcher.watch(this);
+        RefWatcher refWatcher = WanAndroidApp.getRefWatcher(_mActivity);
+        refWatcher.watch(this);
     }
 
     @Override
@@ -80,9 +80,7 @@ public abstract class AbstractSimpleFragment extends SupportFragment {
      * 有些初始化必须在onCreateView中，例如setAdapter,
      * 否则，会弹出 No adapter attached; skipping layout
      */
-    protected void initView() {
-
-    }
+    protected abstract void initView();
 
     /**
      * 获取当前Activity的UI布局

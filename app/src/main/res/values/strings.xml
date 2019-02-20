@@ -19,7 +19,7 @@
 
     //home pager
     <string name="home_pager">Home pager</string>
-    <string name="knowledge_hierarchy">Knowledge hierarchy</string>
+    <string name="knowledge_hierarchy">Hierarchy</string>
     <string name="wx_article">WX article</string>
     <string name="navigation">Navigation</string>
     <string name="project">Project</string>

@@ -1,5 +1,6 @@
 package com.forgetsky.wanandroid.modules.navigation.ui;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
@@ -26,6 +27,11 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
     public void onResume() {
         super.onResume();
         textView.setText("NavigationFragment");
+
+    }
+
+    @Override
+    protected void initView() {
 
     }
 

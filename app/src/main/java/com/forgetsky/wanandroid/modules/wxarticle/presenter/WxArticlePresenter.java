@@ -1,5 +1,7 @@
 package com.forgetsky.wanandroid.modules.wxarticle.presenter;
 
+import android.util.Log;
+
 import com.forgetsky.wanandroid.base.presenter.BasePresenter;
 import com.forgetsky.wanandroid.modules.wxarticle.contract.WxArticleContract;
 
@@ -28,4 +30,5 @@ public class WxArticlePresenter extends BasePresenter<WxArticleContract.View>
     public void attachView(WxArticleContract.View view) {
         super.attachView(view);
     }
+
 }

@@ -25,6 +25,17 @@ public class HomePagerPresenter extends BasePresenter<HomePagerContract.View>
     }
 
     @Override
+    public void refreshLayout(boolean isShowError) {
+
+    }
+
+    @Override
+    public void loadMore() {
+
+    }
+
+
+    @Override
     public void attachView(HomePagerContract.View view) {
         super.attachView(view);
     }

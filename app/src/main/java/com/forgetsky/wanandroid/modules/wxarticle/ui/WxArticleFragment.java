@@ -1,5 +1,6 @@
 package com.forgetsky.wanandroid.modules.wxarticle.ui;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
@@ -30,8 +31,13 @@ public class WxArticleFragment extends BaseFragment<WxArticlePresenter> implemen
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home_pager;
+        return R.layout.fragment_wx_article;
     }
 
     @Override
