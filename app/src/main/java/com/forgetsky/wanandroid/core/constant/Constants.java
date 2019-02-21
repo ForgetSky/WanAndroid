@@ -1,8 +1,11 @@
-package com.forgetsky.wanandroid.app;
+package com.forgetsky.wanandroid.core.constant;
 
 
 import android.graphics.Color;
 
+import com.forgetsky.wanandroid.app.WanAndroidApp;
+
+import java.io.File;
 
 
 public class Constants {
@@ -17,9 +20,9 @@ public class Constants {
     /**
      * Path
      */
-//    public static final String PATH_DATA = WanAndroidApp.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
+    public static final String PATH_DATA = WanAndroidApp.getContext().getCacheDir().getAbsolutePath() + File.separator + "data";
 
-//    public static final String PATH_CACHE = PATH_DATA + "/NetCache";
+    public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 
     /**
      * Tag fragment classify

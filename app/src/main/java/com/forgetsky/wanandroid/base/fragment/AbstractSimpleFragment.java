@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.forgetsky.wanandroid.app.Constants;
+import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.squareup.leakcanary.RefWatcher;
 

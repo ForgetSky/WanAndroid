@@ -2,6 +2,8 @@ package com.forgetsky.wanandroid.di.module;
 
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.forgetsky.wanandroid.core.DataManager;
+import com.forgetsky.wanandroid.core.http.HttpHelper;
+import com.forgetsky.wanandroid.core.http.HttpHelperImpl;
 
 import javax.inject.Singleton;
 
@@ -24,8 +26,14 @@ public class AppModule {
 
     @Provides
     @Singleton
-    DataManager provideDataManager() {
-        return new DataManager();
+    HttpHelper provideHttpHelper(HttpHelperImpl httpHelperImpl) {
+        return httpHelperImpl;
+    }
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager(HttpHelper httpHelper) {
+        return new DataManager(httpHelper);
     }
 
 }

@@ -5,28 +5,32 @@
     android:id="@+id/item_search_pager_group"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:layout_marginEnd="5dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginTop="5dp"
+    android:layout_margin="3dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@color/colorCard"
-    app:cardCornerRadius="3dp"
+    app:cardCornerRadius="2dp"
     app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
 
         <TextView
-            android:id="@+id/article_list_test"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_article_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="test_1"/>
+            android:ellipsize="end"
+            android:gravity="top|start"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:textColor="@color/item_title"
+            android:textSize="@dimen/item_title_size" />
 
 
     </LinearLayout>

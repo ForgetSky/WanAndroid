@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ForgetSkyWanAndroid</string>
-    //navigation
+    <!-- navigation -->
     <string name="my_collect">Collect</string>
     <string name="nav_todo">TODO</string>
     <string name="nav_night_mode">Night mode</string>
@@ -11,19 +11,24 @@
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>
 
-    //toolbar
+    <!-- toolbar -->
     <string name="action_search">Search</string>
     <string name="history_search">Search History</string>
     <string name="hot_search">Top Search</string>
     <string name="useful_sites">Useful Sites</string>
 
-    //home pager
+    <!-- home pager -->
     <string name="home_pager">Home pager</string>
     <string name="knowledge_hierarchy">Hierarchy</string>
     <string name="wx_article">WX article</string>
     <string name="navigation">Navigation</string>
     <string name="project">Project</string>
+    <string name="failed_to_obtain_article_list">Failed gets the article list data</string>
 
-    //behavior
+    <!-- Common -->
+    <string name="http_error">network anomaly</string>
+    <string name="unKnown_error">unKnown error</string>
+
+    <!-- behavior -->
     <string name="scale_down_show_behavior">com.forgetsky.wanandroid.widget.behavior.ScaleDownShowBehavior</string>
 </resources>

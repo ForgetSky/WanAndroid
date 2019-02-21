@@ -1,6 +1,7 @@
 package com.forgetsky.wanandroid.modules.homepager.ui;
 
 import android.support.annotation.Nullable;
+import android.text.Html;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -18,6 +19,6 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleItemData, BaseVi
 
     @Override
     protected void convert(BaseViewHolder helper, ArticleItemData item) {
-        helper.setText(R.id.article_list_test, item.getTestString());
+        helper.setText(R.id.tv_article_title, Html.fromHtml(item.getTitle()));
     }
 }

@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.forgetsky.wanandroid.di.component.DaggerAppComponent;
 import com.forgetsky.wanandroid.di.module.AppModule;
+import com.forgetsky.wanandroid.di.module.HttpModule;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -25,13 +26,16 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
         return mAndroidInjector;
     }
 
+    private static Context context;
     private RefWatcher refWatcher;
     @Override
     public void onCreate() {
         super.onCreate();
+        context = getApplicationContext();
 
         DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .httpModule(new HttpModule())
                 .build().inject(this);
 
 
@@ -48,5 +52,9 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
     public static RefWatcher getRefWatcher(Context context) {
         WanAndroidApp application = (WanAndroidApp) context.getApplicationContext();
         return application.refWatcher;
+    }
+
+    public static Context getContext() {
+        return context;
     }
 }

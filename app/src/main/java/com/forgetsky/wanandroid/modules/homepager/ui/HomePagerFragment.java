@@ -1,16 +1,14 @@
 package com.forgetsky.wanandroid.modules.homepager.ui;
 
-import android.app.ActivityOptions;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
+import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.homepager.contract.HomePagerContract;
 import com.forgetsky.wanandroid.modules.homepager.presenter.HomePagerPresenter;
 import com.forgetsky.wanandroid.utils.ToastUtils;
@@ -30,7 +28,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     @BindView(R.id.home_pager_recycler_view)
     RecyclerView mRecyclerView;
 
-    private List<ArticleItemData> mArticleItemDataList;
+    private List<ArticleItemData> mArticleList;
     private ArticleListAdapter mAdapter;
     private int articlePosition;
 
@@ -59,17 +57,13 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
 
     @Override
     protected void initEventAndData() {
-        for (int i = 0; i < 30; i++) {
-            ArticleItemData  data= new ArticleItemData();
-            data.setTestString("我是第" + i + "条标题");
-            mArticleItemDataList.add(data);
-        }
+
         initRefreshLayout();
     }
 
     private void initRecyclerView() {
-        mArticleItemDataList = new ArrayList<>();
-        mAdapter = new ArticleListAdapter(R.layout.item_article_list, mArticleItemDataList);
+        mArticleList = new ArrayList<>();
+        mAdapter = new ArticleListAdapter(R.layout.item_article_list, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
@@ -128,6 +122,20 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     @Override
     public void showLogoutSuccess() {
 
+    }
+
+    @Override
+    public void showArticleList(ArticleListData articleListData, boolean isRefresh) {
+        if (mAdapter == null) {
+            return;
+        }
+        if (isRefresh) {
+            mArticleList = articleListData.getDatas();
+            mAdapter.replaceData(articleListData.getDatas());
+        } else {
+            mArticleList.addAll(articleListData.getDatas());
+            mAdapter.addData(articleListData.getDatas());
+        }
     }
 
     public void jumpToTheTop() {

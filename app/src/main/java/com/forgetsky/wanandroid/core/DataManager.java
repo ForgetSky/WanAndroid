@@ -1,8 +1,21 @@
 package com.forgetsky.wanandroid.core;
 
-public class DataManager {
+import com.forgetsky.wanandroid.core.http.BaseResponse;
+import com.forgetsky.wanandroid.core.http.HttpHelper;
+import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 
-    public String getTestString() {
-        return "testString";
+import io.reactivex.Observable;
+
+public class DataManager implements HttpHelper{
+    private HttpHelper mHttpHelper;
+
+    public DataManager(HttpHelper httpHelper) {
+        mHttpHelper = httpHelper;
+
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getArticleList(int pageNum) {
+        return mHttpHelper.getArticleList(pageNum);
     }
 }

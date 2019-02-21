@@ -5,12 +5,17 @@ import com.forgetsky.wanandroid.core.DataManager;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 public class BasePresenter<T extends IView> implements IPresenter<T> {
 
     protected T mView;
 
     @Inject
     public DataManager mDataManager;
+
+    private CompositeDisposable compositeDisposable;
 
     @Override
     public void attachView(T view) {
@@ -21,6 +26,9 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
     @Override
     public void detachView() {
         this.mView = null;
+        if (compositeDisposable != null) {
+            compositeDisposable.clear();
+        }
 
     }
 
@@ -28,5 +36,12 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
     public int getCurrentPage() {
 //        return mDataManager.getCurrentPage();
         return 0;
+    }
+
+    protected void addSubscribe(Disposable disposable) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
     }
 }
