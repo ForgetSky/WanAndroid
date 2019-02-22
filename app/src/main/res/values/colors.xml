@@ -10,4 +10,16 @@
     <color name="nav_item_color_tv">#19191B</color>
     <color name="colorCard">#FFFFFF</color>
     <color name="item_title">#19191B</color>
+    <color name="item_author">@color/Grey700</color>
+
+    <color name="Grey50">#FAFAFA</color>
+    <color name="Grey100">#F5F5F5</color>
+    <color name="Grey200">#EEEEEE</color>
+    <color name="Grey300">#E0E0E0</color>
+    <color name="Grey400">#bdbdbd</color>
+    <color name="Grey500">#9e9e9e</color>
+    <color name="Grey600">#757575</color>
+    <color name="Grey700">#616161</color>
+    <color name="Grey800">#424242</color>
+    <color name="Grey900">#212121</color>
 </resources>

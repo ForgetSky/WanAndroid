@@ -2,4 +2,5 @@
 <resources>
     <!-- item -->
     <dimen name="item_title_size">16sp</dimen>
+    <dimen name="item_tv_author">12sp</dimen>
 </resources>

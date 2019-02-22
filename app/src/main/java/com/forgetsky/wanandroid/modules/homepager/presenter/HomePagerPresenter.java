@@ -31,18 +31,16 @@ public class HomePagerPresenter extends BasePresenter<HomePagerContract.View>
 
     }
 
-
     @Override
     public void getArticleList(boolean isShowError) {
         addSubscribe(mDataManager.getArticleList(currentPage)
-                .compose(RxUtils.rxSchedulerHelper())
-                .compose(RxUtils.handleResult())
-                .filter(feedArticleListResponse -> mView != null)
+                .compose(RxUtils.SchedulerTransformer())
+                .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_article_list),
                         isShowError) {
                     @Override
-                    public void onNext(ArticleListData articleListData) {
+                    public void onSuccess(ArticleListData articleListData) {
                         mView.showArticleList(articleListData, isRefresh);
                     }
                 }));
@@ -58,14 +56,13 @@ public class HomePagerPresenter extends BasePresenter<HomePagerContract.View>
     @Override
     public void loadMoreData() {
         addSubscribe(mDataManager.getArticleList(currentPage)
-                .compose(RxUtils.rxSchedulerHelper())
-                .compose(RxUtils.handleResult())
-                .filter(feedArticleListResponse -> mView != null)
+                .compose(RxUtils.SchedulerTransformer())
+                .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_article_list),
                         false) {
                     @Override
-                    public void onNext(ArticleListData articleListData) {
+                    public void onSuccess(ArticleListData articleListData) {
                         mView.showArticleList(articleListData, isRefresh);
                     }
                 }));

@@ -6,7 +6,7 @@ import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 
 import io.reactivex.Observable;
 
-public class DataManager implements HttpHelper{
+public class DataManager implements HttpHelper {
     private HttpHelper mHttpHelper;
 
     public DataManager(HttpHelper httpHelper) {

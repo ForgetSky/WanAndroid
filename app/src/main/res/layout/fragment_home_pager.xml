@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smartrefresh.layout.SmartRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/smart_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:srlPrimaryColor="?attr/colorPrimary"
     app:srlAccentColor="?attr/colorPrimary"
-    app:srlEnablePreviewInEditMode="true">
+    app:srlEnablePreviewInEditMode="true"
+    app:srlPrimaryColor="?attr/colorPrimary">
 
     <com.scwang.smartrefresh.header.PhoenixHeader
         android:layout_width="match_parent"
@@ -17,7 +16,7 @@
         android:id="@+id/home_pager_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/Grey100"
         android:visibility="visible" />
 
     <com.scwang.smartrefresh.header.TaurusHeader
