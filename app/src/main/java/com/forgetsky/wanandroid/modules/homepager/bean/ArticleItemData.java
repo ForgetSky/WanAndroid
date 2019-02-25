@@ -1,6 +1,7 @@
 package com.forgetsky.wanandroid.modules.homepager.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ArticleItemData implements Serializable {
     private String apkLink;
@@ -22,6 +23,54 @@ public class ArticleItemData implements Serializable {
     private String title;
     private int visible;
     private int zan;
+    private int type;
+    private boolean fresh;
+    private List<ArticleTagsDate> tags;
+
+    public class ArticleTagsDate implements Serializable {
+        private String name;
+        private String url;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+    }
+
+    public List<ArticleTagsDate> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<ArticleTagsDate> tags) {
+        this.tags = tags;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public boolean getFresh() {
+        return fresh;
+    }
+
+    public void setFresh(boolean fresh) {
+        this.fresh = fresh;
+    }
 
     public String getApkLink() {
         return apkLink;

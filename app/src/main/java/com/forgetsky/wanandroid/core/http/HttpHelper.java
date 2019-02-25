@@ -1,6 +1,10 @@
 package com.forgetsky.wanandroid.core.http;
 
+import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
+import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -14,6 +18,10 @@ public interface HttpHelper {
      * @return 文章列表数据
      */
     Observable<BaseResponse<ArticleListData>> getArticleList(int pageNum);
+
+    Observable<BaseResponse<List<BannerData>>> getBannerData();
+
+    Observable<BaseResponse<List<ArticleItemData>>> getTopArticles();
 
 
 }

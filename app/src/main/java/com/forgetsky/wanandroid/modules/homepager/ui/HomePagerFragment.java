@@ -1,18 +1,27 @@
 package com.forgetsky.wanandroid.modules.homepager.ui;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
+import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
+import com.forgetsky.wanandroid.modules.homepager.banner.BannerGlideImageLoader;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.homepager.contract.HomePagerContract;
 import com.forgetsky.wanandroid.modules.homepager.presenter.HomePagerPresenter;
+import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +40,9 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     private List<ArticleItemData> mArticleList;
     private ArticleListAdapter mAdapter;
     private int articlePosition;
+    private List<String> mBannerTitleList;
+    private List<String> mBannerUrlList;
+    private Banner mBanner;
 
     public static HomePagerFragment getInstance() {
         HomePagerFragment fragment = new HomePagerFragment();
@@ -57,8 +69,8 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
 
     @Override
     protected void initEventAndData() {
-
         initRefreshLayout();
+        mPresenter.refreshLayout(true);
     }
 
     private void initRecyclerView() {
@@ -69,10 +81,10 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mRecyclerView.setHasFixedSize(true);
         //add head banner
-//        LinearLayout mHeaderGroup = ((LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.head_banner, null));
-//        mBanner = mHeaderGroup.findViewById(R.id.head_banner);
-//        mHeaderGroup.removeView(mBanner);
-//        mAdapter.addHeaderView(mBanner);
+        LinearLayout mHeaderGroup = (LinearLayout) getLayoutInflater().inflate(R.layout.head_banner, null);
+        mBanner = mHeaderGroup.findViewById(R.id.head_banner);
+        mHeaderGroup.removeView(mBanner);
+        mAdapter.setHeaderView(mBanner);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -87,20 +99,16 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         });
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startArticleDetailPager(View view, int position) {
         if (mAdapter.getData().size() <= 0 || mAdapter.getData().size() < position) {
             return;
         }
-        ToastUtils.showToast(getActivity(),"you click the position :" + String.valueOf(position),Toast.LENGTH_SHORT);
-        //记录点击的文章位置，便于在文章内点击收藏返回到此界面时能展示正确的收藏状态
-//        articlePosition = position;
-//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(_mActivity, view, getString(R.string.share_view));
-//        JudgeUtils.startArticleDetailActivity(_mActivity,
-//                options,
-//                mAdapter.getData().get(position).getId(),
-//
-//                false,
-//                false);
+
+        CommonUtils.startArticleDetailActivity(_mActivity,
+                mAdapter.getData().get(position).getId(),
+                mAdapter.getData().get(position).getTitle(),
+                mAdapter.getData().get(position).getLink());
     }
 
     private void clickChildEvent(View view, int position) {
@@ -136,6 +144,43 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
             mArticleList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
         }
+    }
+
+    @Override
+    public void showBannerData(List<BannerData> bannerDataList) {
+        mBannerTitleList = new ArrayList<>();
+        List<String> bannerImageList = new ArrayList<>();
+        mBannerUrlList = new ArrayList<>();
+        for (BannerData bannerData : bannerDataList) {
+            mBannerTitleList.add(bannerData.getTitle());
+            bannerImageList.add(bannerData.getImagePath());
+            mBannerUrlList.add(bannerData.getUrl());
+        }
+        //设置banner样式
+        mBanner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);
+        //设置图片加载器
+        mBanner.setImageLoader(new BannerGlideImageLoader());
+        //设置图片集合
+        mBanner.setImages(bannerImageList);
+        //设置banner动画效果
+        mBanner.setBannerAnimation(Transformer.Accordion);
+        //设置标题集合（当banner样式有显示title时）
+        mBanner.setBannerTitles(mBannerTitleList);
+        //设置自动轮播，默认为true
+        mBanner.isAutoPlay(true);
+        //设置轮播时间
+        mBanner.setDelayTime(2500);
+        //设置指示器位置（当banner模式中有指示器时）
+        mBanner.setIndicatorGravity(BannerConfig.CENTER);
+
+        mBanner.setOnBannerListener(i ->
+                        ToastUtils.showToast(_mActivity, "click banner", Toast.LENGTH_SHORT)
+//                JudgeUtils.startArticleDetailActivity(_mActivity, null,
+//                0, mBannerTitleList.get(i), mBannerUrlList.get(i),
+//                false, false, true)
+        );
+        //banner设置方法全部调用完毕时最后调用
+        mBanner.start();
     }
 
     public void jumpToTheTop() {

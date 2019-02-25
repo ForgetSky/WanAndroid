@@ -11,29 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                android:theme="@style/ToolBarTheme"
-
-                app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-                <TextView
-                    android:id="@+id/toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.AppBarLayout>
+        <include layout="@layout/toolbar" />
 
         <FrameLayout
             android:id="@+id/fragment_group"
@@ -61,9 +39,9 @@
             app:elevation="16dp"
             app:itemIconTint="@drawable/nav_item_color_selector"
             app:itemTextColor="@drawable/nav_item_color_selector"
+            app:labelVisibilityMode="labeled"
             app:layout_behavior="@string/bye_burger_bottom_behavior"
-            app:menu="@menu/bottom_navigation"
-            app:labelVisibilityMode="labeled"/>
+            app:menu="@menu/bottom_navigation" />
 
     </android.support.design.widget.CoordinatorLayout>
 
@@ -72,8 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/nav_item_color_ic"
         app:itemTextColor="@color/nav_item_color_tv"
         app:menu="@menu/nav_menu">

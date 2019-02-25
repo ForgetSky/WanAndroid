@@ -67,10 +67,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         initNavigationView();
         initPager();
         initDrawerLayout();
-//        NavigationFragment targetFg = findFragment(NavigationFragment.class);
-//        if (targetFg == null) {
-//            targetFg = NavigationFragment.getInstance();
-//        }
 
     }
 
@@ -162,7 +158,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
             mTitle.setText(R.string.home_pager);
         }
@@ -204,14 +199,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        getMenuInflater().inflate(R.menu.main_toolbar_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            //TODO toolbar button
+            //TODO toolbar button fun
             case R.id.action_usage:
                 Toast.makeText(this,"you click usage", Toast.LENGTH_SHORT).show();
                 break;

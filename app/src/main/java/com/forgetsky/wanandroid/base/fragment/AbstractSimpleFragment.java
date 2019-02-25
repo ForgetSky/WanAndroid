@@ -6,13 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
+import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -67,7 +68,7 @@ public abstract class AbstractSimpleFragment extends SupportFragment {
             }
             long currentTime = System.currentTimeMillis();
             if ((currentTime - clickTime) > Constants.DOUBLE_INTERVAL_TIME) {
-//                CommonUtils.showSnackMessage(_mActivity, getString(R.string.double_click_exit_tint));
+               ToastUtils.showToast(_mActivity, getString(R.string.double_click_exit_toast));
                 clickTime = System.currentTimeMillis();
             } else {
                 _mActivity.finish();

@@ -11,6 +11,7 @@
     <color name="colorCard">#FFFFFF</color>
     <color name="item_title">#19191B</color>
     <color name="item_author">@color/Grey700</color>
+    <color name="red">#f44336</color>
 
     <color name="Grey50">#FAFAFA</color>
     <color name="Grey100">#F5F5F5</color>

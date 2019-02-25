@@ -7,14 +7,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportActivity;
 
-
-/**
- * Common simple Activity
- *
- * @author quchao
- * @date 2017/11/28
- */
-
 public abstract class AbstractSimpleActivity extends SupportActivity {
 
     private Unbinder unBinder;
