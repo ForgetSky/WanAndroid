@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
@@ -17,7 +16,6 @@ import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.homepager.contract.HomePagerContract;
 import com.forgetsky.wanandroid.modules.homepager.presenter.HomePagerPresenter;
 import com.forgetsky.wanandroid.utils.CommonUtils;
-import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -42,6 +40,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     private int articlePosition;
     private List<String> mBannerTitleList;
     private List<String> mBannerUrlList;
+    private List<Integer> bannerIdList;
     private Banner mBanner;
 
     public static HomePagerFragment getInstance() {
@@ -78,24 +77,27 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         mAdapter = new ArticleListAdapter(R.layout.item_article_list, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mRecyclerView.setHasFixedSize(true);
         //add head banner
         LinearLayout mHeaderGroup = (LinearLayout) getLayoutInflater().inflate(R.layout.head_banner, null);
         mBanner = mHeaderGroup.findViewById(R.id.head_banner);
+
         mHeaderGroup.removeView(mBanner);
         mAdapter.setHeaderView(mBanner);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     private void initRefreshLayout() {
+//        mRefreshLayout.setEnableAutoLoadMore(true);
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             mPresenter.refreshLayout(false);
-            refreshLayout.finishRefresh(1000);
+            refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             mPresenter.loadMore();
-            refreshLayout.finishLoadMore(1000);
+            refreshLayout.finishLoadMore();
         });
     }
 
@@ -150,11 +152,13 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     public void showBannerData(List<BannerData> bannerDataList) {
         mBannerTitleList = new ArrayList<>();
         List<String> bannerImageList = new ArrayList<>();
+        bannerIdList = new ArrayList<>();
         mBannerUrlList = new ArrayList<>();
         for (BannerData bannerData : bannerDataList) {
             mBannerTitleList.add(bannerData.getTitle());
             bannerImageList.add(bannerData.getImagePath());
             mBannerUrlList.add(bannerData.getUrl());
+            bannerIdList.add(bannerData.getId());
         }
         //设置banner样式
         mBanner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);
@@ -174,10 +178,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         mBanner.setIndicatorGravity(BannerConfig.CENTER);
 
         mBanner.setOnBannerListener(i ->
-                        ToastUtils.showToast(_mActivity, "click banner", Toast.LENGTH_SHORT)
-//                JudgeUtils.startArticleDetailActivity(_mActivity, null,
-//                0, mBannerTitleList.get(i), mBannerUrlList.get(i),
-//                false, false, true)
+                CommonUtils.startArticleDetailActivity(_mActivity, bannerIdList.get(i), mBannerTitleList.get(i), mBannerUrlList.get(i) )
         );
         //banner设置方法全部调用完毕时最后调用
         mBanner.start();

@@ -3,6 +3,7 @@ package com.forgetsky.wanandroid.core.http;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
+import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public interface HttpHelper {
     Observable<BaseResponse<List<BannerData>>> getBannerData();
 
     Observable<BaseResponse<List<ArticleItemData>>> getTopArticles();
+
+    Observable<BaseResponse<List<UsefulSiteData>>> getUsefulSites();
 
 
 }

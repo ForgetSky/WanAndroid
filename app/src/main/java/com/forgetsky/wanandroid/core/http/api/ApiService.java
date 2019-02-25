@@ -4,6 +4,7 @@ import com.forgetsky.wanandroid.core.http.BaseResponse;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
+import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 
 import java.util.List;
 
@@ -39,4 +40,12 @@ public interface ApiService {
     @GET("article/top/json")
     Observable<BaseResponse<List<ArticleItemData>>> getTopArticles();
 
+    /**
+     * 常用网站
+     * http://www.wanandroid.com/friend/json
+     *
+     * @return 常用网站数据
+     */
+    @GET("friend/json")
+    Observable<BaseResponse<List<UsefulSiteData>>> getUsefulSites();
 }

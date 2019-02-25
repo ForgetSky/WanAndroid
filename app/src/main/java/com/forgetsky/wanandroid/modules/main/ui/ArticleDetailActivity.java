@@ -114,7 +114,6 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        ToastUtils.showToast(this,"jjj");
         switch (item.getItemId()) {
             case R.id.item_share:
                 mPresenter.shareEventWithPermissionVerify(new RxPermissions(this));
