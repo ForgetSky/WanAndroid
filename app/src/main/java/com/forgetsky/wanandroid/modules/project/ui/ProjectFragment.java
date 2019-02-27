@@ -15,7 +15,7 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     @BindView(R.id.test_view)
     TextView textView;
 
-    public static ProjectFragment getInstance() {
+    public static ProjectFragment newInstance() {
         ProjectFragment fragment = new ProjectFragment();
 //        Bundle args = new Bundle();
 //        fragment.setArguments(args);

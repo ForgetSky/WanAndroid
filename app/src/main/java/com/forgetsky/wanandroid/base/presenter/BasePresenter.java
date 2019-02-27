@@ -32,12 +32,6 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
 
     }
 
-    @Override
-    public int getCurrentPage() {
-//        return mDataManager.getCurrentPage();
-        return 0;
-    }
-
     protected void addSubscribe(Disposable disposable) {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();

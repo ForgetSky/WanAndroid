@@ -16,10 +16,4 @@ public interface IPresenter<T extends IView> {
      */
     void detachView();
 
-    /**
-     * Get current page
-     *
-     * @return current page
-     */
-    int getCurrentPage();
 }

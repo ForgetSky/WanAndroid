@@ -10,30 +10,29 @@ import me.yokeyword.fragmentation.SupportActivity;
 public abstract class AbstractSimpleActivity extends SupportActivity {
 
     private Unbinder unBinder;
-    protected AbstractSimpleActivity mActivity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         unBinder = ButterKnife.bind(this);
-        mActivity = this;
-//        ActivityCollector.getInstance().addActivity(this);
         onViewCreated();
         initToolbar();
+        initView();
         initEventAndData();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        ActivityCollector.getInstance().removeActivity(this);
         if (unBinder != null && unBinder != Unbinder.EMPTY) {
             unBinder.unbind();
             unBinder = null;
         }
     }
 
+
+    protected abstract void initView();
     /**
      * 在initEventAndData()之前执行
      */

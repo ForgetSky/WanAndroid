@@ -2,16 +2,21 @@ package com.forgetsky.wanandroid.modules.main.contract;
 
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 
-public interface MainContract {
+import java.util.List;
+
+
+public interface UsefulSitesContract {
+
     interface View extends IView {
-        /**
-         * Show logout success
-         */
-        void showLogoutSuccess();
+
+        void showUsefulSites(List<UsefulSiteData> usefulSiteData);
+
     }
 
     interface Presenter extends IPresenter<View> {
 
+        void getUsefulSites();
     }
 }

@@ -1,6 +1,5 @@
 package com.forgetsky.wanandroid.modules.navigation.ui;
 
-import android.util.Log;
 import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
@@ -16,7 +15,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
     @BindView(R.id.test_view)
     TextView textView;
 
-    public static NavigationFragment getInstance() {
+    public static NavigationFragment newInstance() {
         NavigationFragment fragment = new NavigationFragment();
 //        Bundle args = new Bundle();
 //        fragment.setArguments(args);

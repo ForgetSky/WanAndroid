@@ -6,10 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
-import com.forgetsky.wanandroid.core.constant.Constants;
-import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
@@ -20,8 +17,6 @@ import me.yokeyword.fragmentation.SupportFragment;
 public abstract class AbstractSimpleFragment extends SupportFragment {
 
     private Unbinder unBinder;
-    private long clickTime;
-    public boolean isInnerFragment;
 
     @Nullable
     @Override
@@ -54,28 +49,7 @@ public abstract class AbstractSimpleFragment extends SupportFragment {
         initEventAndData();
     }
 
-    /**
-     * 处理回退事件
-     */
-    @Override
-    public boolean onBackPressedSupport() {
-        if (getChildFragmentManager().getBackStackEntryCount() > 1) {
-            popChild();
-        } else {
-            if (isInnerFragment) {
-                _mActivity.finish();
-                return true;
-            }
-            long currentTime = System.currentTimeMillis();
-            if ((currentTime - clickTime) > Constants.DOUBLE_INTERVAL_TIME) {
-               ToastUtils.showToast(_mActivity, getString(R.string.double_click_exit_toast));
-                clickTime = System.currentTimeMillis();
-            } else {
-                _mActivity.finish();
-            }
-        }
-        return true;
-    }
+
 
     /**
      * 有些初始化必须在onCreateView中，例如setAdapter,

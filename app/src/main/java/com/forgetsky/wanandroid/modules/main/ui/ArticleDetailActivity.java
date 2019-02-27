@@ -64,6 +64,11 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_article_detail;
     }

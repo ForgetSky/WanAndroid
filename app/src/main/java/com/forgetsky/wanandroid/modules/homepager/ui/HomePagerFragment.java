@@ -43,8 +43,9 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     private List<Integer> bannerIdList;
     private Banner mBanner;
 
-    public static HomePagerFragment getInstance() {
+    public static HomePagerFragment newInstance() {
         HomePagerFragment fragment = new HomePagerFragment();
+        //在此处传递参数，可在fragment恢复时使用；避免在构造函数中传参，fragment恢复时不调用非默认构造函数
 //        Bundle args = new Bundle();
 //        fragment.setArguments(args);
         return fragment;

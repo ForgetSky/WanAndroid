@@ -1,7 +1,5 @@
 package com.forgetsky.wanandroid.modules.main.presenter;
 
-import android.util.Log;
-
 import com.forgetsky.wanandroid.base.presenter.BasePresenter;
 import com.forgetsky.wanandroid.modules.main.contract.MainContract;
 
@@ -12,9 +10,5 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Inject
     MainPresenter() {
-    }
-    @Override
-    public void setCurrentPage(int page) {
-
     }
 }

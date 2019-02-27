@@ -36,6 +36,10 @@ public class Constants {
     public static final int TYPE_COLLECT = 5;
 
     public static final int TYPE_SETTING = 6;
+    public static final int TYPE_USEFULSITES = 7;
+
+    public static final String TYPE_FRAGMENT_KEY = "type_fragment";
+    public static final String CURRENT_FRAGMENT_KEY = "current_fragment";
 
 
     /**

@@ -1,11 +1,12 @@
 package com.forgetsky.wanandroid.modules.main.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -19,9 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.forgetsky.wanandroid.R;
-import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
-import com.forgetsky.wanandroid.base.fragment.BaseFragment;
+import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeHierarchyFragment;
 import com.forgetsky.wanandroid.modules.homepager.ui.HomePagerFragment;
 import com.forgetsky.wanandroid.modules.main.contract.MainContract;
@@ -29,13 +29,14 @@ import com.forgetsky.wanandroid.modules.main.presenter.MainPresenter;
 import com.forgetsky.wanandroid.modules.navigation.ui.NavigationFragment;
 import com.forgetsky.wanandroid.modules.project.ui.ProjectFragment;
 import com.forgetsky.wanandroid.modules.wxarticle.ui.WxArticleFragment;
-
-import java.util.ArrayList;
+import com.forgetsky.wanandroid.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
+
+    private static final String TAG = "MainActivity";
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -53,86 +54,136 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     FrameLayout mFrameGroup;
 
     //fragments
-    private ArrayList<BaseFragment> mFragments;
     private HomePagerFragment mHomePagerFragment;
     private KnowledgeHierarchyFragment mKnowledgeHierarchyFragment;
     private NavigationFragment mNavigationFragment;
     private WxArticleFragment mWxArticleFragment;
     private ProjectFragment mProjectFragment;
     private int mLastFgIndex = -1;
+    private int mCurrentFgIndex = 0;
+    private long clickTime;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            mCurrentFgIndex = savedInstanceState.getInt(Constants.CURRENT_FRAGMENT_KEY);
+        }
         super.onCreate(savedInstanceState);
-        initNavigationView();
-        initPager();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(Constants.CURRENT_FRAGMENT_KEY, mCurrentFgIndex);
+    }
+
+    @Override
+    protected void initView() {
         initDrawerLayout();
-
-    }
-
-    private void initPager() {
-        initFragments();
+        showFragment(mCurrentFgIndex);
+        initNavigationView();
         initBottomNavigationView();
-        switchFragment(0);
     }
 
-    private void initFragments() {
-        mFragments = new ArrayList<>();
-        mHomePagerFragment = HomePagerFragment.getInstance();
-        mKnowledgeHierarchyFragment = KnowledgeHierarchyFragment.getInstance();
-        mNavigationFragment = NavigationFragment.getInstance();
-        mWxArticleFragment = WxArticleFragment.getInstance();
-        mProjectFragment = ProjectFragment.getInstance();
+    private void showFragment(int index) {
+        mCurrentFgIndex = index;
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        hideFragment(transaction);
+        mLastFgIndex = index;
+        switch (index) {
+            case Constants.TYPE_HOME_PAGER:
+                if (mHomePagerFragment == null) {
+                    mHomePagerFragment = HomePagerFragment.newInstance();
+                    transaction.add(R.id.fragment_group, mHomePagerFragment);
+                }
+                transaction.show(mHomePagerFragment);
+                break;
+            case Constants.TYPE_KNOWLEDGE:
+                if (mKnowledgeHierarchyFragment == null) {
+                    mKnowledgeHierarchyFragment = KnowledgeHierarchyFragment.newInstance();
+                    transaction.add(R.id.fragment_group, mKnowledgeHierarchyFragment);
+                }
+                transaction.show(mKnowledgeHierarchyFragment);
+                break;
+            case Constants.TYPE_NAVIGATION:
+                if (mNavigationFragment == null) {
+                    mNavigationFragment = NavigationFragment.newInstance();
+                    transaction.add(R.id.fragment_group, mNavigationFragment);
+                }
+                transaction.show(mNavigationFragment);
+                break;
+            case Constants.TYPE_WX_ARTICLE:
+                if (mWxArticleFragment == null) {
+                    mWxArticleFragment = WxArticleFragment.newInstance();
+                    transaction.add(R.id.fragment_group, mWxArticleFragment);
+                }
+                transaction.show(mWxArticleFragment);
+                break;
+            case Constants.TYPE_PROJECT:
+                if (mProjectFragment == null) {
+                    mProjectFragment = ProjectFragment.newInstance();
+                    transaction.add(R.id.fragment_group, mProjectFragment);
+                }
+                transaction.show(mProjectFragment);
+                break;
 
-        mFragments.add(mHomePagerFragment);
-        mFragments.add(mKnowledgeHierarchyFragment);
-        mFragments.add(mNavigationFragment);
-        mFragments.add(mWxArticleFragment);
-        mFragments.add(mProjectFragment);
+            default:
 
+                break;
+        }
+        transaction.commit();
     }
 
-    private void switchFragment(int position) {
-        if (position >= mFragments.size()) {
-            return;
+    private void hideFragment(FragmentTransaction transaction) {
+        switch (mLastFgIndex) {
+            case Constants.TYPE_HOME_PAGER:
+                if (mHomePagerFragment != null) {
+                    transaction.hide(mHomePagerFragment);
+                }
+                break;
+            case Constants.TYPE_KNOWLEDGE:
+                if (mKnowledgeHierarchyFragment != null) {
+                    transaction.hide(mKnowledgeHierarchyFragment);
+                }
+                break;
+            case Constants.TYPE_NAVIGATION:
+                if (mNavigationFragment != null) {
+                    transaction.hide(mNavigationFragment);
+                }
+                break;
+            case Constants.TYPE_WX_ARTICLE:
+                if (mWxArticleFragment != null) {
+                    transaction.hide(mWxArticleFragment);
+                }
+                break;
+            case Constants.TYPE_PROJECT:
+                if (mProjectFragment != null) {
+                    transaction.hide(mProjectFragment);
+                }
+                break;
+            default:
+                break;
         }
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Fragment targetFg = mFragments.get(position);
-        if (mLastFgIndex >= 0) {
-            Fragment lastFg = mFragments.get(mLastFgIndex);
-            ft.hide(lastFg);
-        }
-        mLastFgIndex = position;
-        if (!targetFg.isAdded()) {
-            getSupportFragmentManager().beginTransaction().remove(targetFg).commitAllowingStateLoss();
-            ft.add(R.id.fragment_group, targetFg);
-        }
-        ft.show(targetFg);
-        ft.commitAllowingStateLoss();
     }
 
     private void initBottomNavigationView() {
         mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tab_main_pager:
-                    loadPager(getString(R.string.home_pager), 0,
-                            mHomePagerFragment, Constants.TYPE_HOME_PAGER);
+                    loadPager(getString(R.string.home_pager), Constants.TYPE_HOME_PAGER);
                     break;
                 case R.id.tab_knowledge_hierarchy:
-                    loadPager(getString(R.string.knowledge_hierarchy), 1,
-                            mKnowledgeHierarchyFragment, Constants.TYPE_KNOWLEDGE);
+                    loadPager(getString(R.string.knowledge_hierarchy), Constants.TYPE_KNOWLEDGE);
                     break;
                 case R.id.tab_navigation:
-                    loadPager(getString(R.string.navigation), 2,
-                            mNavigationFragment, Constants.TYPE_NAVIGATION);
+                    loadPager(getString(R.string.navigation), Constants.TYPE_NAVIGATION);
                     break;
                 case R.id.tab_wx_article:
-                    loadPager(getString(R.string.wx_article), 3,
-                            mWxArticleFragment, Constants.TYPE_WX_ARTICLE);
+                    loadPager(getString(R.string.wx_article), Constants.TYPE_WX_ARTICLE);
                     break;
                 case R.id.tab_project:
-                    loadPager(getString(R.string.project), 4,
-                            mProjectFragment, Constants.TYPE_PROJECT);
+                    loadPager(getString(R.string.project), Constants.TYPE_PROJECT);
                     break;
                 default:
                     break;
@@ -141,11 +192,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         });
     }
 
-    private void loadPager(String title, int position, BaseFragment mFragment, int pagerType) {
+    private void loadPager(String title, int index) {
         mTitle.setText(title);
-        switchFragment(position);
-//        mFragment.reload();
-        mPresenter.setCurrentPage(pagerType);
+        showFragment(index);
     }
 
     @Override
@@ -177,7 +226,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 switch (menuItem.getItemId()) {
                     //TODO navigation item
                     case R.id.nav_item_my_collect:
-                        Toast.makeText(MainActivity.this,"you click nav_item_my_collect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "you click nav_item_my_collect", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_item_todo:
                         break;
@@ -200,7 +249,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_toolbar_menu, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -208,10 +257,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         switch (item.getItemId()) {
             //TODO toolbar button fun
             case R.id.action_usage:
-                Toast.makeText(this,"you click usage", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, CommonActivity.class);
+                intent.putExtra(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_USEFULSITES);
+                startActivity(intent);
                 break;
             case R.id.action_search:
-                Toast.makeText(this,"you click search", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "you click search", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -231,7 +282,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void jumpToTheTop() {
-        switch (mPresenter.getCurrentPage()) {
+        switch (mCurrentFgIndex) {
             case Constants.TYPE_HOME_PAGER:
                 if (mHomePagerFragment != null) {
                     mHomePagerFragment.jumpToTheTop();
@@ -270,4 +321,24 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void showLogoutSuccess() {
 
     }
+
+    /**
+     * 处理回退事件
+     */
+    @Override
+    public void onBackPressedSupport() {
+
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            pop();
+        } else {
+            long currentTime = System.currentTimeMillis();
+            if ((currentTime - clickTime) > Constants.DOUBLE_INTERVAL_TIME) {
+                ToastUtils.showToast(MainActivity.this, getString(R.string.double_click_exit_toast));
+                clickTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+        }
+    }
+
 }

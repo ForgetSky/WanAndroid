@@ -1,6 +1,5 @@
 package com.forgetsky.wanandroid.modules.wxarticle.ui;
 
-import android.util.Log;
 import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
@@ -16,7 +15,7 @@ public class WxArticleFragment extends BaseFragment<WxArticlePresenter> implemen
     @BindView(R.id.test_view)
     TextView textView;
 
-    public static WxArticleFragment getInstance() {
+    public static WxArticleFragment newInstance() {
         WxArticleFragment fragment = new WxArticleFragment();
 //        Bundle args = new Bundle();
 //        fragment.setArguments(args);

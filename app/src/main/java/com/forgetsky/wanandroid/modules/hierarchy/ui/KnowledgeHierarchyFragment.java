@@ -15,7 +15,7 @@ public class KnowledgeHierarchyFragment extends BaseFragment<KnowledgeHierarchyP
     @BindView(R.id.test_view)
     TextView textView;
 
-    public static KnowledgeHierarchyFragment getInstance() {
+    public static KnowledgeHierarchyFragment newInstance() {
         KnowledgeHierarchyFragment fragment = new KnowledgeHierarchyFragment();
 //        Bundle args = new Bundle();
 //        fragment.setArguments(args);
