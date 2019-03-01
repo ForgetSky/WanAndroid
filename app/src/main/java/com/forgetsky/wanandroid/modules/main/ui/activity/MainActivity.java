@@ -1,4 +1,4 @@
-package com.forgetsky.wanandroid.modules.main.ui;
+package com.forgetsky.wanandroid.modules.main.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -262,8 +262,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 startActivity(intent);
                 break;
             case R.id.action_search:
-                intent = new Intent(MainActivity.this, CommonActivity.class);
-                intent.putExtra(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_SEARCH);
+                intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
                 break;
             default:

@@ -7,7 +7,7 @@ import android.net.ConnectivityManager;
 
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.forgetsky.wanandroid.core.constant.Constants;
-import com.forgetsky.wanandroid.modules.main.ui.ArticleDetailActivity;
+import com.forgetsky.wanandroid.modules.main.ui.activity.ArticleDetailActivity;
 
 import java.util.Random;
 

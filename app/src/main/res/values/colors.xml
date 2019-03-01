@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00ACC1</color>
     <color name="colorAccent">#00ACC1</color>
     <color name="white">#FFFFFF</color>
-    <color name="viewBackground">@color/white</color>
+    <color name="viewbg">@color/white</color>
     <color name="bottom_nav_checked">#00ACC1</color>
     <color name="bottom_nav_not_checked">#cccccc</color>
     <color name="nav_item_color_ic">#616161</color>

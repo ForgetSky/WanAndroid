@@ -37,12 +37,12 @@ public class Constants {
 
     public static final int TYPE_SETTING = 6;
     public static final int TYPE_USEFULSITES = 7;
-    public static final int TYPE_SEARCH = 8;
+    public static final int TYPE_SEARCH_RESULT = 8;
 
     public static final String TYPE_FRAGMENT_KEY = "type_fragment";
     public static final String CURRENT_FRAGMENT_KEY = "current_fragment";
 
-
+    public static final String SEARCH_KEY = "search_key";
     /**
      * Bottom Navigation tab classify
      */

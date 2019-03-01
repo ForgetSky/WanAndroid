@@ -1,4 +1,4 @@
-package com.forgetsky.wanandroid.modules.main.ui;
+package com.forgetsky.wanandroid.modules.main.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

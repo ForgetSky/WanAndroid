@@ -17,6 +17,7 @@
     <string name="hot_search">Top Search</string>
     <string name="useful_sites">Useful Sites</string>
     <string name="clear_all">Clear All</string>
+    <string name="search_tint">search</string>
 
     <!-- home pager -->
     <string name="home_pager">Home pager</string>

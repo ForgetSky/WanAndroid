@@ -3,7 +3,7 @@ package com.forgetsky.wanandroid.di.module;
 import com.forgetsky.wanandroid.di.component.BaseFragmentComponent;
 import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeHierarchyFragment;
 import com.forgetsky.wanandroid.modules.homepager.ui.HomePagerFragment;
-import com.forgetsky.wanandroid.modules.main.ui.fragment.SearchFragment;
+import com.forgetsky.wanandroid.modules.main.ui.fragment.SearchResultFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.UsefulSitesFragment;
 import com.forgetsky.wanandroid.modules.navigation.ui.NavigationFragment;
 import com.forgetsky.wanandroid.modules.project.ui.ProjectFragment;
@@ -33,7 +33,7 @@ public abstract class AbstractAllFragmentModule {
     @ContributesAndroidInjector(modules = UsefulSitesFragmentModule.class)
     abstract UsefulSitesFragment contributesUsefulSitesFragmentInject();
 
-    @ContributesAndroidInjector(modules = SearchFragmentModule.class)
-    abstract SearchFragment contributesSearchFragmentInject();
+    @ContributesAndroidInjector(modules = SearchResultFragmentModule.class)
+    abstract SearchResultFragment contributesSearchResultFragmentInject();
 
 }

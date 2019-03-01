@@ -1,9 +1,10 @@
 package com.forgetsky.wanandroid.di.module;
 
 import com.forgetsky.wanandroid.di.component.BaseActivityComponent;
-import com.forgetsky.wanandroid.modules.main.ui.ArticleDetailActivity;
-import com.forgetsky.wanandroid.modules.main.ui.CommonActivity;
-import com.forgetsky.wanandroid.modules.main.ui.MainActivity;
+import com.forgetsky.wanandroid.modules.main.ui.activity.ArticleDetailActivity;
+import com.forgetsky.wanandroid.modules.main.ui.activity.CommonActivity;
+import com.forgetsky.wanandroid.modules.main.ui.activity.MainActivity;
+import com.forgetsky.wanandroid.modules.main.ui.activity.SearchActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -19,5 +20,8 @@ public abstract class AbstractAllActivityModule {
 
     @ContributesAndroidInjector(modules = CommonActivityModule.class)
     abstract CommonActivity contributesCommonActivityInjector();
+
+    @ContributesAndroidInjector(modules = SearchActivityModule.class)
+    abstract SearchActivity contributesSearchActivityInject();
 
 }
