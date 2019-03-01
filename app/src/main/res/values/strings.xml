@@ -16,6 +16,7 @@
     <string name="history_search">Search History</string>
     <string name="hot_search">Top Search</string>
     <string name="useful_sites">Useful Sites</string>
+    <string name="clear_all">Clear All</string>
 
     <!-- home pager -->
     <string name="home_pager">Home pager</string>
@@ -27,6 +28,7 @@
     <string name="failed_to_obtain_banner_data">Failed to obtain advertising data</string>
     <string name="article_top">TOP</string>
     <string name="article_new">NEW</string>
+
 
     <!-- Common -->
     <string name="http_error">network anomaly</string>

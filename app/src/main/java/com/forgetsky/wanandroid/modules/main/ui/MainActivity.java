@@ -254,15 +254,17 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
-            //TODO toolbar button fun
             case R.id.action_usage:
-                Intent intent = new Intent(MainActivity.this, CommonActivity.class);
+                intent = new Intent(MainActivity.this, CommonActivity.class);
                 intent.putExtra(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_USEFULSITES);
                 startActivity(intent);
                 break;
             case R.id.action_search:
-                Toast.makeText(this, "you click search", Toast.LENGTH_SHORT).show();
+                intent = new Intent(MainActivity.this, CommonActivity.class);
+                intent.putExtra(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_SEARCH);
+                startActivity(intent);
                 break;
             default:
                 break;

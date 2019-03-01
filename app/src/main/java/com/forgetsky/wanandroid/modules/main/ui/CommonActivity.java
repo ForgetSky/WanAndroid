@@ -3,6 +3,7 @@ package com.forgetsky.wanandroid.modules.main.ui;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.main.contract.CommonContract;
 import com.forgetsky.wanandroid.modules.main.presenter.CommonPresenter;
+import com.forgetsky.wanandroid.modules.main.ui.fragment.SearchFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.UsefulSitesFragment;
 
 import butterknife.BindView;
@@ -36,9 +38,11 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
         switch (fragType) {
             case Constants.TYPE_USEFULSITES:
                 mTargetFragment = UsefulSitesFragment.newInstance();
-
                 title = getString(R.string.useful_sites);
-
+                break;
+            case Constants.TYPE_SEARCH:
+                mTargetFragment = SearchFragment.newInstance();
+                title = getString(R.string.action_search);
                 break;
             default:
                 break;
@@ -49,7 +53,13 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.common_frame_layout, mTargetFragment)
                     .commitAllowingStateLoss();
-            mTitle.setText(title);
+            if (fragType == Constants.TYPE_SEARCH) {
+                mTitle.setVisibility(View.GONE);
+            } else {
+                mTitle.setVisibility(View.VISIBLE);
+                mTitle.setText(title);
+            }
+
         }
 
 
