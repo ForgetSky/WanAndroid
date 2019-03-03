@@ -28,4 +28,6 @@ public interface HttpHelper {
     Observable<BaseResponse<List<UsefulSiteData>>> getUsefulSites();
 
     Observable<BaseResponse<List<TopSearchData>>> getTopSearchData();
+
+    Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String k);
 }

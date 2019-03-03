@@ -105,7 +105,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        MenuItem searchItem = menu.findItem(R.id.search_button);
 
         SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         mSearchView.setMaxWidth(Integer.MAX_VALUE);
@@ -114,6 +114,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                goToSearchResult(query);
                 return false;
             }
 

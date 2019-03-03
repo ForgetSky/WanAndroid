@@ -10,8 +10,11 @@ import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -60,4 +63,16 @@ public interface ApiService {
     @GET("hotkey/json")
     @Headers("Cache-Control: public, max-age=36000")
     Observable<BaseResponse<List<TopSearchData>>> getTopSearchData();
+
+    /**
+     * 搜索
+     * http://www.wanandroid.com/article/query/0/json
+     * @param page page
+     * @param k POST search key
+     * @return 搜索数据
+     */
+    @POST("article/query/{page}/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<ArticleListData>> getSearchResultList(@Path("page") int page, @Field("k") String k);
+
 }

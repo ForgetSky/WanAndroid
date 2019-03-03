@@ -44,4 +44,9 @@ public class DataManager implements HttpHelper {
     public Observable<BaseResponse<List<TopSearchData>>> getTopSearchData() {
         return mHttpHelper.getTopSearchData();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String k) {
+        return mHttpHelper.getSearchResultList(pageNum, k);
+    }
 }

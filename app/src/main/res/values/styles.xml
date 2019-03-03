@@ -9,7 +9,7 @@
     </style>
 
     <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">16sp</item>
 
     </style>
 
