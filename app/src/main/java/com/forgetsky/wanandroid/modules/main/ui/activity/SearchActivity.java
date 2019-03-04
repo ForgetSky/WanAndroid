@@ -3,6 +3,8 @@ package com.forgetsky.wanandroid.modules.main.ui.activity;
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.greendao.HistoryData;
+import com.forgetsky.wanandroid.modules.main.adapter.SearchHistoryAdapter;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.contract.SearchContract;
 import com.forgetsky.wanandroid.modules.main.presenter.SearchPresenter;
@@ -28,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author: ForgetSky
@@ -40,12 +45,15 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
 
     @BindView(R.id.hot_search_flow_layout)
     TagFlowLayout mTopSearchFlowLayout;
-
+    @BindView(R.id.rv_history_search)
+    RecyclerView mRecyclerView;
     private List<TopSearchData> mTopSearchDataList;
+    private SearchHistoryAdapter mAdapter;
+    private List<HistoryData> mSearchHistoryList;
 
     @Override
     protected void initView() {
-
+        initRecyclerView();
     }
 
     @Override
@@ -68,9 +76,43 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
     protected void initEventAndData() {
         mTopSearchDataList = new ArrayList<>();
         mPresenter.getTopSearchData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.loadAllHistoryData();
+    }
+
+    private void initRecyclerView() {
+        mSearchHistoryList = new ArrayList<>();
+        mAdapter = new SearchHistoryAdapter(R.layout.item_search_history, mSearchHistoryList);
+        mAdapter.setOnItemClickListener((adapter, view, position) -> {
+            if (mAdapter.getData().size() <= 0 || mAdapter.getData().size() < position) {
+                return;
+            }
+            goToSearchResult(mAdapter.getData().get(position).getData());
+        });
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            clickChildEvent(view, position);
+        });
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setHasFixedSize(true);
+        mAdapter.bindToRecyclerView(mRecyclerView);
+        mAdapter.setEmptyView(R.layout.search_empty_view);
 
     }
 
+    @OnClick({R.id.search_history_clear_all_tv})
+    void onClick(View view) {
+        clearAllHistoryData();
+    }
+
+    private void clearAllHistoryData() {
+        mPresenter.clearAllHistoryData();
+        mSearchHistoryList.clear();
+        mAdapter.replaceData(mSearchHistoryList);
+    }
 
     @Override
     public void showTopSearchData(List<TopSearchData> topSearchData) {
@@ -94,12 +136,33 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
         });
     }
 
-    private void goToSearchResult(String key) {
-//        mPresenter?.saveSearchKey(key)
+    @Override
+    public void showHistoryData(List<HistoryData> historyDataList) {
+        mSearchHistoryList = historyDataList;
+        mAdapter.replaceData(historyDataList);
+
+    }
+
+    private void goToSearchResult(String searchString) {
+        mPresenter.addHistoryData(searchString);
         Intent intent = new Intent(SearchActivity.this, CommonActivity.class);
         intent.putExtra(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_SEARCH_RESULT);
-        intent.putExtra(Constants.SEARCH_KEY, key);
+        intent.putExtra(Constants.SEARCH_KEY, searchString);
         startActivity(intent);
+    }
+
+    private void clickChildEvent(View view, int position) {
+        if (mAdapter.getData().size() <= 0 || mAdapter.getData().size() < position) {
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.iv_clear:
+                mPresenter.deleteHistoryDataById(mAdapter.getData().get(position).getId());
+                mAdapter.remove(position);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

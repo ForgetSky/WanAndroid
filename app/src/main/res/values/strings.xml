@@ -12,12 +12,14 @@
     <string name="navigation_drawer_close">Close drawer</string>
 
     <!-- toolbar -->
+    <!-- Search -->
     <string name="action_search">Search</string>
     <string name="history_search">Search History</string>
     <string name="hot_search">Top Search</string>
     <string name="useful_sites">Useful Sites</string>
     <string name="clear_all">Clear All</string>
     <string name="search_tint">search</string>
+    <string name="search_null_tint">Search something</string>
 
     <!-- home pager -->
     <string name="home_pager">Home pager</string>

@@ -120,7 +120,7 @@ public class Constants {
 
     public static final String SUPER_CHAPTER_NAME = "super_chapter_name";
 
-    static final String DB_NAME = "aws_wan_android.db";
+    public static final String DB_NAME = "forgetsky_wan_android.db";
 
     public static final String CURRENT_PAGE = "current_page";
 

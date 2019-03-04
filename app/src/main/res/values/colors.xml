@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00ACC1</color>
     <color name="colorAccent">#00ACC1</color>
     <color name="white">#FFFFFF</color>
-    <color name="viewbg">@color/white</color>
+    <color name="viewbg">@color/Grey100</color>
     <color name="bottom_nav_checked">#00ACC1</color>
     <color name="bottom_nav_not_checked">#cccccc</color>
     <color name="nav_item_color_ic">#616161</color>
@@ -12,6 +12,7 @@
     <color name="colorCard">#FFFFFF</color>
     <color name="item_title">#19191B</color>
     <color name="item_author">@color/Grey700</color>
+    <color name="item_search_history">@color/Grey700</color>
     <color name="red">#f44336</color>
 
     <color name="Grey50">#FAFAFA</color>

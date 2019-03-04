@@ -1,5 +1,7 @@
 package com.forgetsky.wanandroid.core;
 
+import com.forgetsky.wanandroid.core.db.DbHelper;
+import com.forgetsky.wanandroid.core.greendao.HistoryData;
 import com.forgetsky.wanandroid.core.http.BaseResponse;
 import com.forgetsky.wanandroid.core.http.HttpHelper;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
@@ -12,12 +14,13 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public class DataManager implements HttpHelper {
+public class DataManager implements HttpHelper, DbHelper {
     private HttpHelper mHttpHelper;
+    private DbHelper mDbHelper;
 
-    public DataManager(HttpHelper httpHelper) {
+    public DataManager(HttpHelper httpHelper, DbHelper dbHelper) {
         mHttpHelper = httpHelper;
-
+        mDbHelper = dbHelper;
     }
 
     @Override
@@ -48,5 +51,25 @@ public class DataManager implements HttpHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String k) {
         return mHttpHelper.getSearchResultList(pageNum, k);
+    }
+
+    @Override
+    public List<HistoryData> addHistoryData(String data) {
+        return mDbHelper.addHistoryData(data);
+    }
+
+    @Override
+    public void clearAllHistoryData() {
+        mDbHelper.clearAllHistoryData();
+    }
+
+    @Override
+    public void deleteHistoryDataById(Long id) {
+        mDbHelper.deleteHistoryDataById(id);
+    }
+
+    @Override
+    public List<HistoryData> loadAllHistoryData() {
+        return mDbHelper.loadAllHistoryData();
     }
 }

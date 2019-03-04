@@ -3,7 +3,11 @@ package com.forgetsky.wanandroid.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
+import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.greendao.DaoMaster;
+import com.forgetsky.wanandroid.core.greendao.DaoSession;
 import com.forgetsky.wanandroid.di.component.DaggerAppComponent;
 import com.forgetsky.wanandroid.di.module.AppModule;
 import com.forgetsky.wanandroid.di.module.HttpModule;
@@ -28,6 +32,8 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
 
     private static Context context;
     private RefWatcher refWatcher;
+    private DaoSession mDaoSession;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,6 +44,7 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
                 .httpModule(new HttpModule())
                 .build().inject(this);
 
+        initGreenDao();
 
         refWatcher = setupLeakCanary();
     }
@@ -57,4 +64,17 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
     public static Context getContext() {
         return context;
     }
+
+    private void initGreenDao() {
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, Constants.DB_NAME);
+        SQLiteDatabase database = devOpenHelper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(database);
+        mDaoSession = daoMaster.newSession();
+    }
+
+    public static DaoSession getDaoSession() {
+        WanAndroidApp application = (WanAndroidApp) context.getApplicationContext();
+        return application.mDaoSession;
+    }
+
 }
