@@ -4,6 +4,7 @@ import com.forgetsky.wanandroid.core.http.BaseResponse;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
+import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 
@@ -74,5 +75,39 @@ public interface ApiService {
     @POST("article/query/{page}/json")
     @FormUrlEncoded
     Observable<BaseResponse<ArticleListData>> getSearchResultList(@Path("page") int page, @Field("k") String k);
+
+    /**
+     * 登录
+     * http://www.wanandroid.com/user/login
+     *
+     * @param username user name
+     * @param password password
+     * @return 登录数据
+     */
+    @POST("user/login")
+    @FormUrlEncoded
+    Observable<BaseResponse<LoginData>> login(@Field("username") String username, @Field("password") String password);
+
+    /**
+     * 注册
+     * http://www.wanandroid.com/user/register
+     *
+     * @param username user name
+     * @param password password
+     * @param repassword re password
+     * @return 注册数据
+     */
+    @POST("user/register")
+    @FormUrlEncoded
+    Observable<BaseResponse<LoginData>> register(@Field("username") String username, @Field("password") String password, @Field("repassword") String repassword);
+
+    /**
+     * 退出登录
+     * http://www.wanandroid.com/user/logout/json
+     *
+     * @return 登陆数据
+     */
+    @GET("user/logout/json")
+    Observable<BaseResponse<LoginData>> logout();
 
 }

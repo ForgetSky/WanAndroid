@@ -3,6 +3,7 @@ package com.forgetsky.wanandroid.core.http;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
+import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 
@@ -30,4 +31,10 @@ public interface HttpHelper {
     Observable<BaseResponse<List<TopSearchData>>> getTopSearchData();
 
     Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String k);
+
+    Observable<BaseResponse<LoginData>> login(String username, String password);
+
+    Observable<BaseResponse<LoginData>> register(String username, String password, String repassword);
+
+    Observable<BaseResponse<LoginData>> logout();
 }

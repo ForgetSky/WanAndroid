@@ -1,6 +1,7 @@
 package com.forgetsky.wanandroid.di.module;
 
 import com.forgetsky.wanandroid.di.component.BaseActivityComponent;
+import com.forgetsky.wanandroid.modules.login.ui.LoginActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.ArticleDetailActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.CommonActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.MainActivity;
@@ -23,5 +24,9 @@ public abstract class AbstractAllActivityModule {
 
     @ContributesAndroidInjector(modules = SearchActivityModule.class)
     abstract SearchActivity contributesSearchActivityInject();
+
+    @ContributesAndroidInjector(modules = LoginActivityModule.class)
+    abstract LoginActivity contributesLoginActivityInject();
+
 
 }

@@ -4,6 +4,7 @@ import com.forgetsky.wanandroid.core.http.api.ApiService;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
+import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 
@@ -52,5 +53,20 @@ public class HttpHelperImpl implements HttpHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String k) {
         return mApiService.getSearchResultList(pageNum, k);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> login(String username, String password) {
+        return mApiService.login(username, password);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> register(String username, String password, String repassword) {
+        return mApiService.register(username, password, repassword);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> logout() {
+        return mApiService.logout();
     }
 }

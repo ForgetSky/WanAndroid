@@ -31,13 +31,15 @@
             android:name=".modules.main.ui.activity.ArticleDetailActivity"
             android:exported="false"
             android:launchMode="singleTask" />
-
         <activity
             android:name=".modules.main.ui.activity.CommonActivity"
             android:exported="false"
             android:launchMode="singleTask" />
         <activity
             android:name=".modules.main.ui.activity.SearchActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity android:name=".modules.login.ui.LoginActivity"
             android:exported="false"
             android:launchMode="singleTask" />
 

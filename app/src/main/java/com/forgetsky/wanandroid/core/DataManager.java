@@ -7,6 +7,7 @@ import com.forgetsky.wanandroid.core.http.HttpHelper;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
+import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 
@@ -51,6 +52,21 @@ public class DataManager implements HttpHelper, DbHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String k) {
         return mHttpHelper.getSearchResultList(pageNum, k);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> login(String username, String password) {
+        return mHttpHelper.login(username, password);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> register(String username, String password, String repassword) {
+        return mHttpHelper.register(username, password, repassword);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> logout() {
+        return mHttpHelper.logout();
     }
 
     @Override
