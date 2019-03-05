@@ -11,7 +11,6 @@
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>
 
-    <!-- toolbar -->
     <!-- Search -->
     <string name="action_search">Search</string>
     <string name="history_search">Search History</string>
@@ -20,6 +19,23 @@
     <string name="clear_all">Clear All</string>
     <string name="search_tint">search</string>
     <string name="search_null_tint">Search something</string>
+
+    <!-- Login -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="username">UserName</string>
+    <string name="password">Password</string>
+    <string name="no_account">No account, Register</string>
+    <string name="login_success">login success</string>
+    <string name="login_fail">login fail</string>
+    <string name="enter_password_again">enter password again</string>
+    <string name="have_account">Have account, Login</string>
+    <string name="username_not_empty">User name cannot be empty</string>
+    <string name="password_not_empty">Password cannot be empty</string>
+    <string name="re_password_not_empty">Confirmation password cannot be empty</string>
+    <string name="twice_password_not_same">The passwords entered twice are different</string>
+    <string name="register_success">register success</string>
+    <string name="register_fail">register fail</string>
 
     <!-- home pager -->
     <string name="home_pager">Home pager</string>

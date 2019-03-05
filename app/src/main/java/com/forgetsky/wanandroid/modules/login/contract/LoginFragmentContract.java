@@ -9,10 +9,11 @@ import com.forgetsky.wanandroid.base.view.IView;
  */
 public interface LoginFragmentContract {
     interface View extends IView {
-
+        void loginSuccess();
     }
 
     interface Presenter extends IPresenter<View> {
 
+        void login(String username, String password);
     }
 }

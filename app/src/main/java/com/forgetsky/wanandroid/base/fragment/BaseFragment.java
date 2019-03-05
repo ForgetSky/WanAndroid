@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.utils.ToastUtils;
 
 import javax.inject.Inject;
 
@@ -48,6 +49,16 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
 
     @Override
     public void showErrorMsg(String errorMsg) {
+        ToastUtils.showToast(_mActivity, errorMsg);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
 
     }
 

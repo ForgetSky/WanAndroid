@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.utils.ToastUtils;
 
 import javax.inject.Inject;
 
@@ -57,6 +58,16 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
 
     @Override
     public void showErrorMsg(String errorMsg) {
+        ToastUtils.showToast(this, errorMsg);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
 
     }
 }

@@ -24,6 +24,7 @@ import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeHierarchyFragment;
 import com.forgetsky.wanandroid.modules.homepager.ui.HomePagerFragment;
+import com.forgetsky.wanandroid.modules.login.ui.LoginActivity;
 import com.forgetsky.wanandroid.modules.main.contract.MainContract;
 import com.forgetsky.wanandroid.modules.main.presenter.MainPresenter;
 import com.forgetsky.wanandroid.modules.navigation.ui.NavigationFragment;
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     BottomNavigationView mBottomNavigationView;
     @BindView(R.id.fragment_group)
     FrameLayout mFrameGroup;
+    TextView mUsTv;
 
     //fragments
     private HomePagerFragment mHomePagerFragment;
@@ -243,8 +245,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             }
         });
 
+        mUsTv = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_login);
+        mUsTv.setOnClickListener(v -> startLoginActivity());
     }
 
+    private void startLoginActivity() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

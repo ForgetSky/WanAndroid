@@ -7,4 +7,8 @@ public interface IView {
      * @param errorMsg error message
      */
     void showErrorMsg(String errorMsg);
+
+    void showLoading();
+
+    void hideLoading();
 }

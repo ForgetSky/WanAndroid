@@ -44,13 +44,23 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @CallSuper
     public void onFailure(int code, String message) {
+        mView.showErrorMsg(message);
+    }
 
+    @Override
+    protected void onStart() {
+        mView.showLoading();
+        if (!CommonUtils.isNetworkConnected()) {
+            mView.showErrorMsg(WanAndroidApp.getContext().getString(R.string.http_error));
+            onComplete();
+        }
+
+        super.onStart();
     }
 
     @Override
     public final void onNext(BaseResponse<T> baseResponse) {
-        if (baseResponse.getErrorCode() == BaseResponse.SUCCESS
-                && CommonUtils.isNetworkConnected()) {
+        if (baseResponse.getErrorCode() == BaseResponse.SUCCESS) {
             onSuccess(baseResponse.getData());
         } else {
             onFailure(baseResponse.getErrorCode(), baseResponse.getErrorMsg());
@@ -59,7 +69,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @Override
     public void onComplete() {
-
+        mView.hideLoading();
     }
 
     @Override
@@ -81,4 +91,5 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 //            mView.showError();
         }
     }
+
 }
