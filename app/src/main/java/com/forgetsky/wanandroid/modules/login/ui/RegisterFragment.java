@@ -88,6 +88,6 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentPresenter> im
     @Override
     public void registerSuccess() {
         ToastUtils.showToast(_mActivity, getString(R.string.register_success));
-        _mActivity.finish();
+        goToLogin();
     }
 }
