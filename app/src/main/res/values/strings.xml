@@ -28,6 +28,7 @@
     <string name="no_account">No account, Register</string>
     <string name="login_success">login success</string>
     <string name="login_fail">login fail</string>
+    <string name="logout_fail">logout fail</string>
     <string name="enter_password_again">enter password again</string>
     <string name="have_account">Have account, Login</string>
     <string name="username_not_empty">User name cannot be empty</string>

@@ -16,6 +16,7 @@ import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.homepager.contract.HomePagerContract;
 import com.forgetsky.wanandroid.modules.homepager.presenter.HomePagerPresenter;
 import com.forgetsky.wanandroid.utils.CommonUtils;
+import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -116,15 +117,16 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
 
     private void clickChildEvent(View view, int position) {
         switch (view.getId()) {
-//            case R.id.item_search_pager_chapterName:
-//                startSingleChapterKnowledgePager(position);
-//                break;
-//            case R.id.item_search_pager_like_iv:
+            case R.id.tv_article_chapterName:
+
+                break;
+            case R.id.iv_article_like:
+                ToastUtils.showToast(_mActivity, "you click like");
 //                likeEvent(position);
-//                break;
-//            case R.id.item_search_pager_tag_red_tv:
+                break;
+            case R.id.tv_article_tag:
 //                clickTag(position);
-//                break;
+                break;
             default:
                 break;
         }

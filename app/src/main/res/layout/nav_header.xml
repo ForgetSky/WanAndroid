@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/login_in"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textColor="@color/white" />
 
 </LinearLayout>

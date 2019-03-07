@@ -11,4 +11,8 @@ public interface IView {
     void showLoading();
 
     void hideLoading();
+
+    void handleLoginSuccess();
+
+    void handleLogoutSuccess();
 }

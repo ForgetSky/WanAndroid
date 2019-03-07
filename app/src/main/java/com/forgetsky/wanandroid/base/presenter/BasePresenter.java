@@ -20,7 +20,7 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
     @Override
     public void attachView(T view) {
         this.mView = view;
-
+        registerEventBus();
     }
 
     @Override
@@ -29,7 +29,35 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
         if (compositeDisposable != null) {
             compositeDisposable.clear();
         }
+        unregisterEventBus();
+    }
 
+    @Override
+    public void registerEventBus() {
+    }
+
+    @Override
+    public void unregisterEventBus() {
+    }
+
+    @Override
+    public void setLoginStatus(boolean loginStatus) {
+        mDataManager.setLoginStatus(loginStatus);
+    }
+
+    @Override
+    public boolean getLoginStatus() {
+        return mDataManager.getLoginStatus();
+    }
+
+    @Override
+    public String getLoginAccount() {
+        return mDataManager.getLoginAccount();
+    }
+
+    @Override
+    public void setLoginAccount(String account) {
+        mDataManager.setLoginAccount(account);
     }
 
     protected void addSubscribe(Disposable disposable) {
@@ -38,4 +66,5 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
         }
         compositeDisposable.add(disposable);
     }
+
 }

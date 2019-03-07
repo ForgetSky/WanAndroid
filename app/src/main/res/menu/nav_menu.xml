@@ -25,5 +25,10 @@
             android:icon="@drawable/ic_about"
             android:title="@string/about_us" />
 
+        <item
+            android:id="@+id/nav_item_logout"
+            android:icon="@drawable/ic_logout_24dp"
+            android:title="@string/logout" />
+
     </group>
 </menu>

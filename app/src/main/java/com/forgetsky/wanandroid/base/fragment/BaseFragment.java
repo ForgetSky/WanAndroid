@@ -62,4 +62,12 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
 
     }
 
+    @Override
+    public void handleLoginSuccess() {
+    }
+
+    @Override
+    public void handleLogoutSuccess() {
+    }
+
 }

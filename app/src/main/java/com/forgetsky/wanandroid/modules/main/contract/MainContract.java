@@ -5,13 +5,10 @@ import com.forgetsky.wanandroid.base.view.IView;
 
 public interface MainContract {
     interface View extends IView {
-        /**
-         * Show logout success
-         */
-        void showLogoutSuccess();
+
     }
 
     interface Presenter extends IPresenter<View> {
-
+        void logout();
     }
 }

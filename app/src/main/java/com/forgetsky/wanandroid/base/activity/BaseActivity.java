@@ -70,4 +70,12 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
     public void hideLoading() {
 
     }
+
+    @Override
+    public void handleLoginSuccess() {
+    }
+
+    @Override
+    public void handleLogoutSuccess() {
+    }
 }

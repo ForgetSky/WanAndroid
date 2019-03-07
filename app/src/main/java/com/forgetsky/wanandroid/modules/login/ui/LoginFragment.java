@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
+import com.forgetsky.wanandroid.core.event.RegisterEvent;
 import com.forgetsky.wanandroid.modules.login.contract.LoginFragmentContract;
 import com.forgetsky.wanandroid.modules.login.presenter.LoginFragmentPresenter;
 import com.forgetsky.wanandroid.utils.ToastUtils;
@@ -83,5 +84,11 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
     public void loginSuccess() {
         ToastUtils.showToast(_mActivity, getString(R.string.login_success));
         _mActivity.finish();
+    }
+
+    @Override
+    public void registerSuccess(RegisterEvent registerEvent) {
+        mUsernameEdit.setText(registerEvent.getUsername());
+        mPasswordEdit.setText(registerEvent.getPassword());
     }
 }

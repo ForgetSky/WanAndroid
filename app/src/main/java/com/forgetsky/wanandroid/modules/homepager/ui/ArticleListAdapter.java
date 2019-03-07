@@ -23,7 +23,8 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleItemData, BaseVi
     @Override
     protected void convert(BaseViewHolder helper, ArticleItemData item) {
         helper.setText(R.id.tv_article_title, Html.fromHtml(item.getTitle()))
-                .setText(R.id.tv_article_author, item.getAuthor());
+                .setText(R.id.tv_article_author, item.getAuthor())
+        .setImageResource(R.id.iv_article_like, item.isCollect() ? R.drawable.ic_like : R.drawable.ic_like_not);
         if (!TextUtils.isEmpty(item.getChapterName())) {
             String classifyName = item.getSuperChapterName() + " / " + item.getChapterName();
             helper.setText(R.id.tv_article_chapterName, classifyName);
@@ -48,5 +49,10 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleItemData, BaseVi
         } else {
             helper.getView(R.id.iv_article_thumbnail).setVisibility(View.GONE);
         }
+
+        helper.addOnClickListener(R.id.tv_article_chapterName);
+        helper.addOnClickListener(R.id.iv_article_like);
+        helper.addOnClickListener(R.id.tv_article_tag);
+
     }
 }

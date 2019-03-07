@@ -2,6 +2,7 @@ package com.forgetsky.wanandroid.modules.login.contract;
 
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.core.event.RegisterEvent;
 
 /**
  * @author: ForgetSky
@@ -10,6 +11,7 @@ import com.forgetsky.wanandroid.base.view.IView;
 public interface LoginFragmentContract {
     interface View extends IView {
         void loginSuccess();
+        void registerSuccess(RegisterEvent registerEvent);
     }
 
     interface Presenter extends IPresenter<View> {

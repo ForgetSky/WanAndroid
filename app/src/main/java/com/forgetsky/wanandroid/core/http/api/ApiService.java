@@ -105,7 +105,7 @@ public interface ApiService {
      * 退出登录
      * http://www.wanandroid.com/user/logout/json
      *
-     * @return 登陆数据
+     * @return 登录数据
      */
     @GET("user/logout/json")
     Observable<BaseResponse<LoginData>> logout();

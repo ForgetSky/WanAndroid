@@ -16,4 +16,36 @@ public interface IPresenter<T extends IView> {
      */
     void detachView();
 
+    void registerEventBus();
+
+    void unregisterEventBus();
+
+    /**
+     * Set login status
+     *
+     * @param loginStatus login status
+     */
+    void setLoginStatus(boolean loginStatus);
+
+    /**
+     * Get login status
+     *
+     * @return if is login status
+     */
+    boolean getLoginStatus();
+
+    /**
+     * Get login account
+     *
+     * @return login account
+     */
+    String getLoginAccount();
+
+    /**
+     * Set login status
+     *
+     * @param account account
+     */
+    void setLoginAccount(String account);
+
 }

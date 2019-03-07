@@ -4,6 +4,7 @@ import com.forgetsky.wanandroid.core.db.DbHelper;
 import com.forgetsky.wanandroid.core.greendao.HistoryData;
 import com.forgetsky.wanandroid.core.http.BaseResponse;
 import com.forgetsky.wanandroid.core.http.HttpHelper;
+import com.forgetsky.wanandroid.core.preference.PreferenceHelper;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
@@ -15,13 +16,15 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public class DataManager implements HttpHelper, DbHelper {
+public class DataManager implements HttpHelper, DbHelper,PreferenceHelper {
     private HttpHelper mHttpHelper;
     private DbHelper mDbHelper;
+    private PreferenceHelper mPreferenceHelper;
 
-    public DataManager(HttpHelper httpHelper, DbHelper dbHelper) {
+    public DataManager(HttpHelper httpHelper, DbHelper dbHelper, PreferenceHelper preferenceHelper) {
         mHttpHelper = httpHelper;
         mDbHelper = dbHelper;
+        mPreferenceHelper = preferenceHelper;
     }
 
     @Override
@@ -87,5 +90,25 @@ public class DataManager implements HttpHelper, DbHelper {
     @Override
     public List<HistoryData> loadAllHistoryData() {
         return mDbHelper.loadAllHistoryData();
+    }
+
+    @Override
+    public void setLoginStatus(boolean isLogin) {
+        mPreferenceHelper.setLoginStatus(isLogin);
+    }
+
+    @Override
+    public boolean getLoginStatus() {
+        return mPreferenceHelper.getLoginStatus();
+    }
+
+    @Override
+    public void setLoginAccount(String account) {
+        mPreferenceHelper.setLoginAccount(account);
+    }
+
+    @Override
+    public String getLoginAccount() {
+        return mPreferenceHelper.getLoginAccount();
     }
 }

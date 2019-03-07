@@ -238,6 +238,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         break;
                     case R.id.nav_item_about_us:
                         break;
+                    case R.id.nav_item_logout:
+                        mPresenter.logout();
+                        break;
                     default:
                         break;
                 }
@@ -246,7 +249,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         });
 
         mUsTv = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_login);
+        mUsTv.setText(mPresenter.getLoginStatus() ? mPresenter.getLoginAccount() : getString(R.string.login));
         mUsTv.setOnClickListener(v -> startLoginActivity());
+        mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(mPresenter.getLoginStatus());
     }
 
     private void startLoginActivity() {
@@ -326,11 +331,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     }
 
-    @Override
-    public void showLogoutSuccess() {
-
-    }
-
     /**
      * 处理回退事件
      */
@@ -350,4 +350,17 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     }
 
+    @Override
+    public void handleLoginSuccess() {
+        mUsTv.setText(mPresenter.getLoginAccount());
+        mUsTv.setOnClickListener(null);
+        mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(true);
+    }
+
+    @Override
+    public void handleLogoutSuccess() {
+        mUsTv.setText(getString(R.string.login));
+        mUsTv.setOnClickListener(v -> startLoginActivity());
+        mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(false);
+    }
 }
