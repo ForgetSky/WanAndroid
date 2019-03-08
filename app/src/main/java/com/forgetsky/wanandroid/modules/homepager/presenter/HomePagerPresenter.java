@@ -2,6 +2,7 @@ package com.forgetsky.wanandroid.modules.homepager.presenter;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
+import com.forgetsky.wanandroid.core.event.CancelCollectEvent;
 import com.forgetsky.wanandroid.core.event.LoginEvent;
 import com.forgetsky.wanandroid.core.event.LogoutEvent;
 import com.forgetsky.wanandroid.core.rx.BaseObserver;
@@ -113,6 +114,11 @@ public class HomePagerPresenter extends CollectEventPresenter<HomePagerContract.
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void logoutSuccessEvent(LogoutEvent logoutEvent) {
+        getHomePagerData(false);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void cancelCollectEvent(CancelCollectEvent cancelCollectEvent) {
         getHomePagerData(false);
     }
 

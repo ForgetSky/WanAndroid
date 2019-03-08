@@ -117,26 +117,31 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     private void clickChildEvent(View view, int position) {
         switch (view.getId()) {
             case R.id.tv_article_chapterName:
-
+                //todo chapter click
+//                startSingleChapterKnowledgePager(position);
                 break;
             case R.id.iv_article_like:
-                if (mPresenter.getLoginStatus()) {
-                    if (mAdapter.getData().get(position).isCollect()) {
-                        mPresenter.cancelCollectArticle(position, mAdapter.getData().get(position).getId());
-                    } else {
-                        mPresenter.addCollectArticle(position, mAdapter.getData().get(position).getId());
-                    }
-                } else {
-                    CommonUtils.startLoginActivity(_mActivity);
-                    ToastUtils.showToast(_mActivity, getString(R.string.login_first));
-                }
-
+                collectClickEvent(position);
                 break;
             case R.id.tv_article_tag:
+                //todo tag click
 //                clickTag(position);
                 break;
             default:
                 break;
+        }
+    }
+
+    private void collectClickEvent(int position) {
+        if (mPresenter.getLoginStatus()) {
+            if (mAdapter.getData().get(position).isCollect()) {
+                mPresenter.cancelCollectArticle(position, mAdapter.getData().get(position).getId());
+            } else {
+                mPresenter.addCollectArticle(position, mAdapter.getData().get(position).getId());
+            }
+        } else {
+            CommonUtils.startLoginActivity(_mActivity);
+            ToastUtils.showToast(_mActivity, getString(R.string.login_first));
         }
     }
 
@@ -184,7 +189,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         mBanner.setIndicatorGravity(BannerConfig.CENTER);
 
         mBanner.setOnBannerListener(i ->
-                CommonUtils.startArticleDetailActivity(_mActivity, bannerIdList.get(i), mBannerTitleList.get(i), mBannerUrlList.get(i) )
+                CommonUtils.startArticleDetailActivity(_mActivity, bannerIdList.get(i), mBannerTitleList.get(i), mBannerUrlList.get(i))
         );
         //banner设置方法全部调用完毕时最后调用
         mBanner.start();

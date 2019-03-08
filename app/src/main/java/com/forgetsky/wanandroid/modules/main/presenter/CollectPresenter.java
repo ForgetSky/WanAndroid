@@ -3,10 +3,13 @@ package com.forgetsky.wanandroid.modules.main.presenter;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.forgetsky.wanandroid.base.presenter.BasePresenter;
+import com.forgetsky.wanandroid.core.event.CancelCollectEvent;
 import com.forgetsky.wanandroid.core.rx.BaseObserver;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.main.contract.CollectContract;
 import com.forgetsky.wanandroid.utils.RxUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -19,7 +22,6 @@ public class CollectPresenter extends BasePresenter<CollectContract.View> implem
     @Inject
     CollectPresenter() {
     }
-
 
     @Override
     public void getCollectArticle(boolean isShowError) {
@@ -61,6 +63,7 @@ public class CollectPresenter extends BasePresenter<CollectContract.View> implem
                     @Override
                     public void onSuccess(ArticleListData articleListData) {
                         mView.cancelCollectSuccess(postion);
+                        EventBus.getDefault().post(new CancelCollectEvent());
                     }
                 }));
     }

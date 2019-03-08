@@ -2,7 +2,6 @@ package com.forgetsky.wanandroid.modules.main.presenter;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
-import com.forgetsky.wanandroid.base.presenter.BasePresenter;
 import com.forgetsky.wanandroid.core.rx.BaseObserver;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.main.contract.SearchResultContract;
@@ -11,7 +10,7 @@ import com.forgetsky.wanandroid.utils.RxUtils;
 import javax.inject.Inject;
 
 
-public class SearchResultPresenter extends BasePresenter<SearchResultContract.View> implements SearchResultContract.Presenter {
+public class SearchResultPresenter extends CollectEventPresenter<SearchResultContract.View> implements SearchResultContract.Presenter {
 
     @Inject
     SearchResultPresenter() {

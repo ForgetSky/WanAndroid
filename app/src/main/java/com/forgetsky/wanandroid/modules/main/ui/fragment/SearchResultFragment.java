@@ -16,6 +16,7 @@ import com.forgetsky.wanandroid.modules.homepager.ui.ArticleListAdapter;
 import com.forgetsky.wanandroid.modules.main.contract.SearchResultContract;
 import com.forgetsky.wanandroid.modules.main.presenter.SearchResultPresenter;
 import com.forgetsky.wanandroid.utils.CommonUtils;
+import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     RecyclerView mRecyclerView;
     private List<ArticleItemData> mArticleList;
     private ArticleListAdapter mAdapter;
-    private String mSearchKey="";
+    private String mSearchKey = "";
 
     public static SearchResultFragment newInstance(Bundle bundle) {
         SearchResultFragment fragment = new SearchResultFragment();
@@ -76,7 +77,7 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     private void initRefreshLayout() {
 //        mRefreshLayout.setEnableAutoLoadMore(true);
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.search(mSearchKey,false);
+            mPresenter.search(mSearchKey, false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
@@ -99,17 +100,32 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
 
     private void clickChildEvent(View view, int position) {
         switch (view.getId()) {
-//            case R.id.item_search_pager_chapterName:
+            case R.id.tv_article_chapterName:
+                //todo chapter click
 //                startSingleChapterKnowledgePager(position);
-//                break;
-//            case R.id.item_search_pager_like_iv:
-//                likeEvent(position);
-//                break;
-//            case R.id.item_search_pager_tag_red_tv:
+                break;
+            case R.id.iv_article_like:
+                collectClickEvent(position);
+                break;
+            case R.id.tv_article_tag:
+                //todo tag click
 //                clickTag(position);
-//                break;
+                break;
             default:
                 break;
+        }
+    }
+
+    private void collectClickEvent(int position) {
+        if (mPresenter.getLoginStatus()) {
+            if (mAdapter.getData().get(position).isCollect()) {
+                mPresenter.cancelCollectArticle(position, mAdapter.getData().get(position).getId());
+            } else {
+                mPresenter.addCollectArticle(position, mAdapter.getData().get(position).getId());
+            }
+        } else {
+            CommonUtils.startLoginActivity(_mActivity);
+            ToastUtils.showToast(_mActivity, getString(R.string.login_first));
         }
     }
 
@@ -125,5 +141,19 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
             mArticleList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
         }
+    }
+
+    @Override
+    public void showCollectSuccess(int position) {
+        mAdapter.getData().get(position).setCollect(true);
+        mAdapter.setData(position, mAdapter.getData().get(position));
+        ToastUtils.showToast(_mActivity, getString(R.string.collect_success));
+    }
+
+    @Override
+    public void showCancelCollectSuccess(int position) {
+        mAdapter.getData().get(position).setCollect(false);
+        mAdapter.setData(position, mAdapter.getData().get(position));
+        ToastUtils.showToast(_mActivity, getString(R.string.cancel_collect));
     }
 }
