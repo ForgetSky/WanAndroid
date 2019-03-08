@@ -40,6 +40,7 @@
     <string name="logging_in">Logging…</string>
     <string name="logging_out">Logout…</string>
     <string name="registering">Registering…</string>
+    <string name="login_first">Please login first</string>
 
     <!-- home pager -->
     <string name="home_pager">Home pager</string>
@@ -52,6 +53,13 @@
     <string name="article_top">TOP</string>
     <string name="article_new">NEW</string>
 
+    <!-- collect -->
+    <string name="collect">Collect</string>
+    <string name="cancel_collect">Cancel collect</string>
+    <string name="failed_to_obtain_collect_list">Failure to get collections of articles</string>
+    <string name="failed_to_cancel_collect">Failure to Cancel Collection</string>
+    <string name="collect_success">Collect success</string>
+    <string name="collect_failed">Collect failed</string>
 
     <!-- Common -->
     <string name="http_error">network anomaly</string>
@@ -61,8 +69,6 @@
 
     <!-- Article detail -->
     <string name="share">Share</string>
-    <string name="collect">Collect</string>
-    <string name="cancel_collect">Cancel collect</string>
     <string name="open_it_with_browser">Open it with the system browser</string>
     <string name="share_type_url">%1$sShare【%2$s】special top：%3$s</string>
     <string name="write_permission_not_allowed">Gets write permission failed</string>

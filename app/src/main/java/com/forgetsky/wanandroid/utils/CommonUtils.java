@@ -1,6 +1,5 @@
 package com.forgetsky.wanandroid.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +13,9 @@ import android.widget.TextView;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.modules.login.ui.LoginActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.ArticleDetailActivity;
+import com.forgetsky.wanandroid.modules.main.ui.activity.CommonActivity;
 
 import java.util.Objects;
 import java.util.Random;
@@ -39,6 +40,17 @@ public class CommonUtils {
 
     }
 
+    public static void startLoginActivity(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void startFragmentInCommonActivity(Context context, int fragmet) {
+        Intent intent = new Intent(context, CommonActivity.class);
+        intent.putExtra(Constants.TYPE_FRAGMENT_KEY, fragmet);
+        context.startActivity(intent);
+    }
+
     public static int getRandomColor() {
         Random random = new Random();
         //0-190, 如果颜色值过大,就越接近白色,就看不清了,所以需要限定范围
@@ -55,7 +67,7 @@ public class CommonUtils {
         return Color.rgb(red, green, blue);
     }
 
-    public static AlertDialog getLoadingDialog(Activity context, String message) {
+    public static AlertDialog getLoadingDialog(Context context, String message) {
         View view = LayoutInflater.from(context).inflate(R.layout.loading_progressbar,null,false);
         TextView loadingText = view.findViewById(R.id.loading_text);
         loadingText.setText(message);

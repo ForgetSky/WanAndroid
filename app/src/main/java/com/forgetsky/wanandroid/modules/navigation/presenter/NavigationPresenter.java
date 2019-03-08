@@ -10,7 +10,6 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View>
 
     @Inject
     NavigationPresenter() {
-        super();
     }
     private int currentPage;
 

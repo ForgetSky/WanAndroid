@@ -37,4 +37,15 @@ public interface HttpHelper {
     Observable<BaseResponse<LoginData>> register(String username, String password, String repassword);
 
     Observable<BaseResponse<LoginData>> logout();
+
+    Observable<BaseResponse<ArticleListData>> addCollectArticle(int id);
+
+    Observable<BaseResponse<ArticleListData>> addCollectOutsideArticle(String  title, String author, String link);
+
+    Observable<BaseResponse<ArticleListData>> getCollectList(int page);
+
+    Observable<BaseResponse<ArticleListData>> cancelCollectArticle(int id);
+
+    Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(int id, int originId);
+
 }

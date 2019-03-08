@@ -12,6 +12,7 @@ import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.main.contract.CommonContract;
 import com.forgetsky.wanandroid.modules.main.presenter.CommonPresenter;
+import com.forgetsky.wanandroid.modules.main.ui.fragment.CollectFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.SearchResultFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.UsefulSitesFragment;
 
@@ -46,6 +47,10 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
                 assert extras != null;
                 title = extras.getString(Constants.SEARCH_KEY, "");
                 break;
+            case Constants.TYPE_COLLECT:
+                mTargetFragment = CollectFragment.newInstance();
+                title = getString(R.string.collect);
+                break;
             default:
                 break;
         }
@@ -54,7 +59,7 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
         } else {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.common_frame_layout, mTargetFragment)
-                    .commitAllowingStateLoss();
+                    .commit();
 
             mTitle.setText(title);
 

@@ -1,23 +1,19 @@
 package com.forgetsky.wanandroid.modules.homepager.contract;
 
-import com.forgetsky.wanandroid.base.presenter.IPresenter;
-import com.forgetsky.wanandroid.base.view.IView;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
+import com.forgetsky.wanandroid.modules.main.contract.CollectEventContract;
 
 import java.util.List;
 
 public interface HomePagerContract {
-    interface View extends IView {
-        /**
-         * Show logout success
-         */
-        void showLogoutSuccess();
+
+    interface View extends CollectEventContract.View {
         void showArticleList(ArticleListData articleListData, boolean isRefresh);
         void showBannerData(List<BannerData> bannerDataList);
     }
 
-    interface Presenter extends IPresenter<View> {
+    interface Presenter extends CollectEventContract.Presenter<View> {
 
         void getArticleList(boolean isShowError);
         void getBannerData(boolean isShowError);
@@ -27,11 +23,6 @@ public interface HomePagerContract {
         void refreshLayout(boolean isShowError);
 
         void loadMore();
-        /**
-         * Load more data
-         */
-        void loadMoreData();
-
 
     }
 }

@@ -110,4 +110,62 @@ public interface ApiService {
     @GET("user/logout/json")
     Observable<BaseResponse<LoginData>> logout();
 
+    /**
+     * 收藏站内文章
+     * http://www.wanandroid.com/lg/collect/1165/json
+     *
+     * @param id article id
+     * @return 收藏站内文章数据
+     */
+    @POST("lg/collect/{id}/json")
+    Observable<BaseResponse<ArticleListData>> addCollectArticle(@Path("id") int id);
+
+    /**
+     * 收藏站外文章
+     * http://www.wanandroid.com/lg/collect/add/json
+     *
+     * @param title title
+     * @param author author
+     * @param link link
+     * @return 收藏站外文章数据
+     */
+    @POST("lg/collect/add/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<ArticleListData>> addCollectOutsideArticle(@Field("title") String  title, @Field("author") String author, @Field("link") String link);
+
+
+    /**
+     * 获取收藏列表
+     * http://www.wanandroid.com/lg/collect/list/0/json
+     *
+     * @param page page number
+     * @return 收藏列表数据
+     */
+    @GET("lg/collect/list/{page}/json")
+    Observable<BaseResponse<ArticleListData>> getCollectList(@Path("page") int page);
+
+    /**
+     * 文章列表中取消收藏文章
+     * http://www.wanandroid.com/lg/uncollect_originId/2333/json
+     *
+     * @param id 列表中文章的id
+     * @return 取消站内文章数据
+     */
+    @POST("lg/uncollect_originId/{id}/json")
+    Observable<BaseResponse<ArticleListData>> cancelCollectArticle(@Path("id") int id);
+
+    /**
+     * 收藏列表中取消收藏文章
+     * http://www.wanandroid.com/lg/uncollect/2805/json
+     *
+     * @param id article id
+     * @param originId originId 代表的是你收藏之前的那篇文章本身的id；
+     *                 但是收藏支持主动添加，这种情况下，没有originId则为-1
+     * @return 取消收藏列表中文章数据
+     */
+    @POST("lg/uncollect/{id}/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(@Path("id") int id, @Field("originId") int originId);
+
+
 }

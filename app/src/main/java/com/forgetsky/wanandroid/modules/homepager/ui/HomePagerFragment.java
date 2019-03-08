@@ -38,7 +38,6 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
 
     private List<ArticleItemData> mArticleList;
     private ArticleListAdapter mAdapter;
-    private int articlePosition;
     private List<String> mBannerTitleList;
     private List<String> mBannerUrlList;
     private List<Integer> bannerIdList;
@@ -121,8 +120,17 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
 
                 break;
             case R.id.iv_article_like:
-                ToastUtils.showToast(_mActivity, "you click like");
-//                likeEvent(position);
+                if (mPresenter.getLoginStatus()) {
+                    if (mAdapter.getData().get(position).isCollect()) {
+                        mPresenter.cancelCollectArticle(position, mAdapter.getData().get(position).getId());
+                    } else {
+                        mPresenter.addCollectArticle(position, mAdapter.getData().get(position).getId());
+                    }
+                } else {
+                    CommonUtils.startLoginActivity(_mActivity);
+                    ToastUtils.showToast(_mActivity, getString(R.string.login_first));
+                }
+
                 break;
             case R.id.tv_article_tag:
 //                clickTag(position);
@@ -130,11 +138,6 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
             default:
                 break;
         }
-    }
-
-    @Override
-    public void showLogoutSuccess() {
-
     }
 
     @Override
@@ -192,4 +195,19 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
             mRecyclerView.smoothScrollToPosition(0);
         }
     }
+
+    @Override
+    public void showCollectSuccess(int position) {
+        mAdapter.getData().get(position).setCollect(true);
+        mAdapter.setData(position, mAdapter.getData().get(position));
+        ToastUtils.showToast(_mActivity, getString(R.string.collect_success));
+    }
+
+    @Override
+    public void showCancelCollectSuccess(int position) {
+        mAdapter.getData().get(position).setCollect(false);
+        mAdapter.setData(position, mAdapter.getData().get(position));
+        ToastUtils.showToast(_mActivity, getString(R.string.cancel_collect));
+    }
+
 }

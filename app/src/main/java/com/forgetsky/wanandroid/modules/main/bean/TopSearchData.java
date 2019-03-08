@@ -1,19 +1,7 @@
 package com.forgetsky.wanandroid.modules.main.bean;
 
-/**
- * @author quchao
- * @date 2018/2/22
- */
 
 public class TopSearchData {
-
-    /**
-     *   "id": 6,
-     * "link": "",
-     * "name": "面试",
-     *"order": 1,
-     * "visible": 1
-     */
 
     private int id;
     private String link;

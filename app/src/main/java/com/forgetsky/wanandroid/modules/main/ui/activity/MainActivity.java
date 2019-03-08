@@ -1,5 +1,6 @@
 package com.forgetsky.wanandroid.modules.main.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -228,10 +229,17 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 switch (menuItem.getItemId()) {
                     //TODO navigation item
                     case R.id.nav_item_my_collect:
-                        Toast.makeText(MainActivity.this, "you click nav_item_my_collect", Toast.LENGTH_SHORT).show();
+                        if (mPresenter.getLoginStatus()) {
+                            CommonUtils.startFragmentInCommonActivity(MainActivity.this, Constants.TYPE_COLLECT);
+                        } else {
+                            CommonUtils.startLoginActivity(MainActivity.this);
+                            ToastUtils.showToast(MainActivity.this, getString(R.string.login_first));
+                        }
+
                         break;
                     case R.id.nav_item_todo:
                         break;
@@ -253,13 +261,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
         mUsTv = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_login);
         mUsTv.setText(mPresenter.getLoginStatus() ? mPresenter.getLoginAccount() : getString(R.string.login));
-        mUsTv.setOnClickListener(v -> startLoginActivity());
+        mUsTv.setOnClickListener(v -> CommonUtils.startLoginActivity(MainActivity.this));
         mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(mPresenter.getLoginStatus());
-    }
-
-    private void startLoginActivity() {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        MainActivity.this.startActivity(intent);
     }
 
     @Override
@@ -363,7 +366,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void handleLogoutSuccess() {
         mUsTv.setText(getString(R.string.login));
-        mUsTv.setOnClickListener(v -> startLoginActivity());
+        mUsTv.setOnClickListener(v -> CommonUtils.startLoginActivity(MainActivity.this));
         mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(false);
     }
 

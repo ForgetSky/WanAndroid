@@ -73,6 +73,31 @@ public class DataManager implements HttpHelper, DbHelper,PreferenceHelper {
     }
 
     @Override
+    public Observable<BaseResponse<ArticleListData>> addCollectArticle(int id) {
+        return mHttpHelper.addCollectArticle(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> addCollectOutsideArticle(String title, String author, String link) {
+        return mHttpHelper.addCollectOutsideArticle(title, author, link);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getCollectList(int page) {
+        return mHttpHelper.getCollectList(page);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> cancelCollectArticle(int id) {
+        return mHttpHelper.cancelCollectArticle(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(int id, int originId) {
+        return mHttpHelper.cancelCollectInCollectPage(id, originId);
+    }
+
+    @Override
     public List<HistoryData> addHistoryData(String data) {
         return mDbHelper.addHistoryData(data);
     }

@@ -1,4 +1,4 @@
-package com.forgetsky.wanandroid.modules.homepager.ui;
+package com.forgetsky.wanandroid.modules.main.adapter;
 
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -13,10 +13,10 @@ import com.forgetsky.wanandroid.utils.GlideImageLoader;
 
 import java.util.List;
 
-public class ArticleListAdapter extends BaseQuickAdapter<ArticleItemData, BaseViewHolder> {
+public class CollectListAdapter extends BaseQuickAdapter<ArticleItemData, BaseViewHolder> {
 
 
-    public ArticleListAdapter(int layoutResId, @Nullable List<ArticleItemData> data) {
+    public CollectListAdapter(int layoutResId, @Nullable List<ArticleItemData> data) {
         super(layoutResId, data);
     }
 
@@ -24,23 +24,12 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleItemData, BaseVi
     protected void convert(BaseViewHolder helper, ArticleItemData item) {
         helper.setText(R.id.tv_article_title, Html.fromHtml(item.getTitle()))
                 .setText(R.id.tv_article_author, item.getAuthor())
-        .setImageResource(R.id.iv_article_like, item.isCollect() ? R.drawable.ic_like : R.drawable.ic_like_not);
+        .setImageResource(R.id.iv_article_like, R.drawable.ic_like);
         if (!TextUtils.isEmpty(item.getChapterName())) {
-            String classifyName = item.getSuperChapterName() + " / " + item.getChapterName();
-            helper.setText(R.id.tv_article_chapterName, classifyName);
+            helper.setText(R.id.tv_article_chapterName, item.getChapterName());
         }
         if (!TextUtils.isEmpty(item.getNiceDate())) {
             helper.setText(R.id.tv_article_niceDate, item.getNiceDate());
-        }
-        helper.getView(R.id.tv_article_top).setVisibility(item.getType() == 1 ? View.VISIBLE : View.GONE);
-
-        helper.getView(R.id.tv_article_fresh).setVisibility(item.isFresh() ? View.VISIBLE : View.GONE);
-
-        if (item.getTags().size() > 0) {
-            helper.setText(R.id.tv_article_tag, item.getTags().get(0).getName()).
-                    getView(R.id.tv_article_tag).setVisibility(View.VISIBLE);
-        } else {
-            helper.getView(R.id.tv_article_tag).setVisibility(View.GONE);
         }
 
         if (!TextUtils.isEmpty(item.getEnvelopePic())) {
@@ -52,7 +41,6 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleItemData, BaseVi
 
         helper.addOnClickListener(R.id.tv_article_chapterName);
         helper.addOnClickListener(R.id.iv_article_like);
-        helper.addOnClickListener(R.id.tv_article_tag);
 
     }
 }

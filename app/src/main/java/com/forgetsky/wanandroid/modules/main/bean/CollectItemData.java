@@ -1,14 +1,11 @@
-package com.forgetsky.wanandroid.modules.homepager.bean;
+package com.forgetsky.wanandroid.modules.main.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class ArticleItemData implements Serializable {
-    private String apkLink;
+public class CollectItemData implements Serializable {
     private String author;
     private int chapterId;
     private String chapterName;
-    private boolean collect;
     private int courseId;
     private String desc;
     private String envelopePic;
@@ -16,72 +13,13 @@ public class ArticleItemData implements Serializable {
     private String link;
     private String niceDate;
     private String origin;
-    private String projectLink;
-    private int superChapterId;
-    private String superChapterName;
+    private String originId;
     private long publishTime;
     private String title;
+    private int userId;
     private int visible;
     private int zan;
-    private int type;
-    private boolean fresh;
-    private List<ArticleTagsDate> tags;
-    private int userId;
-    private int originId;
 
-
-    public class ArticleTagsDate implements Serializable {
-        private String name;
-        private String url;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-    }
-
-    public List<ArticleTagsDate> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<ArticleTagsDate> tags) {
-        this.tags = tags;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public boolean isFresh() {
-        return fresh;
-    }
-
-    public void setFresh(boolean fresh) {
-        this.fresh = fresh;
-    }
-
-    public String getApkLink() {
-        return apkLink;
-    }
-
-    public void setApkLink(String apkLink) {
-        this.apkLink = apkLink;
-    }
 
     public String getAuthor() {
         return author;
@@ -105,14 +43,6 @@ public class ArticleItemData implements Serializable {
 
     public void setChapterName(String chapterName) {
         this.chapterName = chapterName;
-    }
-
-    public boolean isCollect() {
-        return collect;
-    }
-
-    public void setCollect(boolean collect) {
-        this.collect = collect;
     }
 
     public int getCourseId() {
@@ -171,30 +101,6 @@ public class ArticleItemData implements Serializable {
         this.origin = origin;
     }
 
-    public String getProjectLink() {
-        return projectLink;
-    }
-
-    public void setProjectLink(String projectLink) {
-        this.projectLink = projectLink;
-    }
-
-    public int getSuperChapterId() {
-        return superChapterId;
-    }
-
-    public void setSuperChapterId(int superChapterId) {
-        this.superChapterId = superChapterId;
-    }
-
-    public String getSuperChapterName() {
-        return superChapterName;
-    }
-
-    public void setSuperChapterName(String superChapterName) {
-        this.superChapterName = superChapterName;
-    }
-
     public long getPublishTime() {
         return publishTime;
     }
@@ -227,20 +133,11 @@ public class ArticleItemData implements Serializable {
         this.zan = zan;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-
-    public int getOriginId() {
+    public String getOriginId() {
         return originId;
     }
 
-    public void setOriginId(int originId) {
-        this.originId = originId;
+    public int getUserId() {
+        return userId;
     }
 }

@@ -69,4 +69,29 @@ public class HttpHelperImpl implements HttpHelper {
     public Observable<BaseResponse<LoginData>> logout() {
         return mApiService.logout();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> addCollectArticle(int id) {
+        return mApiService.addCollectArticle(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> addCollectOutsideArticle(String title, String author, String link) {
+        return mApiService.addCollectOutsideArticle(title, author, link);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getCollectList(int page) {
+        return mApiService.getCollectList(page);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> cancelCollectArticle(int id) {
+        return mApiService.cancelCollectArticle(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(int id, int originId) {
+        return mApiService.cancelCollectInCollectPage(id, originId);
+    }
 }
