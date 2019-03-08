@@ -1,25 +1,31 @@
 package com.forgetsky.wanandroid.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
+import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.main.ui.activity.ArticleDetailActivity;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class CommonUtils {
 
-    /**
-     * 检查是否有可用网络
-     */
     public static boolean isNetworkConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) WanAndroidApp.getContext().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         assert connectivityManager != null;
-        return connectivityManager.getActiveNetworkInfo() != null;
+        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+        return info != null && info.isConnected();
     }
 
     public static void startArticleDetailActivity(Context mActivity, int id, String articleTitle,
@@ -47,5 +53,14 @@ public class CommonUtils {
 //        }
         //使用rgb混合生成一种新的颜色,Color.rgb生成的是一个int数
         return Color.rgb(red, green, blue);
+    }
+
+    public static AlertDialog getLoadingDialog(Activity context, String message) {
+        View view = LayoutInflater.from(context).inflate(R.layout.loading_progressbar,null,false);
+        TextView loadingText = view.findViewById(R.id.loading_text);
+        loadingText.setText(message);
+        AlertDialog dialog = new AlertDialog.Builder(context).setView(view).create();
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+        return dialog;
     }
 }

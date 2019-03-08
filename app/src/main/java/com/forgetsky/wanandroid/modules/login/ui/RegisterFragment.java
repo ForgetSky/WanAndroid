@@ -1,5 +1,6 @@
 package com.forgetsky.wanandroid.modules.login.ui;
 
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -8,6 +9,7 @@ import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
 import com.forgetsky.wanandroid.modules.login.contract.RegisterFragmentContract;
 import com.forgetsky.wanandroid.modules.login.presenter.RegisterFragmentPresenter;
+import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -24,6 +26,8 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentPresenter> im
     EditText mPasswordEdit;
     @BindView(R.id.et_password2)
     EditText mPasswordEdit2;
+
+    private AlertDialog mDialog;
 
     @OnClick({R.id.btn_register, R.id.tv_sign_in})
     void onClick(View view) {
@@ -89,5 +93,21 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentPresenter> im
     public void registerSuccess() {
         ToastUtils.showToast(_mActivity, getString(R.string.register_success));
         goToLogin();
+    }
+
+    @Override
+    public void showLoading() {
+        if (mDialog == null) {
+            mDialog = CommonUtils.getLoadingDialog(_mActivity, getString(R.string.registering));
+        }
+        mDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        if (mDialog != null) {
+            mDialog.dismiss();
+            mDialog = null;
+        }
     }
 }

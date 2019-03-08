@@ -3,11 +3,17 @@ package com.forgetsky.wanandroid.modules.homepager.presenter;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.forgetsky.wanandroid.base.presenter.BasePresenter;
+import com.forgetsky.wanandroid.core.event.LoginEvent;
+import com.forgetsky.wanandroid.core.event.LogoutEvent;
 import com.forgetsky.wanandroid.core.rx.BaseObserver;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.homepager.contract.HomePagerContract;
 import com.forgetsky.wanandroid.utils.RxUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -107,9 +113,23 @@ public class HomePagerPresenter extends BasePresenter<HomePagerContract.View>
                 }));
     }
 
+    @Override
+    public void registerEventBus() {
+        EventBus.getDefault().register(this);
+    }
 
     @Override
-    public void attachView(HomePagerContract.View view) {
-        super.attachView(view);
+    public void unregisterEventBus() {
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void loginSuccessEvent(LoginEvent loginEvent) {
+        getHomePagerData(false);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void logoutSuccessEvent(LogoutEvent logoutEvent) {
+        getHomePagerData(false);
     }
 }

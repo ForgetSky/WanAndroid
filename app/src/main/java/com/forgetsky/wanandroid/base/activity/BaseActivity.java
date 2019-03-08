@@ -47,6 +47,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
             mPresenter.detachView();
             mPresenter = null;
         }
+        hideLoading();
         super.onDestroy();
     }
 

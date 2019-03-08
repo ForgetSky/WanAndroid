@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.modules.login.contract.LoginContract;
-import com.forgetsky.wanandroid.modules.main.presenter.MainPresenter;
+import com.forgetsky.wanandroid.modules.login.presenter.LoginPresenter;
 
 import butterknife.BindView;
 
@@ -15,7 +15,7 @@ import butterknife.BindView;
  * @author: ForgetSky
  * @date: 2019/3/4
  */
-public class LoginActivity extends BaseActivity<MainPresenter> implements LoginContract.View {
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.toolbar_title)

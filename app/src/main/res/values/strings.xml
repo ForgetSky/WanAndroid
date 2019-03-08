@@ -37,6 +37,9 @@
     <string name="twice_password_not_same">The passwords entered twice are different</string>
     <string name="register_success">register success</string>
     <string name="register_fail">register fail</string>
+    <string name="logging_in">Logging…</string>
+    <string name="logging_out">Logout…</string>
+    <string name="registering">Registering…</string>
 
     <!-- home pager -->
     <string name="home_pager">Home pager</string>
@@ -54,6 +57,7 @@
     <string name="http_error">network anomaly</string>
     <string name="unKnown_error">unKnown error</string>
     <string name="double_click_exit_toast">Press the back button again to exit</string>
+    <string name="loading">Loading</string>
 
     <!-- Article detail -->
     <string name="share">Share</string>

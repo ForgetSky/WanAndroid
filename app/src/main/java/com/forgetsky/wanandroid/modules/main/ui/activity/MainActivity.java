@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import com.forgetsky.wanandroid.modules.main.presenter.MainPresenter;
 import com.forgetsky.wanandroid.modules.navigation.ui.NavigationFragment;
 import com.forgetsky.wanandroid.modules.project.ui.ProjectFragment;
 import com.forgetsky.wanandroid.modules.wxarticle.ui.WxArticleFragment;
+import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -54,6 +56,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @BindView(R.id.fragment_group)
     FrameLayout mFrameGroup;
     TextView mUsTv;
+    private AlertDialog mDialog;
 
     //fragments
     private HomePagerFragment mHomePagerFragment;
@@ -362,5 +365,21 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mUsTv.setText(getString(R.string.login));
         mUsTv.setOnClickListener(v -> startLoginActivity());
         mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(false);
+    }
+
+    @Override
+    public void showLoading() {
+        if (mDialog == null) {
+            mDialog = CommonUtils.getLoadingDialog(this, getString(R.string.logging_out));
+        }
+        mDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        if (mDialog != null) {
+            mDialog.dismiss();
+            mDialog = null;
+        }
     }
 }

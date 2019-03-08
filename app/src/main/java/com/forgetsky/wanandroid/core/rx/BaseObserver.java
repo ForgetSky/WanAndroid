@@ -2,6 +2,7 @@ package com.forgetsky.wanandroid.core.rx;
 
 import android.support.annotation.CallSuper;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
@@ -15,6 +16,7 @@ import retrofit2.HttpException;
 
 
 public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> {
+    private static final String TAG = "BaseObserver";
 
     private IView mView;
     private String mErrorMsg;
@@ -49,13 +51,11 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @Override
     protected void onStart() {
+        Log.d(TAG, "onStart");
         mView.showLoading();
         if (!CommonUtils.isNetworkConnected()) {
-            mView.showErrorMsg(WanAndroidApp.getContext().getString(R.string.http_error));
-            onComplete();
+            mErrorMsg = WanAndroidApp.getContext().getString(R.string.http_error);
         }
-
-        super.onStart();
     }
 
     @Override
@@ -63,17 +63,21 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
         if (baseResponse.getErrorCode() == BaseResponse.SUCCESS) {
             onSuccess(baseResponse.getData());
         } else {
+            Log.d(TAG, "onFailure");
             onFailure(baseResponse.getErrorCode(), baseResponse.getErrorMsg());
         }
     }
 
     @Override
     public void onComplete() {
+        Log.d(TAG, "onComplete");
         mView.hideLoading();
     }
 
     @Override
     public void onError(Throwable e) {
+        Log.d(TAG, "onError");
+        mView.hideLoading();
         if (mView == null) {
             return;
         }

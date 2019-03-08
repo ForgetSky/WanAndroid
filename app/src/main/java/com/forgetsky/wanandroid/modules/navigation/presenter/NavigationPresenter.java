@@ -24,8 +24,4 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View>
         return currentPage;
     }
 
-    @Override
-    public void attachView(NavigationContract.View view) {
-        super.attachView(view);
-    }
 }

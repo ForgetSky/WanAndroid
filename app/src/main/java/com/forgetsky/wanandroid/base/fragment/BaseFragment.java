@@ -36,6 +36,7 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
         if (mPresenter != null) {
             mPresenter.detachView();
         }
+        hideLoading();
         super.onDestroyView();
     }
 

@@ -34,7 +34,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void loginEvent(LoginEvent loginEvent) {
+    public void loginSuccessEvent(LoginEvent loginEvent) {
         mView.handleLoginSuccess();
     }
 
