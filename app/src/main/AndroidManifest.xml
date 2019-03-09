@@ -16,6 +16,7 @@
         android:launchMode="singleTask"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:resizeableActivity="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".modules.main.ui.activity.MainActivity"

@@ -3,7 +3,7 @@ ext {
     android = [
             compileSdkVersion       : 28,
             buildToolsVersion       : "28.0.0",
-            minSdkVersion           : 15,
+            minSdkVersion           : 21,
             targetSdkVersion        : 28,
             versionCode             : 10101,
             versionName             : "1.1.1",
@@ -40,6 +40,7 @@ ext {
             "flowlayout-lib"                    : "com.hyman:flowlayout-lib:1.1.2",
             "agentweb"                          : "com.just.agentweb:agentweb:4.0.2",
             "autosize"                          : "me.jessyan:autosize:1.1.2",
+            "statusbar"                         : "com.gyf.immersionbar:immersionbar:2.3.3",
 
             //net
             "gson"                              : "com.google.code.gson:gson:2.8.2",

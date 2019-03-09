@@ -5,7 +5,8 @@
     android:layout_height="180dp"
     android:background="@drawable/ic_navigation_bg"
     android:padding="10dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/icon_image"

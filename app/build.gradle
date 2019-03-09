@@ -47,6 +47,7 @@ dependencies {
     implementation rootProject.ext.dependencies["flowlayout-lib"]
     implementation rootProject.ext.dependencies["agentweb"]
     implementation rootProject.ext.dependencies["autosize"]
+    implementation rootProject.ext.dependencies["statusbar"]
 
     //net
     implementation rootProject.ext.dependencies["gson"]

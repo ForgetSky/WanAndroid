@@ -10,7 +10,6 @@
 
     <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textSize">16sp</item>
-
     </style>
 
     <style name="Toolbar.MyStyle" parent="Base.Widget.AppCompat.Toolbar">

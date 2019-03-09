@@ -1,6 +1,5 @@
 package com.forgetsky.wanandroid.modules.main.ui.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,14 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeHierarchyFragment;
 import com.forgetsky.wanandroid.modules.homepager.ui.HomePagerFragment;
-import com.forgetsky.wanandroid.modules.login.ui.LoginActivity;
 import com.forgetsky.wanandroid.modules.main.contract.MainContract;
 import com.forgetsky.wanandroid.modules.main.presenter.MainPresenter;
 import com.forgetsky.wanandroid.modules.navigation.ui.NavigationFragment;

@@ -9,7 +9,8 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <include layout="@layout/toolbar" />
 
@@ -25,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginBottom="60dp"
             android:src="@drawable/ic_arrow_upward_white_24dp"
             app:layout_behavior="@string/scale_down_show_behavior" />
@@ -50,11 +50,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/nav_item_color_ic"
         app:itemTextColor="@color/nav_item_color_tv"
-        app:menu="@menu/nav_menu">
+        app:menu="@menu/nav_menu"
+        app:insetForeground="@android:color/transparent">
 
     </android.support.design.widget.NavigationView>
 
