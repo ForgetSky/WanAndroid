@@ -3,23 +3,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    android:background="@drawable/ic_navigation_bg"
+    android:background="@drawable/navigation_bg"
     android:padding="10dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/icon_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:src="@drawable/logo" />
+        android:src="@drawable/ic_author_round" />
 
     <TextView
         android:id="@+id/nav_header_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:text="@string/login_in"
         android:textSize="18sp"
         android:textColor="@color/white" />

@@ -314,11 +314,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 //                if (mWxArticleFragment != null) {
 //                    mWxArticleFragment.jumpToTheTop();
 //                }
-//            case Constants.TYPE_NAVIGATION:
-//                if (mNavigationFragment != null) {
-//                    mNavigationFragment.jumpToTheTop();
-//                }
-//                break;
+            case Constants.TYPE_NAVIGATION:
+                if (mNavigationFragment != null) {
+                    mNavigationFragment.jumpToTheTop();
+                }
+                break;
 //            case Constants.TYPE_PROJECT:
 //                if (mProjectFragment != null) {
 //                    mProjectFragment.jumpToTheTop();

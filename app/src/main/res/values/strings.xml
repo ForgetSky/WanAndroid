@@ -73,6 +73,9 @@
     <string name="share_type_url">%1$sShare【%2$s】special top：%3$s</string>
     <string name="write_permission_not_allowed">Gets write permission failed</string>
 
+    <!-- Navigation -->
+    <string name="failed_to_get_navigation_data">Failed to get navigation data</string>
+
     <!-- behavior -->
     <string name="scale_down_show_behavior">com.forgetsky.wanandroid.widget.behavior.ScaleDownShowBehavior</string>
 

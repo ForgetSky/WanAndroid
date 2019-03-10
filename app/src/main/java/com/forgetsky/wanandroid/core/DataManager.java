@@ -11,6 +11,7 @@ import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
+import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 
 import java.util.List;
 
@@ -95,6 +96,11 @@ public class DataManager implements HttpHelper, DbHelper,PreferenceHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(int id, int originId) {
         return mHttpHelper.cancelCollectInCollectPage(id, originId);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<NavigationListData>>> getNavigationListData() {
+        return mHttpHelper.getNavigationListData();
     }
 
     @Override

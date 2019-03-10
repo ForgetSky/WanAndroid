@@ -2,24 +2,16 @@ package com.forgetsky.wanandroid.modules.navigation.contract;
 
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
+
+import java.util.List;
 
 public interface NavigationContract {
     interface View extends IView {
-        /**
-         * Show logout success
-         */
-        void showLogoutSuccess();
+        void showNavigationListData(List<NavigationListData> navigationListData);
     }
 
     interface Presenter extends IPresenter<View> {
-        /**
-         * Set current page
-         *
-         * @param page current page
-         */
-        void setCurrentPage(int page);
-
-        int getCurrentPage();
-
+        void getNavigationListData(boolean isShowError);
     }
 }

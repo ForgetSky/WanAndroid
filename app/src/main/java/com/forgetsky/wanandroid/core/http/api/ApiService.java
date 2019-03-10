@@ -7,6 +7,7 @@ import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
+import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 
 import java.util.List;
 
@@ -167,5 +168,13 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(@Path("id") int id, @Field("originId") int originId);
 
+    /**
+     * 导航
+     * http://www.wanandroid.com/navi/json
+     *
+     * @return 导航数据
+     */
+    @GET("navi/json")
+    Observable<BaseResponse<List<NavigationListData>>> getNavigationListData();
 
 }
