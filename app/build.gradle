@@ -90,7 +90,7 @@ dependencies {
 //    implementation rootProject.ext.dependencies["kotlin-stdlib"]
 
     //other
-    implementation rootProject.ext.dependencies["eventbus"]
+    implementation rootProject.ext.dependencies["androideventbus"]
     implementation rootProject.ext.dependencies["lottie"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     implementation rootProject.ext.dependencies["fragmentation"]

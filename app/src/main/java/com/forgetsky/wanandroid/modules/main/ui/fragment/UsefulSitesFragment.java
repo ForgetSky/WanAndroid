@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
+import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.main.contract.UsefulSitesContract;
 import com.forgetsky.wanandroid.modules.main.presenter.UsefulSitesPresenter;
@@ -70,7 +71,9 @@ public class UsefulSitesFragment extends BaseFragment<UsefulSitesPresenter> impl
             CommonUtils.startArticleDetailActivity(_mActivity,
                     mUsefulSiteDataList.get(position1).getId(),
                     mUsefulSiteDataList.get(position1).getName().trim(),
-                    mUsefulSiteDataList.get(position1).getLink().trim());
+                    mUsefulSiteDataList.get(position1).getLink().trim(),
+                    false, false,
+                    -1, Constants.TAG_DEFAULT);
             return true;
         });
     }

@@ -2,7 +2,9 @@ package com.forgetsky.wanandroid.modules.homepager.presenter;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
-import com.forgetsky.wanandroid.core.event.CancelCollectEvent;
+import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.event.RefreshHomeEvent;
+import com.forgetsky.wanandroid.core.event.CollectEvent;
 import com.forgetsky.wanandroid.core.event.LoginEvent;
 import com.forgetsky.wanandroid.core.event.LogoutEvent;
 import com.forgetsky.wanandroid.core.rx.BaseObserver;
@@ -12,9 +14,8 @@ import com.forgetsky.wanandroid.modules.homepager.contract.HomePagerContract;
 import com.forgetsky.wanandroid.modules.main.presenter.CollectEventPresenter;
 import com.forgetsky.wanandroid.utils.RxUtils;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import java.util.List;
 
@@ -107,19 +108,28 @@ public class HomePagerPresenter extends CollectEventPresenter<HomePagerContract.
         EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscriber()
     public void loginSuccessEvent(LoginEvent loginEvent) {
         getHomePagerData(false);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscriber()
     public void logoutSuccessEvent(LogoutEvent logoutEvent) {
         getHomePagerData(false);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void cancelCollectEvent(CancelCollectEvent cancelCollectEvent) {
+    @Subscriber()
+    public void refreshHomeEvent(RefreshHomeEvent refreshHomeEvent) {
         getHomePagerData(false);
     }
 
+    @Subscriber(tag = Constants.MAIN_PAGER)
+    public void collectEvent(CollectEvent collectEvent) {
+        if (mView == null) return;
+        if (collectEvent.isCancel()) {
+            mView.showCancelCollectSuccess(collectEvent.getArticlePostion());
+        } else {
+            mView.showCollectSuccess(collectEvent.getArticlePostion());
+        }
+    }
 }

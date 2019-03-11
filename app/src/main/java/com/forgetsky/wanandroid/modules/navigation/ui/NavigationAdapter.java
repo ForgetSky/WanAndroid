@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.forgetsky.wanandroid.R;
+import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 import com.forgetsky.wanandroid.utils.CommonUtils;
@@ -47,7 +48,9 @@ public class NavigationAdapter extends BaseQuickAdapter<NavigationListData, Base
                     CommonUtils.startArticleDetailActivity(parent.getContext(),
                             mArticles.get(position1).getId(),
                             mArticles.get(position1).getTitle().trim(),
-                            mArticles.get(position1).getLink().trim());
+                            mArticles.get(position1).getLink().trim(),
+                            mArticles.get(position1).isCollect(),
+                            true, -1, Constants.TAG_DEFAULT);
                     return true;
                 });
                 return tv;

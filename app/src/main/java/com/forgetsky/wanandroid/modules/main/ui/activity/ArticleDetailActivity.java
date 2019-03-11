@@ -17,13 +17,17 @@ import android.widget.TextView;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.event.CollectEvent;
 import com.forgetsky.wanandroid.modules.main.contract.ArticleDetailContract;
 import com.forgetsky.wanandroid.modules.main.presenter.ArticleDetailPresenter;
+import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.NestedScrollAgentWebView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import org.simple.eventbus.EventBus;
 
 import java.lang.reflect.Method;
 
@@ -42,6 +46,11 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     private int articleId;
     private String articleLink;
     private String title;
+    private boolean isCollected;
+    private boolean isShowCollectIcon;
+    private int articleItemPosition;
+    private String eventBusTag;
+    private MenuItem mCollectItem;
 
     private AgentWeb mAgentWeb;
 
@@ -114,6 +123,9 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_acticle_detail, menu);
+        mCollectItem = menu.findItem(R.id.item_collect);
+        mCollectItem.setVisible(isShowCollectIcon);
+        mCollectItem.setIcon(isCollected ? R.drawable.ic_like_white : R.drawable.ic_like_not_white);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -124,8 +136,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
                 mPresenter.shareEventWithPermissionVerify(new RxPermissions(this));
                 break;
             case R.id.item_collect:
-                //TODO collect
-//                collectEvent();
+                collectClickEvent();
                 break;
             case R.id.item_system_browser:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(articleLink)));
@@ -134,6 +145,27 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void collectClickEvent() {
+        if (mPresenter.getLoginStatus()) {
+            if (isCollected) {
+                mPresenter.cancelCollectArticle(articleItemPosition, articleId);
+            } else {
+                mPresenter.addCollectArticle(articleItemPosition, articleId);
+            }
+        } else {
+            CommonUtils.startLoginActivity(this);
+            ToastUtils.showToast(this, getString(R.string.login_first));
+        }
+    }
+
+    @Override
+    public void shareArticle() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_type_url, getString(R.string.app_name), title, articleLink));
+        intent.setType("text/plain");
+        startActivity(intent);
     }
 
     /**
@@ -163,23 +195,40 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     private void getBundleData() {
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
-        title = (String) bundle.get(Constants.ARTICLE_TITLE);
-        articleLink = (String) bundle.get(Constants.ARTICLE_LINK);
-        articleId = ((int) bundle.get(Constants.ARTICLE_ID));
-    }
-
-
-    @Override
-    public void shareArticle() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_type_url, getString(R.string.app_name), title, articleLink));
-        intent.setType("text/plain");
-        startActivity(intent);
+        title = bundle.getString(Constants.ARTICLE_TITLE);
+        articleLink = bundle.getString(Constants.ARTICLE_LINK);
+        articleId = bundle.getInt(Constants.ARTICLE_ID);
+        isCollected = bundle.getBoolean(Constants.IS_COLLECTED);
+        isShowCollectIcon = bundle.getBoolean(Constants.IS_SHOW_COLLECT_ICON);
+        articleItemPosition = bundle.getInt(Constants.ARTICLE_ITEM_POSITION, -1);
+        eventBusTag = bundle.getString(Constants.EVENT_BUS_TAG);
     }
 
     @Override
     public void shareError() {
         ToastUtils.showToast(this, getString(R.string.write_permission_not_allowed));
 
+    }
+
+    @Override
+    public void showCollectSuccess(int position) {
+        isCollected = true;
+        mCollectItem.setIcon(R.drawable.ic_like_white);
+        if (position < 0) {
+            ToastUtils.showToast(this, getString(R.string.collect_success));
+        } else {
+            EventBus.getDefault().post(new CollectEvent(false, position), eventBusTag);
+        }
+    }
+
+    @Override
+    public void showCancelCollectSuccess(int position) {
+        isCollected = false;
+        mCollectItem.setIcon(R.drawable.ic_like_not_white);
+        if (position < 0) {
+            ToastUtils.showToast(this, getString(R.string.cancel_collect));
+        } else {
+            EventBus.getDefault().post(new CollectEvent(true, position), eventBusTag);
+        }
     }
 }

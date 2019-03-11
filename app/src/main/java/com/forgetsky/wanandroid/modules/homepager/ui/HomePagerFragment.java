@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
+import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerGlideImageLoader;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
@@ -111,7 +112,9 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         CommonUtils.startArticleDetailActivity(_mActivity,
                 mAdapter.getData().get(position).getId(),
                 mAdapter.getData().get(position).getTitle(),
-                mAdapter.getData().get(position).getLink());
+                mAdapter.getData().get(position).getLink(),
+                mAdapter.getData().get(position).isCollect(),
+                true, position, Constants.MAIN_PAGER);
     }
 
     private void clickChildEvent(View view, int position) {
@@ -189,7 +192,10 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         mBanner.setIndicatorGravity(BannerConfig.CENTER);
 
         mBanner.setOnBannerListener(i ->
-                CommonUtils.startArticleDetailActivity(_mActivity, bannerIdList.get(i), mBannerTitleList.get(i), mBannerUrlList.get(i))
+                CommonUtils.startArticleDetailActivity(_mActivity, bannerIdList.get(i),
+                        mBannerTitleList.get(i), mBannerUrlList.get(i),
+                        false, false,
+                        -1, Constants.TAG_DEFAULT)
         );
         //banner设置方法全部调用完毕时最后调用
         mBanner.start();

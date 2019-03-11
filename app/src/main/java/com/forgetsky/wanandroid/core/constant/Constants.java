@@ -76,18 +76,7 @@ public class Constants {
     };
 
 
-    /**
-     * Main Pager
-     */
-    public static final String SEARCH_TEXT = "search_text";
-
     public static final String MENU_BUILDER = "MenuBuilder";
-
-    public static final String LOGIN_DATA = "login_data";
-
-    public static final String BANNER_DATA = "banner_data";
-
-    public static final String ARTICLE_DATA = "article_data";
 
     /**
      * Refresh theme color
@@ -108,11 +97,13 @@ public class Constants {
 
     public static final String ARTICLE_ID = "article_id";
 
-    public static final String IS_COLLECT = "is_collect";
+    public static final String IS_COLLECTED = "is_collected";
 
-    public static final String IS_COMMON_SITE = "is_common_site";
+    public static final String IS_SHOW_COLLECT_ICON = "is_show_collect_icon";
 
     public static final String IS_COLLECT_PAGE = "is_collect_page";
+
+    public static final String ARTICLE_ITEM_POSITION = "article_item_position";
 
     public static final String CHAPTER_ID = "chapter_id";
 
@@ -143,4 +134,12 @@ public class Constants {
 
     public static final String NIGHT_MODE_STATE = "night_mode_state";
 
+    /**
+     * EventBus Tag
+     */
+    public static final String EVENT_BUS_TAG = "event_bus_tag";
+    public static final String MAIN_PAGER = "main_pager";
+    public static final String COLLECT_PAGER = "collect_pager";
+    public static final String SEARCH_PAGER = "search_pager";
+    public static final String TAG_DEFAULT = "tag_default";
 }

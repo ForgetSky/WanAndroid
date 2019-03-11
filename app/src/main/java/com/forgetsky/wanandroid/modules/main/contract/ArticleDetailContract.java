@@ -1,20 +1,18 @@
 package com.forgetsky.wanandroid.modules.main.contract;
 
-import com.forgetsky.wanandroid.base.presenter.IPresenter;
-import com.forgetsky.wanandroid.base.view.IView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 
 public interface ArticleDetailContract {
 
-    interface View extends IView {
+    interface View extends CollectEventContract.View {
         void shareArticle();
 
         void shareError();
 
     }
 
-    interface Presenter extends IPresenter<View> {
+    interface Presenter extends CollectEventContract.Presenter<View> {
 
         void shareEventWithPermissionVerify(RxPermissions rxPermissions);
     }

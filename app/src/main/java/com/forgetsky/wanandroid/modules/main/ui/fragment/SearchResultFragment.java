@@ -95,7 +95,9 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
         CommonUtils.startArticleDetailActivity(_mActivity,
                 mAdapter.getData().get(position).getId(),
                 mAdapter.getData().get(position).getTitle(),
-                mAdapter.getData().get(position).getLink());
+                mAdapter.getData().get(position).getLink(),
+                mAdapter.getData().get(position).isCollect(),
+                true, position, Constants.SEARCH_PAGER);
     }
 
     private void clickChildEvent(View view, int position) {

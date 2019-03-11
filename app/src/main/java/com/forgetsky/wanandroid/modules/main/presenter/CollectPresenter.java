@@ -2,22 +2,25 @@ package com.forgetsky.wanandroid.modules.main.presenter;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
-import com.forgetsky.wanandroid.base.presenter.BasePresenter;
-import com.forgetsky.wanandroid.core.event.CancelCollectEvent;
+import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.event.RefreshHomeEvent;
+import com.forgetsky.wanandroid.core.event.CollectEvent;
 import com.forgetsky.wanandroid.core.rx.BaseObserver;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.main.contract.CollectContract;
 import com.forgetsky.wanandroid.utils.RxUtils;
 
-import org.greenrobot.eventbus.EventBus;
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
 
-public class CollectPresenter extends BasePresenter<CollectContract.View> implements CollectContract.Presenter {
+public class CollectPresenter extends CollectEventPresenter<CollectContract.View> implements CollectContract.Presenter {
 
     private int currentPage;
     private boolean isRefresh = true;
+    private boolean isReCollected = false;
 
     @Inject
     CollectPresenter() {
@@ -62,9 +65,37 @@ public class CollectPresenter extends BasePresenter<CollectContract.View> implem
                         false) {
                     @Override
                     public void onSuccess(ArticleListData articleListData) {
-                        mView.cancelCollectSuccess(postion);
-                        EventBus.getDefault().post(new CancelCollectEvent());
+                        mView.showCancelCollectSuccess(postion);
+                        EventBus.getDefault().post(new RefreshHomeEvent());
                     }
                 }));
+    }
+
+    @Override
+    public void registerEventBus() {
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void unregisterEventBus() {
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscriber(tag = Constants.COLLECT_PAGER)
+    public void collectEvent(CollectEvent collectEvent) {
+        if (mView == null) return;
+        if (collectEvent.isCancel()) {
+            if (isReCollected) {
+                isReCollected = false;
+                mView.showCancelCollectSuccess(0);
+            } else {
+                mView.showCancelCollectSuccess(collectEvent.getArticlePostion());
+            }
+        } else {
+            getCollectList(false);
+            mView.showCollectSuccess(-1);
+            isReCollected = true;
+        }
+        EventBus.getDefault().post(new RefreshHomeEvent());
     }
 }

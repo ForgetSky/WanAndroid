@@ -8,8 +8,7 @@ import com.forgetsky.wanandroid.core.rx.BaseObserver;
 import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.login.contract.RegisterFragmentContract;
 import com.forgetsky.wanandroid.utils.RxUtils;
-
-import org.greenrobot.eventbus.EventBus;
+import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
 

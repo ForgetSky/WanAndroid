@@ -10,9 +10,8 @@ import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.login.contract.LoginFragmentContract;
 import com.forgetsky.wanandroid.utils.RxUtils;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
@@ -54,7 +53,7 @@ public class LoginFragmentPresenter extends BasePresenter<LoginFragmentContract.
 
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscriber()
     public void RegisterSuccessEvent(RegisterEvent registerEvent) {
         mView.registerSuccess(registerEvent);
     }

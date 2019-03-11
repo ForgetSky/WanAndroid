@@ -42,5 +42,4 @@ public class CollectEventPresenter<V extends CollectEventContract.View>
                     }
                 }));
     }
-
 }

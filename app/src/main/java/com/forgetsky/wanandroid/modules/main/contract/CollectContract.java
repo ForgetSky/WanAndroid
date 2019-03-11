@@ -1,19 +1,16 @@
 package com.forgetsky.wanandroid.modules.main.contract;
 
-import com.forgetsky.wanandroid.base.presenter.IPresenter;
-import com.forgetsky.wanandroid.base.view.IView;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 
 
 public interface CollectContract {
 
-    interface View extends IView {
+    interface View extends CollectEventContract.View {
         void showCollectList(ArticleListData articleListData, boolean isRefresh);
-        void cancelCollectSuccess(int position);
 
     }
 
-    interface Presenter extends IPresenter<View> {
+    interface Presenter extends CollectEventContract.Presenter<View> {
         void getCollectArticle(boolean isShowError);
         void loadMore();
         void getCollectList(boolean isShowError);

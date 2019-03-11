@@ -29,14 +29,19 @@ public class CommonUtils {
         return info != null && info.isConnected();
     }
 
-    public static void startArticleDetailActivity(Context mActivity, int id, String articleTitle,
-                                                  String articleLink) {
-        Intent intent = new Intent(mActivity, ArticleDetailActivity.class);
-        intent.putExtra(Constants.ARTICLE_ID, id);
+    public static void startArticleDetailActivity(Context context, int articleId, String articleTitle,
+                                                  String articleLink, boolean isCollected,
+                                                  boolean isShowCollectIcon, int articleItemPosition,
+                                                  String eventBusTag) {
+        Intent intent = new Intent(context, ArticleDetailActivity.class);
+        intent.putExtra(Constants.ARTICLE_ID, articleId);
         intent.putExtra(Constants.ARTICLE_TITLE, articleTitle);
         intent.putExtra(Constants.ARTICLE_LINK, articleLink);
-
-        mActivity.startActivity(intent);
+        intent.putExtra(Constants.IS_COLLECTED, isCollected);
+        intent.putExtra(Constants.IS_SHOW_COLLECT_ICON, isShowCollectIcon);
+        intent.putExtra(Constants.ARTICLE_ITEM_POSITION, articleItemPosition);
+        intent.putExtra(Constants.EVENT_BUS_TAG, eventBusTag);
+        context.startActivity(intent);
 
     }
 

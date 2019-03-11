@@ -10,9 +10,8 @@ import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.contract.MainContract;
 import com.forgetsky.wanandroid.utils.RxUtils;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
@@ -33,7 +32,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
         EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscriber()
     public void loginSuccessEvent(LoginEvent loginEvent) {
         mView.handleLoginSuccess();
     }

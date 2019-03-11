@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
+import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.main.adapter.CollectListAdapter;
@@ -80,9 +81,12 @@ public class CollectFragment extends BaseFragment<CollectPresenter> implements C
         }
 
         CommonUtils.startArticleDetailActivity(_mActivity,
-                mAdapter.getData().get(position).getId(),
+                //need originId to cancel collect, different from other pages
+                mAdapter.getData().get(position).getOriginId(),
                 mAdapter.getData().get(position).getTitle(),
-                mAdapter.getData().get(position).getLink());
+                mAdapter.getData().get(position).getLink(),
+                true,
+                true, position, Constants.COLLECT_PAGER);
     }
 
     private void clickChildEvent(View view, int position) {
@@ -124,7 +128,12 @@ public class CollectFragment extends BaseFragment<CollectPresenter> implements C
     }
 
     @Override
-    public void cancelCollectSuccess(int position) {
+    public void showCollectSuccess(int position) {
+        ToastUtils.showToast(_mActivity, getString(R.string.collect_success));
+    }
+
+    @Override
+    public void showCancelCollectSuccess(int position) {
         mAdapter.remove(position);
         ToastUtils.showToast(_mActivity, getString(R.string.cancel_collect));
     }

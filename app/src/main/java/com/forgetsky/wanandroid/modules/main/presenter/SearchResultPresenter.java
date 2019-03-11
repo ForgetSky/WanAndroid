@@ -2,10 +2,15 @@ package com.forgetsky.wanandroid.modules.main.presenter;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
+import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.event.CollectEvent;
 import com.forgetsky.wanandroid.core.rx.BaseObserver;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
 import com.forgetsky.wanandroid.modules.main.contract.SearchResultContract;
 import com.forgetsky.wanandroid.utils.RxUtils;
+
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
@@ -49,5 +54,25 @@ public class SearchResultPresenter extends CollectEventPresenter<SearchResultCon
         isRefresh = false;
         currentPage++;
         getSearchResultList(false);
+    }
+
+    @Override
+    public void registerEventBus() {
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void unregisterEventBus() {
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscriber(tag = Constants.SEARCH_PAGER)
+    public void collectEvent(CollectEvent collectEvent) {
+        if (mView == null) return;
+        if (collectEvent.isCancel()) {
+            mView.showCancelCollectSuccess(collectEvent.getArticlePostion());
+        } else {
+            mView.showCollectSuccess(collectEvent.getArticlePostion());
+        }
     }
 }
