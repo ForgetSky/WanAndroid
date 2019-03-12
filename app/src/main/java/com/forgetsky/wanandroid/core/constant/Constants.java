@@ -45,6 +45,7 @@ public class Constants {
     public static final String CURRENT_FRAGMENT_KEY = "current_fragment";
 
     public static final String SEARCH_KEY = "search_key";
+    public static final String PROJECT_CID = "project_cid";
     /**
      * Bottom Navigation tab classify
      */
@@ -141,5 +142,6 @@ public class Constants {
     public static final String MAIN_PAGER = "main_pager";
     public static final String COLLECT_PAGER = "collect_pager";
     public static final String SEARCH_PAGER = "search_pager";
+    public static final String PROJECT_PAGER = "main_pager";
     public static final String TAG_DEFAULT = "tag_default";
 }

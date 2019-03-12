@@ -2,6 +2,7 @@
 <resources>
     <!-- item -->
     <dimen name="item_title_size">16sp</dimen>
+    <dimen name="item_tv_content">14sp</dimen>
     <dimen name="item_tv_author">12sp</dimen>
 
     <dimen name="design_bottom_navigation_active_text_size">12sp</dimen>

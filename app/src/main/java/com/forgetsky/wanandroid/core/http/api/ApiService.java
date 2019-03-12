@@ -8,6 +8,7 @@ import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
+import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
 
 import java.util.List;
 
@@ -18,14 +19,15 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
-    String BASE_URL = "http://www.wanandroid.com/";
+    String BASE_URL = "https://www.wanandroid.com/";
 
     /**
      * 获取文章列表
-     * http://www.wanandroid.com/article/list/0/json
+     * https://www.wanandroid.com/article/list/0/json
      * @param pageNum
      */
     @GET("article/list/{pageNum}/json")
@@ -33,7 +35,7 @@ public interface ApiService {
 
     /**
      * 广告栏
-     * http://www.wanandroid.com/banner/json
+     * https://www.wanandroid.com/banner/json
      *
      * @return 广告栏数据
      */
@@ -42,14 +44,14 @@ public interface ApiService {
 
     /**
      * 获取首页置顶文章列表
-     * http://www.wanandroid.com/article/top/json
+     * https://www.wanandroid.com/article/top/json
      */
     @GET("article/top/json")
     Observable<BaseResponse<List<ArticleItemData>>> getTopArticles();
 
     /**
      * 常用网站
-     * http://www.wanandroid.com/friend/json
+     * https://www.wanandroid.com/friend/json
      *
      * @return 常用网站数据
      */
@@ -58,7 +60,7 @@ public interface ApiService {
 
     /**
      * 热搜
-     * http://www.wanandroid.com//hotkey/json
+     * https://www.wanandroid.com//hotkey/json
      *
      * @return 热门搜索数据
      */
@@ -68,7 +70,7 @@ public interface ApiService {
 
     /**
      * 搜索
-     * http://www.wanandroid.com/article/query/0/json
+     * https://www.wanandroid.com/article/query/0/json
      * @param page page
      * @param k POST search key
      * @return 搜索数据
@@ -79,7 +81,7 @@ public interface ApiService {
 
     /**
      * 登录
-     * http://www.wanandroid.com/user/login
+     * https://www.wanandroid.com/user/login
      *
      * @param username user name
      * @param password password
@@ -91,7 +93,7 @@ public interface ApiService {
 
     /**
      * 注册
-     * http://www.wanandroid.com/user/register
+     * https://www.wanandroid.com/user/register
      *
      * @param username user name
      * @param password password
@@ -104,7 +106,7 @@ public interface ApiService {
 
     /**
      * 退出登录
-     * http://www.wanandroid.com/user/logout/json
+     * https://www.wanandroid.com/user/logout/json
      *
      * @return 登录数据
      */
@@ -113,7 +115,7 @@ public interface ApiService {
 
     /**
      * 收藏站内文章
-     * http://www.wanandroid.com/lg/collect/1165/json
+     * https://www.wanandroid.com/lg/collect/1165/json
      *
      * @param id article id
      * @return 收藏站内文章数据
@@ -123,7 +125,7 @@ public interface ApiService {
 
     /**
      * 收藏站外文章
-     * http://www.wanandroid.com/lg/collect/add/json
+     * https://www.wanandroid.com/lg/collect/add/json
      *
      * @param title title
      * @param author author
@@ -137,7 +139,7 @@ public interface ApiService {
 
     /**
      * 获取收藏列表
-     * http://www.wanandroid.com/lg/collect/list/0/json
+     * https://www.wanandroid.com/lg/collect/list/0/json
      *
      * @param page page number
      * @return 收藏列表数据
@@ -147,7 +149,7 @@ public interface ApiService {
 
     /**
      * 文章列表中取消收藏文章
-     * http://www.wanandroid.com/lg/uncollect_originId/2333/json
+     * https://www.wanandroid.com/lg/uncollect_originId/2333/json
      *
      * @param id 列表中文章的id
      * @return 取消站内文章数据
@@ -157,7 +159,7 @@ public interface ApiService {
 
     /**
      * 收藏列表中取消收藏文章
-     * http://www.wanandroid.com/lg/uncollect/2805/json
+     * https://www.wanandroid.com/lg/uncollect/2805/json
      *
      * @param id article id
      * @param originId originId 代表的是你收藏之前的那篇文章本身的id；
@@ -170,11 +172,31 @@ public interface ApiService {
 
     /**
      * 导航
-     * http://www.wanandroid.com/navi/json
+     * https://www.wanandroid.com/navi/json
      *
      * @return 导航数据
      */
     @GET("navi/json")
     Observable<BaseResponse<List<NavigationListData>>> getNavigationListData();
+
+    /**
+     * 项目分类
+     * https://www.wanandroid.com/project/tree/json
+     *
+     * @return 项目分类数据
+     */
+    @GET("project/tree/json")
+    Observable<BaseResponse<List<ProjectTreeData>>> getProjectTreeData();
+
+    /**
+     * 项目列表数据
+     * https://www.wanandroid.com/project/list/1/json?cid=294
+     *
+     * @param page page num
+     * @param cid child page id
+     * @return 项目列表数据
+     */
+    @GET("project/list/{page}/json")
+    Observable<BaseResponse<ArticleListData>> getProjectListData(@Path("page") int page, @Query("cid") int cid);
 
 }

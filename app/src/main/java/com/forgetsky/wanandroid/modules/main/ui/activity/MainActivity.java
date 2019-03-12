@@ -96,6 +96,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mLastFgIndex = index;
         switch (index) {
             case Constants.TYPE_HOME_PAGER:
+                mTitle.setText(getString(R.string.home_pager));
                 if (mHomePagerFragment == null) {
                     mHomePagerFragment = HomePagerFragment.newInstance();
                     transaction.add(R.id.fragment_group, mHomePagerFragment);
@@ -103,6 +104,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 transaction.show(mHomePagerFragment);
                 break;
             case Constants.TYPE_KNOWLEDGE:
+                mTitle.setText(getString(R.string.knowledge_hierarchy));
                 if (mKnowledgeHierarchyFragment == null) {
                     mKnowledgeHierarchyFragment = KnowledgeHierarchyFragment.newInstance();
                     transaction.add(R.id.fragment_group, mKnowledgeHierarchyFragment);
@@ -110,6 +112,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 transaction.show(mKnowledgeHierarchyFragment);
                 break;
             case Constants.TYPE_NAVIGATION:
+                mTitle.setText(getString(R.string.navigation));
                 if (mNavigationFragment == null) {
                     mNavigationFragment = NavigationFragment.newInstance();
                     transaction.add(R.id.fragment_group, mNavigationFragment);
@@ -117,6 +120,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 transaction.show(mNavigationFragment);
                 break;
             case Constants.TYPE_WX_ARTICLE:
+                mTitle.setText(getString(R.string.wx_article));
                 if (mWxArticleFragment == null) {
                     mWxArticleFragment = WxArticleFragment.newInstance();
                     transaction.add(R.id.fragment_group, mWxArticleFragment);
@@ -124,6 +128,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 transaction.show(mWxArticleFragment);
                 break;
             case Constants.TYPE_PROJECT:
+                mTitle.setText(getString(R.string.project));
                 if (mProjectFragment == null) {
                     mProjectFragment = ProjectFragment.newInstance();
                     transaction.add(R.id.fragment_group, mProjectFragment);
@@ -174,30 +179,25 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tab_main_pager:
-                    loadPager(getString(R.string.home_pager), Constants.TYPE_HOME_PAGER);
+                    showFragment(Constants.TYPE_HOME_PAGER);
                     break;
                 case R.id.tab_knowledge_hierarchy:
-                    loadPager(getString(R.string.knowledge_hierarchy), Constants.TYPE_KNOWLEDGE);
+                    showFragment( Constants.TYPE_KNOWLEDGE);
                     break;
                 case R.id.tab_navigation:
-                    loadPager(getString(R.string.navigation), Constants.TYPE_NAVIGATION);
+                    showFragment(Constants.TYPE_NAVIGATION);
                     break;
                 case R.id.tab_wx_article:
-                    loadPager(getString(R.string.wx_article), Constants.TYPE_WX_ARTICLE);
+                    showFragment(Constants.TYPE_WX_ARTICLE);
                     break;
                 case R.id.tab_project:
-                    loadPager(getString(R.string.project), Constants.TYPE_PROJECT);
+                    showFragment(Constants.TYPE_PROJECT);
                     break;
                 default:
                     break;
             }
             return true;
         });
-    }
-
-    private void loadPager(String title, int index) {
-        mTitle.setText(title);
-        showFragment(index);
     }
 
     @Override
@@ -319,11 +319,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     mNavigationFragment.jumpToTheTop();
                 }
                 break;
-//            case Constants.TYPE_PROJECT:
-//                if (mProjectFragment != null) {
-//                    mProjectFragment.jumpToTheTop();
-//                }
-//                break;
+            case Constants.TYPE_PROJECT:
+                if (mProjectFragment != null) {
+                    mProjectFragment.jumpToTheTop();
+                }
+                break;
             default:
                 break;
         }

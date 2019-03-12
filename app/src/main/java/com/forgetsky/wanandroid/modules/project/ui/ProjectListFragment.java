@@ -1,4 +1,4 @@
-package com.forgetsky.wanandroid.modules.main.ui.fragment;
+package com.forgetsky.wanandroid.modules.project.ui;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,9 +10,8 @@ import com.forgetsky.wanandroid.base.fragment.BaseFragment;
 import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
-import com.forgetsky.wanandroid.modules.homepager.ui.ArticleListAdapter;
-import com.forgetsky.wanandroid.modules.main.contract.SearchResultContract;
-import com.forgetsky.wanandroid.modules.main.presenter.SearchResultPresenter;
+import com.forgetsky.wanandroid.modules.project.contract.ProjectListContract;
+import com.forgetsky.wanandroid.modules.project.presenter.ProjectListPresenter;
 import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -22,24 +21,35 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * @author ForgetSky
- * @date 19-3-1
- */
-public class SearchResultFragment extends BaseFragment<SearchResultPresenter> implements SearchResultContract.View {
+public class ProjectListFragment extends BaseFragment<ProjectListPresenter> implements ProjectListContract.View {
 
-    @BindView(R.id.sr_smart_refresh_layout)
+    private static final String TAG = "ProjectListFragment";
+
+    @BindView(R.id.smart_refresh_layout)
     SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.search_result_recycler_view)
+    @BindView(R.id.project_list_recycler_view)
     RecyclerView mRecyclerView;
-    private List<ArticleItemData> mArticleList;
-    private ArticleListAdapter mAdapter;
-    private String mSearchKey = "";
 
-    public static SearchResultFragment newInstance(Bundle bundle) {
-        SearchResultFragment fragment = new SearchResultFragment();
+    private List<ArticleItemData> mArticleList;
+    private ProjectListAdapter mAdapter;
+
+    private int cid;
+
+    public static ProjectListFragment newInstance(Bundle bundle) {
+        ProjectListFragment fragment = new ProjectListFragment();
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_project_list;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
     @Override
@@ -48,21 +58,16 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_search_result;
-    }
-
-    @Override
     protected void initEventAndData() {
         assert getArguments() != null;
-        mSearchKey = getArguments().getString(Constants.SEARCH_KEY, "");
+        cid = getArguments().getInt(Constants.PROJECT_CID);
         initRefreshLayout();
-        mPresenter.search(mSearchKey, true);
+        mPresenter.getProjectListData(cid, true);
     }
 
     private void initRecyclerView() {
         mArticleList = new ArrayList<>();
-        mAdapter = new ArticleListAdapter(R.layout.item_article_list, mArticleList);
+        mAdapter = new ProjectListAdapter(R.layout.item_project_list, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
 
@@ -73,13 +78,12 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     }
 
     private void initRefreshLayout() {
-//        mRefreshLayout.setEnableAutoLoadMore(true);
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.search(mSearchKey, false);
+            mPresenter.getProjectListData(cid,false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            mPresenter.loadMore();
+            mPresenter.loadMore(cid);
             refreshLayout.finishLoadMore();
         });
     }
@@ -94,21 +98,13 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
                 mAdapter.getData().get(position).getTitle(),
                 mAdapter.getData().get(position).getLink(),
                 mAdapter.getData().get(position).isCollect(),
-                true, position, Constants.SEARCH_PAGER);
+                true, position, Constants.PROJECT_PAGER);
     }
 
     private void clickChildEvent(View view, int position) {
         switch (view.getId()) {
-            case R.id.tv_article_chapterName:
-                //todo chapter click
-//                startSingleChapterKnowledgePager(position);
-                break;
-            case R.id.iv_article_like:
+            case R.id.item_project_list_like_iv:
                 collectClickEvent(position);
-                break;
-            case R.id.tv_article_tag:
-                //todo tag click
-//                clickTag(position);
                 break;
             default:
                 break;
@@ -129,7 +125,7 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     }
 
     @Override
-    public void showSearchResultList(ArticleListData articleListData, boolean isRefresh) {
+    public void showProjectListData(ArticleListData articleListData, boolean isRefresh) {
         if (mAdapter == null) {
             return;
         }
@@ -139,6 +135,13 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
         } else {
             mArticleList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
+        }
+    }
+
+
+    public void jumpToTheTop() {
+        if (mRecyclerView != null) {
+            mRecyclerView.smoothScrollToPosition(0);
         }
     }
 
@@ -155,4 +158,5 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
         mAdapter.setData(position, mAdapter.getData().get(position));
         ToastUtils.showToast(_mActivity, getString(R.string.cancel_collect));
     }
+
 }

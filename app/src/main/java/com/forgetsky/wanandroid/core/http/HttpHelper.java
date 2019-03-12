@@ -7,6 +7,7 @@ import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
+import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
 
 import java.util.List;
 
@@ -50,4 +51,8 @@ public interface HttpHelper {
     Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(int id, int originId);
 
     Observable<BaseResponse<List<NavigationListData>>> getNavigationListData();
+
+    Observable<BaseResponse<List<ProjectTreeData>>> getProjectTreeData();
+
+    Observable<BaseResponse<ArticleListData>> getProjectListData(int page, int cid);
 }

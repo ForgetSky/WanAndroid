@@ -14,6 +14,7 @@
     <color name="item_title">#19191B</color>
     <color name="item_author">@color/Grey700</color>
     <color name="item_search_history">@color/Grey700</color>
+    <color name="item_desc">@color/Grey800</color>
     <color name="red">#f44336</color>
 
     <color name="Grey50">#FAFAFA</color>

@@ -8,6 +8,7 @@ import com.forgetsky.wanandroid.modules.login.bean.LoginData;
 import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
+import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
 
 import java.util.List;
 
@@ -99,5 +100,15 @@ public class HttpHelperImpl implements HttpHelper {
     @Override
     public Observable<BaseResponse<List<NavigationListData>>> getNavigationListData() {
         return mApiService.getNavigationListData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<ProjectTreeData>>> getProjectTreeData() {
+        return mApiService.getProjectTreeData();
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getProjectListData(int page, int cid) {
+        return mApiService.getProjectListData(page, cid);
     }
 }
