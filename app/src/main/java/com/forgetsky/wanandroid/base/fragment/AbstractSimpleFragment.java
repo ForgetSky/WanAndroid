@@ -49,8 +49,6 @@ public abstract class AbstractSimpleFragment extends SupportFragment {
         initEventAndData();
     }
 
-
-
     /**
      * 有些初始化必须在onCreateView中，例如setAdapter,
      * 否则，会弹出 No adapter attached; skipping layout

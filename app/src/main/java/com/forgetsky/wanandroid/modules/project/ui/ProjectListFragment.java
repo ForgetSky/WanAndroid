@@ -79,7 +79,7 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
 
     private void initRefreshLayout() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.getProjectListData(cid,false);
+            mPresenter.getProjectListData(cid, false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {

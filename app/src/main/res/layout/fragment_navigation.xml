@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.classic.common.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/custom_multiple_status_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="match_parent">
 
-    <q.rorbin.verticaltablayout.VerticalTabLayout
-        android:id="@+id/navigation_tab_layout"
-        android:layout_width="110dp"
-        android:layout_height="match_parent"
-        android:background="@color/viewbg"
-        app:indicator_color="@color/viewbg"
-        app:indicator_gravity="fill"
-        app:tab_height="50dp"
-        app:tab_margin="16dp"
-        app:tab_mode="scrollable" />
-
-    <View
-        android:id="@+id/navigation_divider"
-        android:layout_width="0.5dp"
-        android:layout_height="match_parent"
-        android:background="@color/line_divider" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/navigation_rv"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarSize="@dimen/dp_10"
-        android:scrollbars="vertical" />
-</LinearLayout>
+        android:orientation="horizontal">
+
+        <q.rorbin.verticaltablayout.VerticalTabLayout
+            android:id="@+id/navigation_tab_layout"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:background="@color/viewbg"
+            app:indicator_color="@color/viewbg"
+            app:indicator_gravity="fill"
+            app:tab_height="50dp"
+            app:tab_margin="16dp"
+            app:tab_mode="scrollable" />
+
+        <View
+            android:id="@+id/navigation_divider"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_divider" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/navigation_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarSize="@dimen/dp_10"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+</com.classic.common.MultipleStatusView>

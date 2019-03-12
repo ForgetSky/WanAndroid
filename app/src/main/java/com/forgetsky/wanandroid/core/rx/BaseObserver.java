@@ -52,9 +52,11 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
     @Override
     protected void onStart() {
         Log.d(TAG, "onStart");
-        mView.showLoading();
-        if (!CommonUtils.isNetworkConnected()) {
+        if (CommonUtils.isNetworkConnected()) {
+            mView.showLoading();
+        } else {
             mErrorMsg = WanAndroidApp.getContext().getString(R.string.http_error);
+            mView.showNoNetwork();
         }
     }
 
@@ -72,6 +74,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
     public void onComplete() {
         Log.d(TAG, "onComplete");
         mView.hideLoading();
+        mView.showContent();
     }
 
     @Override
@@ -92,7 +95,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 //            LogHelper.d(e.toString());
         }
         if (isShowError) {
-//            mView.showError();
+            mView.showError();
         }
     }
 

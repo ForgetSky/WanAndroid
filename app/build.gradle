@@ -42,12 +42,12 @@ dependencies {
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
     implementation rootProject.ext.dependencies["banner"]
-    implementation rootProject.ext.dependencies["FlycoTabLayout_Lib"]
     implementation rootProject.ext.dependencies["VerticalTabLayout"]
     implementation rootProject.ext.dependencies["flowlayout-lib"]
     implementation rootProject.ext.dependencies["agentweb"]
     implementation rootProject.ext.dependencies["autosize"]
     implementation rootProject.ext.dependencies["statusbar"]
+    implementation rootProject.ext.dependencies["multipleStatusView"]
 
     //net
     implementation rootProject.ext.dependencies["gson"]

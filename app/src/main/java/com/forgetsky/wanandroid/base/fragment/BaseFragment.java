@@ -3,9 +3,13 @@ package com.forgetsky.wanandroid.base.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
+import com.classic.common.MultipleStatusView;
+import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
 import com.forgetsky.wanandroid.utils.ToastUtils;
@@ -18,14 +22,18 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
     @Inject
     protected T mPresenter;
 
+    private MultipleStatusView mMultipleStatusView;
+
     @Override
     public void onAttach(Activity activity) {
         AndroidSupportInjection.inject(this);
         super.onAttach(activity);
     }
+
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mMultipleStatusView = view.findViewById(R.id.custom_multiple_status_view);
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
@@ -55,12 +63,38 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
 
     @Override
     public void showLoading() {
+        Log.d("jiahui", "showLoading : " + mMultipleStatusView);
+        if (mMultipleStatusView == null) return;
+        mMultipleStatusView.showLoading();
 
     }
 
     @Override
     public void hideLoading() {
+    }
 
+    @Override
+    public void showError() {
+        if (mMultipleStatusView == null) return;
+        mMultipleStatusView.showError();
+    }
+
+    @Override
+    public void showNoNetwork() {
+        if (mMultipleStatusView == null) return;
+        mMultipleStatusView.showNoNetwork();
+    }
+
+    @Override
+    public void showEmpty() {
+        if (mMultipleStatusView == null) return;
+        mMultipleStatusView.showEmpty();
+    }
+
+    @Override
+    public void showContent() {
+        if (mMultipleStatusView == null) return;
+        mMultipleStatusView.showContent();
     }
 
     @Override

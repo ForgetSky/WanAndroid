@@ -78,6 +78,7 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
                 return Html.fromHtml(mProjectTreeData.get(position).getName());
             }
         });
+
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
