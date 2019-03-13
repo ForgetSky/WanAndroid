@@ -37,7 +37,8 @@ public class ProjectListPresenter extends CollectEventPresenter<ProjectListContr
                         isShowStatusView) {
                     @Override
                     public void onSuccess(ArticleListData articleListData) {
-                        if(articleListData.getDatas().size() < 1) {
+                        if(isShowStatusView && currentPage == 1 &&
+                                articleListData.getDatas().size() < 1) {
                             mView.showEmpty();
                         } else {
                             mView.showProjectListData(articleListData, isRefresh);
@@ -67,21 +68,6 @@ public class ProjectListPresenter extends CollectEventPresenter<ProjectListContr
     public void unregisterEventBus() {
         EventBus.getDefault().unregister(this);
     }
-
-//    @Subscriber()
-//    public void loginSuccessEvent(LoginEvent loginEvent) {
-//        getHomePagerData(false);
-//    }
-//
-//    @Subscriber()
-//    public void logoutSuccessEvent(LogoutEvent logoutEvent) {
-//        getHomePagerData(false);
-//    }
-//
-//    @Subscriber()
-//    public void refreshHomeEvent(RefreshHomeEvent refreshHomeEvent) {
-//        getHomePagerData(false);
-//    }
 
     @Subscriber(tag = Constants.PROJECT_PAGER)
     public void collectEvent(CollectEvent collectEvent) {

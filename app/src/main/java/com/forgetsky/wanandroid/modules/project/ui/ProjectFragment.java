@@ -14,7 +14,7 @@ import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
 import com.forgetsky.wanandroid.modules.project.contract.ProjectContract;
 import com.forgetsky.wanandroid.modules.project.presenter.ProjectPresenter;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,7 +28,8 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     ViewPager mViewPager;
 
     private List<ProjectTreeData> mProjectTreeData;
-    private List<ProjectListFragment> mFragments = new ArrayList<>();
+    private HashMap<Integer, ProjectListFragment> mMap = new HashMap<>();
+    private ProjectListFragment currentFragment;
 
     public static ProjectFragment newInstance() {
         return new ProjectFragment();
@@ -56,16 +57,18 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     }
 
     private void initViewPagerAndTabLayout() {
-        for (ProjectTreeData data : mProjectTreeData) {
-            Bundle bundle = new Bundle();
-            bundle.putInt(Constants.PROJECT_CID, data.getId());
-            ProjectListFragment projectListFragment = ProjectListFragment.newInstance(bundle);
-            mFragments.add(projectListFragment);
-        }
         mViewPager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return mFragments.get(position);
+                if (mMap.containsKey(position)) {
+                    return mMap.get(position);
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(Constants.PROJECT_CID, mProjectTreeData.get(position).getId());
+                    ProjectListFragment projectListFragment = ProjectListFragment.newInstance(bundle);
+                    mMap.put(position, projectListFragment);
+                    return projectListFragment;
+                }
             }
 
             @Override
@@ -101,7 +104,18 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     }
 
     public void jumpToTheTop() {
-        if (mFragments.size() < 1) return;
-        mFragments.get(mViewPager.getCurrentItem()).jumpToTheTop();
+        currentFragment = mMap.get(mViewPager.getCurrentItem());
+        if (currentFragment != null) {
+            currentFragment.jumpToTheTop();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        mMap.clear();
+        mMap = null;
+        mProjectTreeData.clear();
+        mProjectTreeData = null;
+        super.onDestroyView();
     }
 }
