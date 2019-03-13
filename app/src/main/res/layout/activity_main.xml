@@ -9,8 +9,7 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <include layout="@layout/toolbar" />
 
@@ -51,10 +50,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
+        app:insetForeground="@android:color/transparent"
         app:itemIconTint="@color/nav_item_color_ic"
         app:itemTextColor="@color/nav_item_color_tv"
-        app:menu="@menu/nav_menu"
-        app:insetForeground="@android:color/transparent">
+        app:menu="@menu/nav_menu">
 
     </android.support.design.widget.NavigationView>
 
