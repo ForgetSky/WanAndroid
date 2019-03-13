@@ -25,23 +25,27 @@ public class SearchResultPresenter extends CollectEventPresenter<SearchResultCon
     private boolean isRefresh = true;
     private String searchKey;
 
-
     @Override
-    public void search(String k, boolean isShowError) {
+    public void search(String k, boolean isShowStatusView) {
         isRefresh = true;
         currentPage = 0;
         searchKey = k;
-        getSearchResultList(isShowError);
+        getSearchResultList(isShowStatusView);
     }
 
     @Override
-    public void getSearchResultList(boolean isShowError) {
+    public void reload() {
+        search(searchKey, true);
+    }
+
+    @Override
+    public void getSearchResultList(boolean isShowStatusView) {
         addSubscribe(mDataManager.getSearchResultList(currentPage, searchKey)
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_article_list),
-                        isShowError) {
+                        isShowStatusView) {
                     @Override
                     public void onSuccess(ArticleListData articleListData) {
                         mView.showSearchResultList(articleListData, isRefresh);

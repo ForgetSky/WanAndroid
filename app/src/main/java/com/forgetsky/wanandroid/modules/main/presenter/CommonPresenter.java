@@ -12,5 +12,4 @@ public class CommonPresenter extends BasePresenter<CommonContract.View> implemen
     CommonPresenter() {
     }
 
-
 }

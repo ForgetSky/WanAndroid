@@ -15,12 +15,12 @@ public interface HomePagerContract {
 
     interface Presenter extends CollectEventContract.Presenter<View> {
 
-        void getArticleList(boolean isShowError);
-        void getBannerData(boolean isShowError);
+        void getArticleList(boolean isShowStatusView);
+        void getBannerData(boolean isShowStatusView);
 
-        void getHomePagerData(boolean isShowError);
+        void getHomePagerData(boolean isShowStatusView);
 
-        void refreshLayout(boolean isShowError);
+        void refreshLayout(boolean isShowStatusView);
 
         void loadMore();
 

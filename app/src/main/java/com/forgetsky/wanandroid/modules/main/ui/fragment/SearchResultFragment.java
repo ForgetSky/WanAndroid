@@ -73,7 +73,6 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     }
 
     private void initRefreshLayout() {
-//        mRefreshLayout.setEnableAutoLoadMore(true);
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             mPresenter.search(mSearchKey, false);
             refreshLayout.finishRefresh();

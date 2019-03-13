@@ -10,8 +10,8 @@ public interface SearchResultContract {
     }
 
     interface Presenter extends CollectEventContract.Presenter<View> {
-        void search(String k, boolean isShowError);
-        void getSearchResultList( boolean isShowError);
+        void search(String k, boolean isShowStatusView);
+        void getSearchResultList( boolean isShowStatusView);
         void loadMore();
     }
 }

@@ -24,20 +24,31 @@ public class ProjectListPresenter extends CollectEventPresenter<ProjectListContr
 
     private int currentPage = 1;
     private boolean isRefresh = true;
+    private int cid;
 
     @Override
-    public void getProjectListData(int cid, boolean isShowError) {
+    public void getProjectListData(int cid, boolean isShowStatusView) {
+        this.cid = cid;
         addSubscribe(mDataManager.getProjectListData(currentPage, cid)
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_article_list),
-                        isShowError) {
+                        isShowStatusView) {
                     @Override
                     public void onSuccess(ArticleListData articleListData) {
-                        mView.showProjectListData(articleListData, isRefresh);
+                        if(articleListData.getDatas().size() < 1) {
+                            mView.showEmpty();
+                        } else {
+                            mView.showProjectListData(articleListData, isRefresh);
+                        }
                     }
                 }));
+    }
+
+    @Override
+    public void reload() {
+        getProjectListData(cid, true);
     }
 
     @Override

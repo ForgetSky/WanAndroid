@@ -12,6 +12,6 @@ public interface ProjectContract {
     }
 
     interface Presenter extends IPresenter<View> {
-        void getProjectTreeData(boolean isShowError);
+        void getProjectTreeData();
     }
 }

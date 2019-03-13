@@ -34,20 +34,25 @@ public class HomePagerPresenter extends CollectEventPresenter<HomePagerContract.
     private boolean isRefresh = true;
 
     @Override
-    public void refreshLayout(boolean isShowError) {
+    public void refreshLayout(boolean isShowStatusView) {
         isRefresh = true;
         currentPage = 0;
-        getHomePagerData(isShowError);
+        getHomePagerData(isShowStatusView);
     }
 
     @Override
-    public void getArticleList(boolean isShowError) {
+    public void reload() {
+        refreshLayout(true);
+    }
+
+    @Override
+    public void getArticleList(boolean isShowStatusView) {
         addSubscribe(mDataManager.getArticleList(currentPage)
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_article_list),
-                        isShowError) {
+                        isShowStatusView) {
                     @Override
                     public void onSuccess(ArticleListData articleListData) {
                         mView.showArticleList(articleListData, isRefresh);
@@ -56,13 +61,13 @@ public class HomePagerPresenter extends CollectEventPresenter<HomePagerContract.
     }
 
     @Override
-    public void getBannerData(boolean isShowError) {
+    public void getBannerData(boolean isShowStatusView) {
         addSubscribe(mDataManager.getBannerData()
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<List<BannerData>>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_banner_data),
-                        isShowError) {
+                        isShowStatusView) {
                     @Override
                     public void onSuccess(List<BannerData> bannerData) {
                         mView.showBannerData(bannerData);
@@ -71,8 +76,8 @@ public class HomePagerPresenter extends CollectEventPresenter<HomePagerContract.
     }
 
     @Override
-    public void getHomePagerData(boolean isShowError) {
-        getBannerData(isShowError);
+    public void getHomePagerData(boolean isShowStatusView) {
+        getBannerData(isShowStatusView);
         addSubscribe(Observable.zip(mDataManager.getTopArticles(), mDataManager.getArticleList(0),
                 (topArticlesBaseResponse, articleListDataBaseResponse) -> {
                     articleListDataBaseResponse.getData().getDatas().
@@ -83,7 +88,7 @@ public class HomePagerPresenter extends CollectEventPresenter<HomePagerContract.
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_article_list),
-                        isShowError) {
+                        isShowStatusView) {
                     @Override
                     public void onSuccess(ArticleListData articleListData) {
                         mView.showArticleList(articleListData, isRefresh);

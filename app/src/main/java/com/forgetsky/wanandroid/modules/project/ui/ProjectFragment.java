@@ -46,7 +46,7 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
 
     @Override
     protected void initEventAndData() {
-        mPresenter.getProjectTreeData(true);
+        mPresenter.getProjectTreeData();
     }
 
     @Override

@@ -19,7 +19,6 @@ public class UsefulSitesPresenter extends BasePresenter<UsefulSitesContract.View
     UsefulSitesPresenter() {
     }
 
-
     @Override
     public void getUsefulSites() {
         addSubscribe(mDataManager.getUsefulSites()
@@ -27,11 +26,17 @@ public class UsefulSitesPresenter extends BasePresenter<UsefulSitesContract.View
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<List<UsefulSiteData>>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_banner_data),
-                        false) {
+                        true) {
                     @Override
                     public void onSuccess(List<UsefulSiteData> usefulSiteData) {
                         mView.showUsefulSites(usefulSiteData);
                     }
                 }));
     }
+
+    @Override
+    public void reload() {
+        getUsefulSites();
+    }
+
 }

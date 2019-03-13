@@ -28,7 +28,7 @@ public class RegisterFragmentPresenter extends BasePresenter<RegisterFragmentCon
                 .filter(loginData -> mView != null)
                 .subscribeWith(new BaseObserver<LoginData>(mView,
                         WanAndroidApp.getContext().getString(R.string.register_fail),
-                        false) {
+                        true) {
                     @Override
                     public void onSuccess(LoginData loginData) {
                         EventBus.getDefault().post(new RegisterEvent(loginData.getUsername(), loginData.getPassword()));

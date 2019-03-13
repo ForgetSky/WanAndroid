@@ -27,10 +27,15 @@ public class CollectPresenter extends CollectEventPresenter<CollectContract.View
     }
 
     @Override
-    public void getCollectArticle(boolean isShowError) {
+    public void getCollectArticle(boolean isShowStatusView) {
         isRefresh = true;
         currentPage = 0;
-        getCollectList(isShowError);
+        getCollectList(isShowStatusView);
+    }
+
+    @Override
+    public void reload() {
+        getCollectArticle(true);
     }
 
     @Override
@@ -41,13 +46,13 @@ public class CollectPresenter extends CollectEventPresenter<CollectContract.View
     }
 
     @Override
-    public void getCollectList(boolean isShowError) {
+    public void getCollectList(boolean isShowStatusView) {
         addSubscribe(mDataManager.getCollectList(currentPage)
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_collect_list),
-                        isShowError) {
+                        isShowStatusView) {
                     @Override
                     public void onSuccess(ArticleListData articleListData) {
                         mView.showCollectList(articleListData, isRefresh);

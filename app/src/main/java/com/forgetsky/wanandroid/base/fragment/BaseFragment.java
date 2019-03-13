@@ -5,8 +5,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.classic.common.MultipleStatusView;
 import com.forgetsky.wanandroid.R;
@@ -33,7 +33,14 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ViewGroup mNormalView = view.findViewById(R.id.normal_view);
+        if(mNormalView != null) {
+            mNormalView.setVisibility(View.GONE);
+        }
         mMultipleStatusView = view.findViewById(R.id.custom_multiple_status_view);
+        if (mMultipleStatusView != null) {
+            mMultipleStatusView.setOnClickListener(v -> mPresenter.reload());
+        }
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
@@ -63,7 +70,6 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
 
     @Override
     public void showLoading() {
-        Log.d("jiahui", "showLoading : " + mMultipleStatusView);
         if (mMultipleStatusView == null) return;
         mMultipleStatusView.showLoading();
 

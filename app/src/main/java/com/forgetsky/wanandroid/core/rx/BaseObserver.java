@@ -20,7 +20,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     private IView mView;
     private String mErrorMsg;
-    private boolean isShowError = true;
+    private boolean isShowStatusView = true;
 
     protected BaseObserver(IView view) {
         this.mView = view;
@@ -31,15 +31,15 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
         this.mErrorMsg = errorMsg;
     }
 
-    protected BaseObserver(IView view, boolean isShowError) {
+    protected BaseObserver(IView view, boolean isShowStatusView) {
         this.mView = view;
-        this.isShowError = isShowError;
+        this.isShowStatusView = isShowStatusView;
     }
 
-    protected BaseObserver(IView view, String errorMsg, boolean isShowError) {
+    protected BaseObserver(IView view, String errorMsg, boolean isShowStatusView) {
         this.mView = view;
         this.mErrorMsg = errorMsg;
-        this.isShowError = isShowError;
+        this.isShowStatusView = isShowStatusView;
     }
 
     public abstract void onSuccess(T t);
@@ -52,20 +52,26 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
     @Override
     protected void onStart() {
         Log.d(TAG, "onStart");
-        if (CommonUtils.isNetworkConnected()) {
+        if (isShowStatusView) {
             mView.showLoading();
-        } else {
-            mErrorMsg = WanAndroidApp.getContext().getString(R.string.http_error);
-            mView.showNoNetwork();
         }
     }
 
     @Override
     public final void onNext(BaseResponse<T> baseResponse) {
         if (baseResponse.getErrorCode() == BaseResponse.SUCCESS) {
+            Log.d(TAG, "onSuccess");
+            if (isShowStatusView) {
+                mView.hideLoading();
+                mView.showContent();
+            }
             onSuccess(baseResponse.getData());
         } else {
             Log.d(TAG, "onFailure");
+            if (isShowStatusView) {
+                mView.hideLoading();
+                mView.showContent();
+            }
             onFailure(baseResponse.getErrorCode(), baseResponse.getErrorMsg());
         }
     }
@@ -73,29 +79,42 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
     @Override
     public void onComplete() {
         Log.d(TAG, "onComplete");
-        mView.hideLoading();
-        mView.showContent();
+        if (mView == null) {
+            return;
+        }
+        if (!CommonUtils.isNetworkConnected()) {
+            mView.showErrorMsg(WanAndroidApp.getContext().getString(R.string.http_error));
+        }
+
     }
 
     @Override
     public void onError(Throwable e) {
         Log.d(TAG, "onError");
-        mView.hideLoading();
         if (mView == null) {
             return;
         }
-        if (mErrorMsg != null && !TextUtils.isEmpty(mErrorMsg)) {
-            mView.showErrorMsg(mErrorMsg);
+        if (isShowStatusView) {
+            mView.hideLoading();
+        }
+        if (e instanceof HttpException) {
+            mView.showErrorMsg(WanAndroidApp.getContext().getString(R.string.http_error));
+            if (isShowStatusView) {
+                mView.showNoNetwork();
+            }
         } else if (e instanceof ServerException) {
             mView.showErrorMsg(e.toString());
-        } else if (e instanceof HttpException) {
-            mView.showErrorMsg(WanAndroidApp.getContext().getString(R.string.http_error));
+            if (isShowStatusView) {
+                mView.showError();
+            }
         } else {
-            mView.showErrorMsg(WanAndroidApp.getContext().getString(R.string.unKnown_error));
-//            LogHelper.d(e.toString());
-        }
-        if (isShowError) {
-            mView.showError();
+            if (!TextUtils.isEmpty(mErrorMsg)) {
+                mView.showErrorMsg(mErrorMsg);
+            }
+            if (isShowStatusView) {
+                mView.showError();
+            }
+            Log.e(TAG, e.toString());
         }
     }
 

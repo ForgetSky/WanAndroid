@@ -7,8 +7,7 @@ import com.forgetsky.wanandroid.base.view.IView;
 public interface CommonContract {
 
     interface View extends IView {
-
-
+        
     }
 
     interface Presenter extends IPresenter<View> {

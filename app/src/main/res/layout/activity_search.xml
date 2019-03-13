@@ -8,68 +8,74 @@
 
     <include layout="@layout/toolbar_search" />
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/search_scroll_view"
+    <com.classic.common.MultipleStatusView
+        android:id="@+id/custom_multiple_status_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:visibility="visible"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/search_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:scrollbars="none"
+            android:visibility="visible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="@string/hot_search"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
-
-            <com.zhy.view.flowlayout.TagFlowLayout
-                android:id="@+id/hot_search_flow_layout"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:max_select="0" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
-
-                <TextView
-                    android:id="@+id/search_history_clear_all_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:drawablePadding="6dp"
-                    android:text="@string/clear_all"
-                    android:textColor="@color/Grey400" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_toStartOf="@+id/search_history_clear_all_tv"
-                    android:layout_toLeftOf="@+id/search_history_clear_all_tv"
-                    android:text="@string/history_search"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/hot_search"
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp" />
-            </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_history_search"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:background="@color/viewbg" />
+                <com.zhy.view.flowlayout.TagFlowLayout
+                    android:id="@+id/hot_search_flow_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:max_select="0" />
 
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp">
+
+                    <TextView
+                        android:id="@+id/search_history_clear_all_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="6dp"
+                        android:text="@string/clear_all"
+                        android:textColor="@color/Grey400" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_toStartOf="@+id/search_history_clear_all_tv"
+                        android:layout_toLeftOf="@+id/search_history_clear_all_tv"
+                        android:text="@string/history_search"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_history_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/viewbg" />
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.classic.common.MultipleStatusView>
 </LinearLayout>

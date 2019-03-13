@@ -49,7 +49,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
 
     @Override
     protected void initEventAndData() {
-        mPresenter.getNavigationListData(true);
+        mPresenter.getNavigationListData();
     }
 
     private void initRecyclerView() {

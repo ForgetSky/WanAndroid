@@ -12,6 +12,6 @@ public interface NavigationContract {
     }
 
     interface Presenter extends IPresenter<View> {
-        void getNavigationListData(boolean isShowError);
+        void getNavigationListData();
     }
 }

@@ -16,6 +16,8 @@ public interface IPresenter<T extends IView> {
      */
     void detachView();
 
+    void reload();
+
     void registerEventBus();
 
     void unregisterEventBus();

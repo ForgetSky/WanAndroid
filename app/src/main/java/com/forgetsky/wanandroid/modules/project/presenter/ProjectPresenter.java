@@ -20,17 +20,22 @@ public class ProjectPresenter extends BasePresenter<ProjectContract.View>
     }
 
     @Override
-    public void getProjectTreeData(boolean isShowError) {
+    public void getProjectTreeData() {
         addSubscribe(mDataManager.getProjectTreeData()
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(projectTreeDataList -> mView != null)
                 .subscribeWith(new BaseObserver<List<ProjectTreeData>>(mView,
                         WanAndroidApp.getContext().getString(R.string.failed_to_obtain_banner_data),
-                        isShowError) {
+                        true) {
                     @Override
                     public void onSuccess(List<ProjectTreeData> projectTreeDataList) {
                         mView.showProjectTreeData(projectTreeDataList);
                     }
                 }));
+    }
+
+    @Override
+    public void reload() {
+        getProjectTreeData();
     }
 }

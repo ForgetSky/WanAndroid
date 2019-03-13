@@ -33,6 +33,11 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
     }
 
     @Override
+    public void reload() {
+
+    }
+
+    @Override
     public void registerEventBus() {
     }
 

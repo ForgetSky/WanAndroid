@@ -41,7 +41,7 @@ public class LoginFragmentPresenter extends BasePresenter<LoginFragmentContract.
                 .filter(loginData -> mView != null)
                 .subscribeWith(new BaseObserver<LoginData>(mView,
                         WanAndroidApp.getContext().getString(R.string.login_fail),
-                        false) {
+                        true) {
                     @Override
                     public void onSuccess(LoginData loginData) {
                         setLoginStatus(true);

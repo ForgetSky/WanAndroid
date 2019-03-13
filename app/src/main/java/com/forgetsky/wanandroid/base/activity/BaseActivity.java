@@ -3,6 +3,8 @@ package com.forgetsky.wanandroid.base.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.classic.common.MultipleStatusView;
 import com.forgetsky.wanandroid.R;
@@ -17,10 +19,6 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-/**
- * MVP模式的Base Activity
- *
- */
 
 public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleActivity implements
         HasSupportFragmentInjector,
@@ -40,7 +38,14 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
 
     @Override
     protected void onViewCreated() {
+        ViewGroup mNormalView = findViewById(R.id.normal_view);
+        if(mNormalView != null) {
+            mNormalView.setVisibility(View.GONE);
+        }
         mMultipleStatusView = findViewById(R.id.custom_multiple_status_view);
+        if (mMultipleStatusView != null) {
+            mMultipleStatusView.setOnClickListener(v -> mPresenter.reload());
+        }
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }

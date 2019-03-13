@@ -11,9 +11,9 @@ public interface CollectContract {
     }
 
     interface Presenter extends CollectEventContract.Presenter<View> {
-        void getCollectArticle(boolean isShowError);
+        void getCollectArticle(boolean isShowStatusView);
         void loadMore();
-        void getCollectList(boolean isShowError);
+        void getCollectList(boolean isShowStatusView);
         void cancelCollectInCollectPage(int position, int id, int originId);
     }
 }

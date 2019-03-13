@@ -6,9 +6,11 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/normal_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <q.rorbin.verticaltablayout.VerticalTabLayout
             android:id="@+id/navigation_tab_layout"
