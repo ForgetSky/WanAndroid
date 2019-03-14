@@ -1,11 +1,14 @@
 package com.forgetsky.wanandroid.modules.project.ui;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.util.SparseArray;
+import android.view.ViewGroup;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
@@ -14,7 +17,6 @@ import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
 import com.forgetsky.wanandroid.modules.project.contract.ProjectContract;
 import com.forgetsky.wanandroid.modules.project.presenter.ProjectPresenter;
 
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,7 +30,7 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     ViewPager mViewPager;
 
     private List<ProjectTreeData> mProjectTreeData;
-    private HashMap<Integer, ProjectListFragment> mMap = new HashMap<>();
+    private SparseArray<ProjectListFragment> fragmentSparseArray = new SparseArray<>();
     private ProjectListFragment currentFragment;
 
     public static ProjectFragment newInstance() {
@@ -60,13 +62,14 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
         mViewPager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                if (mMap.containsKey(position)) {
-                    return mMap.get(position);
+                ProjectListFragment projectListFragment = fragmentSparseArray.get(position);
+                if (projectListFragment != null) {
+                    return projectListFragment;
                 } else {
                     Bundle bundle = new Bundle();
                     bundle.putInt(Constants.PROJECT_CID, mProjectTreeData.get(position).getId());
-                    ProjectListFragment projectListFragment = ProjectListFragment.newInstance(bundle);
-                    mMap.put(position, projectListFragment);
+                    projectListFragment = ProjectListFragment.newInstance(bundle);
+                    fragmentSparseArray.put(position, projectListFragment);
                     return projectListFragment;
                 }
             }
@@ -80,6 +83,10 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
             public CharSequence getPageTitle(int position) {
                 return Html.fromHtml(mProjectTreeData.get(position).getName());
             }
+
+            @Override
+            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+            }
         });
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
@@ -90,7 +97,7 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //取消页面切换动画
-//                mViewPager.setCurrentItem(tab.getPosition(), false);
+                mViewPager.setCurrentItem(tab.getPosition(), false);
             }
 
             @Override
@@ -104,7 +111,7 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     }
 
     public void jumpToTheTop() {
-        currentFragment = mMap.get(mViewPager.getCurrentItem());
+        currentFragment = fragmentSparseArray.get(mViewPager.getCurrentItem());
         if (currentFragment != null) {
             currentFragment.jumpToTheTop();
         }
@@ -112,8 +119,8 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
 
     @Override
     public void onDestroyView() {
-        mMap.clear();
-        mMap = null;
+        fragmentSparseArray.clear();
+        fragmentSparseArray = null;
         mProjectTreeData.clear();
         mProjectTreeData = null;
         super.onDestroyView();

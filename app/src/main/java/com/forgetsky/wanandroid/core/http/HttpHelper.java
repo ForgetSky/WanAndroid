@@ -8,6 +8,7 @@ import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
+import com.forgetsky.wanandroid.modules.wxarticle.bean.WxChapterData;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public interface HttpHelper {
 
     Observable<BaseResponse<ArticleListData>> addCollectArticle(int id);
 
-    Observable<BaseResponse<ArticleListData>> addCollectOutsideArticle(String  title, String author, String link);
+    Observable<BaseResponse<ArticleListData>> addCollectOutsideArticle(String title, String author, String link);
 
     Observable<BaseResponse<ArticleListData>> getCollectList(int page);
 
@@ -55,4 +56,11 @@ public interface HttpHelper {
     Observable<BaseResponse<List<ProjectTreeData>>> getProjectTreeData();
 
     Observable<BaseResponse<ArticleListData>> getProjectListData(int page, int cid);
+
+    Observable<BaseResponse<List<WxChapterData>>> getWxChapterListData();
+
+    Observable<BaseResponse<ArticleListData>> getWxArticlesData(int id, int page);
+
+    Observable<BaseResponse<ArticleListData>> getWxSearchData(int id, int page, String k);
+
 }

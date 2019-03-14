@@ -15,7 +15,6 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 
 public abstract class AbstractSimpleFragment extends SupportFragment {
-
     private Unbinder unBinder;
 
     @Nullable

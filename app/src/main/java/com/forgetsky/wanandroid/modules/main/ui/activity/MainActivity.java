@@ -310,10 +310,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 //                    mKnowledgeHierarchyFragment.jumpToTheTop();
 //                }
 //                break;
-//            case Constants.TYPE_WX_ARTICLE:
-//                if (mWxArticleFragment != null) {
-//                    mWxArticleFragment.jumpToTheTop();
-//                }
+            case Constants.TYPE_WX_ARTICLE:
+                if (mWxArticleFragment != null) {
+                    mWxArticleFragment.jumpToTheTop();
+                }
             case Constants.TYPE_NAVIGATION:
                 if (mNavigationFragment != null) {
                     mNavigationFragment.jumpToTheTop();

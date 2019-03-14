@@ -76,6 +76,12 @@
     <!-- Navigation -->
     <string name="failed_to_get_navigation_data">Failed to get navigation data</string>
 
+    <!-- project -->
+    <string name="failed_to_get_project_data">Failed to get project data</string>
+
+    <!-- wx -->
+    <string name="failed_to_get_wx_chapters_data">Failed to get wx chapters data</string>
+
     <!-- behavior -->
     <string name="scale_down_show_behavior">com.forgetsky.wanandroid.widget.behavior.ScaleDownShowBehavior</string>
 

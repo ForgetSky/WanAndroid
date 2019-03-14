@@ -9,6 +9,7 @@ import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
+import com.forgetsky.wanandroid.modules.wxarticle.bean.WxChapterData;
 
 import java.util.List;
 
@@ -110,5 +111,20 @@ public class HttpHelperImpl implements HttpHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> getProjectListData(int page, int cid) {
         return mApiService.getProjectListData(page, cid);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<WxChapterData>>> getWxChapterListData() {
+        return mApiService.getWxChapterListData();
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getWxArticlesData(int id, int page) {
+        return mApiService.getWxArticlesData(id, page);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getWxSearchData(int id, int page, String k) {
+        return mApiService.getWxSearchData(id, page, k);
     }
 }

@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import dagger.android.support.AndroidSupportInjection;
 
 public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleFragment implements IView {
+
     @Inject
     protected T mPresenter;
 
@@ -34,7 +35,7 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ViewGroup mNormalView = view.findViewById(R.id.normal_view);
-        if(mNormalView != null) {
+        if (mNormalView != null) {
             mNormalView.setVisibility(View.GONE);
         }
         mMultipleStatusView = view.findViewById(R.id.custom_multiple_status_view);

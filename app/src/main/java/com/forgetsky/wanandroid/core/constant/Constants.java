@@ -46,6 +46,8 @@ public class Constants {
 
     public static final String SEARCH_KEY = "search_key";
     public static final String PROJECT_CID = "project_cid";
+    public static final String WX_CHAPTER_ID = "project_id";
+
     /**
      * Bottom Navigation tab classify
      */
@@ -143,5 +145,6 @@ public class Constants {
     public static final String COLLECT_PAGER = "collect_pager";
     public static final String SEARCH_PAGER = "search_pager";
     public static final String PROJECT_PAGER = "main_pager";
+    public static final String WX_PAGER = "wx_pager";
     public static final String TAG_DEFAULT = "tag_default";
 }

@@ -9,6 +9,7 @@ import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
+import com.forgetsky.wanandroid.modules.wxarticle.bean.WxChapterData;
 
 import java.util.List;
 
@@ -198,5 +199,37 @@ public interface ApiService {
      */
     @GET("project/list/{page}/json")
     Observable<BaseResponse<ArticleListData>> getProjectListData(@Path("page") int page, @Query("cid") int cid);
+
+    /**
+     * 获取公众号列表
+     * https://wanandroid.com/wxarticle/chapters/json
+     *
+     * @return 公众号列表数据
+     */
+    @GET("wxarticle/chapters/json")
+    Observable<BaseResponse<List<WxChapterData>>> getWxChapterListData();
+
+    /**
+     * 获取当前公众号的数据
+     * https://wanandroid.com/wxarticle/list/405/1/json
+     *
+     * @param id
+     * @param page
+     * @return 获取当前公众号的数据
+     */
+    @GET("wxarticle/list/{id}/{page}/json")
+    Observable<BaseResponse<ArticleListData>> getWxArticlesData(@Path("id") int id, @Path("page") int page);
+
+    /**
+     * 指定搜索内容，搜索当前公众号的某页的此类数据
+     * https://wanandroid.com/wxarticle/list/405/1/json?k=Java
+     *
+     * @param id
+     * @param page
+     * @param k
+     * @return 指定搜索内容，搜索当前公众号的某页的此类数据
+     */
+    @GET("wxarticle/list/{id}/{page}/json")
+    Observable<BaseResponse<ArticleListData>> getWxSearchData(@Path("id") int id, @Path("page") int page, @Query("k") String k);
 
 }

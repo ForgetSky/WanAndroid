@@ -26,6 +26,5 @@ public class KnowledgeHierarchyPresenter extends BasePresenter<KnowledgeHierarch
 
     @Override
     public void attachView(KnowledgeHierarchyContract.View view) {
-        super.attachView(view);
     }
 }

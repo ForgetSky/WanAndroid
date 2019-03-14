@@ -12,6 +12,7 @@ import com.forgetsky.wanandroid.modules.navigation.ui.NavigationFragment;
 import com.forgetsky.wanandroid.modules.project.ui.ProjectFragment;
 import com.forgetsky.wanandroid.modules.project.ui.ProjectListFragment;
 import com.forgetsky.wanandroid.modules.wxarticle.ui.WxArticleFragment;
+import com.forgetsky.wanandroid.modules.wxarticle.ui.WxArticleListFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -30,6 +31,9 @@ public abstract class AbstractAllFragmentModule {
 
     @ContributesAndroidInjector(modules = WxArticleFragmentModule.class)
     abstract WxArticleFragment contributesWxArticleFragmentInject();
+
+    @ContributesAndroidInjector(modules = WxArticleListFragmentModule.class)
+    abstract WxArticleListFragment contributesWxArticleListFragmentInject();
 
     @ContributesAndroidInjector(modules = ProjectFragmentModule.class)
     abstract ProjectFragment contributesProjectFragmentInject();
