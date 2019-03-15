@@ -10,12 +10,14 @@ public interface HomePagerContract {
 
     interface View extends CollectEventContract.View {
         void showArticleList(ArticleListData articleListData, boolean isRefresh);
+
         void showBannerData(List<BannerData> bannerDataList);
     }
 
     interface Presenter extends CollectEventContract.Presenter<View> {
 
         void getArticleList(boolean isShowStatusView);
+
         void getBannerData(boolean isShowStatusView);
 
         void getHomePagerData(boolean isShowStatusView);

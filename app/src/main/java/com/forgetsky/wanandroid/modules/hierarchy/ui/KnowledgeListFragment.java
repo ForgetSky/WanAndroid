@@ -1,58 +1,56 @@
-package com.forgetsky.wanandroid.modules.homepager.ui;
+package com.forgetsky.wanandroid.modules.hierarchy.ui;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.fragment.BaseFragment;
 import com.forgetsky.wanandroid.core.constant.Constants;
-import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
-import com.forgetsky.wanandroid.modules.homepager.banner.BannerGlideImageLoader;
+import com.forgetsky.wanandroid.modules.hierarchy.contract.KnowledgeListContract;
+import com.forgetsky.wanandroid.modules.hierarchy.presenter.KnowledgeListPresenter;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
-import com.forgetsky.wanandroid.modules.homepager.contract.HomePagerContract;
-import com.forgetsky.wanandroid.modules.homepager.presenter.HomePagerPresenter;
+import com.forgetsky.wanandroid.modules.homepager.ui.ArticleListAdapter;
 import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implements HomePagerContract.View {
+public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> implements KnowledgeListContract.View {
 
-    private static final String TAG = "HomePagerFragment";
+    private static final String TAG = "ProjectListFragment";
 
     @BindView(R.id.smart_refresh_layout)
     SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.home_pager_recycler_view)
+    @BindView(R.id.project_list_recycler_view)
     RecyclerView mRecyclerView;
 
     private List<ArticleItemData> mArticleList;
     private ArticleListAdapter mAdapter;
-    private List<String> mBannerTitleList;
-    private List<String> mBannerUrlList;
-    private List<Integer> bannerIdList;
-    private Banner mBanner;
 
-    public static HomePagerFragment newInstance() {
-        HomePagerFragment fragment = new HomePagerFragment();
-        //在此处传递参数，可在fragment恢复时使用；避免在构造函数中传参，fragment恢复时不调用非默认构造函数
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
+    private int cid;
+
+    public static KnowledgeListFragment newInstance(Bundle bundle) {
+        KnowledgeListFragment fragment = new KnowledgeListFragment();
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home_pager;
+        return R.layout.fragment_project_list;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
     @Override
@@ -62,8 +60,10 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
 
     @Override
     protected void initEventAndData() {
+        assert getArguments() != null;
+        cid = getArguments().getInt(Constants.KNOWLEDGE_CID);
         initRefreshLayout();
-        mPresenter.refreshLayout(true);
+        mPresenter.getKnowledgeListData(cid, true);
     }
 
     private void initRecyclerView() {
@@ -74,23 +74,17 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mRecyclerView.setHasFixedSize(true);
-        //add head banner
-        LinearLayout mHeaderGroup = (LinearLayout) getLayoutInflater().inflate(R.layout.head_banner, null);
-        mBanner = mHeaderGroup.findViewById(R.id.head_banner);
 
-        mHeaderGroup.removeView(mBanner);
-        mAdapter.setHeaderView(mBanner);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     private void initRefreshLayout() {
-//        mRefreshLayout.setEnableAutoLoadMore(true);
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.refreshLayout(false);
+            mPresenter.getKnowledgeListData(cid, false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            mPresenter.loadMore();
+            mPresenter.loadMore(cid);
             refreshLayout.finishLoadMore();
         });
     }
@@ -105,7 +99,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
                 mAdapter.getData().get(position).getTitle(),
                 mAdapter.getData().get(position).getLink(),
                 mAdapter.getData().get(position).isCollect(),
-                true, position, Constants.MAIN_PAGER);
+                true, position, Constants.KNOWLEDGE_PAGER);
     }
 
     private void clickChildEvent(View view, int position) {
@@ -140,7 +134,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     }
 
     @Override
-    public void showArticleList(ArticleListData articleListData, boolean isRefresh) {
+    public void showKnowledgeListData(ArticleListData articleListData, boolean isRefresh) {
         if (mAdapter == null) {
             return;
         }
@@ -153,44 +147,6 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         }
     }
 
-    @Override
-    public void showBannerData(List<BannerData> bannerDataList) {
-        mBannerTitleList = new ArrayList<>();
-        List<String> bannerImageList = new ArrayList<>();
-        bannerIdList = new ArrayList<>();
-        mBannerUrlList = new ArrayList<>();
-        for (BannerData bannerData : bannerDataList) {
-            mBannerTitleList.add(bannerData.getTitle());
-            bannerImageList.add(bannerData.getImagePath());
-            mBannerUrlList.add(bannerData.getUrl());
-            bannerIdList.add(bannerData.getId());
-        }
-        //设置banner样式
-        mBanner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);
-        //设置图片加载器
-        mBanner.setImageLoader(new BannerGlideImageLoader());
-        //设置图片集合
-        mBanner.setImages(bannerImageList);
-        //设置banner动画效果
-        mBanner.setBannerAnimation(Transformer.Accordion);
-        //设置标题集合（当banner样式有显示title时）
-        mBanner.setBannerTitles(mBannerTitleList);
-        //设置自动轮播，默认为true
-        mBanner.isAutoPlay(true);
-        //设置轮播时间
-        mBanner.setDelayTime(2500);
-        //设置指示器位置（当banner模式中有指示器时）
-        mBanner.setIndicatorGravity(BannerConfig.CENTER);
-
-        mBanner.setOnBannerListener(i ->
-                CommonUtils.startArticleDetailActivity(_mActivity, bannerIdList.get(i),
-                        mBannerTitleList.get(i), mBannerUrlList.get(i),
-                        false, false,
-                        -1, Constants.TAG_DEFAULT)
-        );
-        //banner设置方法全部调用完毕时最后调用
-        mBanner.start();
-    }
 
     public void jumpToTheTop() {
         if (mRecyclerView != null) {

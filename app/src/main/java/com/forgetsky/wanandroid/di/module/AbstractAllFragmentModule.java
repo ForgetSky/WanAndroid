@@ -1,7 +1,8 @@
 package com.forgetsky.wanandroid.di.module;
 
 import com.forgetsky.wanandroid.di.component.BaseFragmentComponent;
-import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeHierarchyFragment;
+import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeFragment;
+import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeListFragment;
 import com.forgetsky.wanandroid.modules.homepager.ui.HomePagerFragment;
 import com.forgetsky.wanandroid.modules.login.ui.LoginFragment;
 import com.forgetsky.wanandroid.modules.login.ui.RegisterFragment;
@@ -25,9 +26,6 @@ public abstract class AbstractAllFragmentModule {
 
     @ContributesAndroidInjector(modules = NavigationFragmentModule.class)
     abstract NavigationFragment contributesNavigationFragmentInject();
-
-    @ContributesAndroidInjector(modules = KnowledgeHierarchyFragmentModule.class)
-    abstract KnowledgeHierarchyFragment contributesKnowledgeHierarchyFragmentInject();
 
     @ContributesAndroidInjector(modules = WxArticleFragmentModule.class)
     abstract WxArticleFragment contributesWxArticleFragmentInject();
@@ -55,4 +53,11 @@ public abstract class AbstractAllFragmentModule {
 
     @ContributesAndroidInjector(modules = CollectFragmentModule.class)
     abstract CollectFragment contributesCollectFragmentInject();
+
+    @ContributesAndroidInjector(modules = KnowledgeFragmentModule.class)
+    abstract KnowledgeFragment contributesKnowledgeFragmentInject();
+
+    @ContributesAndroidInjector(modules = KnowledgeListFragmentModule.class)
+    abstract KnowledgeListFragment contributesKnowledgeListFragmentInject();
+
 }

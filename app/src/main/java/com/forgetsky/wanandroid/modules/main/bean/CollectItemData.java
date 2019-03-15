@@ -1,8 +1,6 @@
 package com.forgetsky.wanandroid.modules.main.bean;
 
-import java.io.Serializable;
-
-public class CollectItemData implements Serializable {
+public class CollectItemData{
     private String author;
     private int chapterId;
     private String chapterName;

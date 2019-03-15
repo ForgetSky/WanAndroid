@@ -1,6 +1,7 @@
 package com.forgetsky.wanandroid.core.http.api;
 
 import com.forgetsky.wanandroid.core.http.BaseResponse;
+import com.forgetsky.wanandroid.modules.hierarchy.bean.KnowledgeTreeData;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
@@ -231,5 +232,25 @@ public interface ApiService {
      */
     @GET("wxarticle/list/{id}/{page}/json")
     Observable<BaseResponse<ArticleListData>> getWxSearchData(@Path("id") int id, @Path("page") int page, @Query("k") String k);
+
+    /**
+     * 知识体系
+     * https://www.wanandroid.com/tree/json
+     *
+     * @return 知识体系数据
+     */
+    @GET("tree/json")
+    Observable<BaseResponse<List<KnowledgeTreeData>>> getKnowledgeTreeData();
+
+    /**
+     * 知识体系下的文章
+     * https://www.wanandroid.com/article/list/0?cid=60
+     *
+     * @param page page num
+     * @param cid second page id
+     * @return 知识体系feed文章数据
+     */
+    @GET("article/list/{page}/json")
+    Observable<BaseResponse<ArticleListData>> getKnowledgeListData(@Path("page") int page, @Query("cid") int cid);
 
 }

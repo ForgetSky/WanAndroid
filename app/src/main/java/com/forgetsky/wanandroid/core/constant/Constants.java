@@ -38,32 +38,19 @@ public class Constants {
     public static final int TYPE_SETTING = 6;
     public static final int TYPE_USEFULSITES = 7;
     public static final int TYPE_SEARCH_RESULT = 8;
-    public static final int TYPE_LOGIN = 9;
-    public static final int TYPE_REGISTER = 10;
 
     public static final String TYPE_FRAGMENT_KEY = "type_fragment";
     public static final String CURRENT_FRAGMENT_KEY = "current_fragment";
 
     public static final String SEARCH_KEY = "search_key";
+    public static final String KNOWLEDGE_CID = "knowledge_cid";
     public static final String PROJECT_CID = "project_cid";
-    public static final String WX_CHAPTER_ID = "project_id";
-
-    /**
-     * Bottom Navigation tab classify
-     */
-    public static final int TAB_ONE = 0;
+    public static final String WX_CHAPTER_ID = "wx_chapter_id";
+    public static final String KNOWLEDGE_DATA = "knowledge_data";
 
     /**
      * Intent params
      */
-    public static final String ARG_PARAM1 = "param1";
-
-    public static final String ARG_PARAM2 = "param2";
-
-    /**
-     * Phone MANUFACTURER
-     */
-    public static final String SAMSUNG = "samsung";
 
     /**
      * Tab colors
@@ -89,7 +76,6 @@ public class Constants {
     /**
      * Avoid double click time area
      */
-    public static final long CLICK_TIME_AREA = 1000;
 
     public static final long DOUBLE_INTERVAL_TIME = 2000;
 
@@ -104,23 +90,9 @@ public class Constants {
 
     public static final String IS_SHOW_COLLECT_ICON = "is_show_collect_icon";
 
-    public static final String IS_COLLECT_PAGE = "is_collect_page";
-
     public static final String ARTICLE_ITEM_POSITION = "article_item_position";
 
-    public static final String CHAPTER_ID = "chapter_id";
-
-    public static final String IS_SINGLE_CHAPTER = "is_single_chapter";
-
-    public static final String CHAPTER_NAME = "is_chapter_name";
-
-    public static final String SUPER_CHAPTER_NAME = "super_chapter_name";
-
     public static final String DB_NAME = "forgetsky_wan_android.db";
-
-    public static final String CURRENT_PAGE = "current_page";
-
-    public static final String PROJECT_CURRENT_PAGE = "project_current_page";
 
     /**
      * Shared Preference key
@@ -144,7 +116,8 @@ public class Constants {
     public static final String MAIN_PAGER = "main_pager";
     public static final String COLLECT_PAGER = "collect_pager";
     public static final String SEARCH_PAGER = "search_pager";
-    public static final String PROJECT_PAGER = "main_pager";
+    public static final String PROJECT_PAGER = "project_pager";
+    public static final String KNOWLEDGE_PAGER = "knowledge_pager";
     public static final String WX_PAGER = "wx_pager";
     public static final String TAG_DEFAULT = "tag_default";
 }

@@ -1,5 +1,6 @@
 package com.forgetsky.wanandroid.core.http;
 
+import com.forgetsky.wanandroid.modules.hierarchy.bean.KnowledgeTreeData;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
@@ -62,5 +63,10 @@ public interface HttpHelper {
     Observable<BaseResponse<ArticleListData>> getWxArticlesData(int id, int page);
 
     Observable<BaseResponse<ArticleListData>> getWxSearchData(int id, int page, String k);
+
+    Observable<BaseResponse<List<KnowledgeTreeData>>> getKnowledgeTreeData();
+
+    Observable<BaseResponse<ArticleListData>> getKnowledgeListData(int page, int cid);
+
 
 }

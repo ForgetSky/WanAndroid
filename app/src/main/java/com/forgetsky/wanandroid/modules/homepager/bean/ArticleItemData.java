@@ -3,7 +3,7 @@ package com.forgetsky.wanandroid.modules.homepager.bean;
 import java.io.Serializable;
 import java.util.List;
 
-public class ArticleItemData implements Serializable {
+public class ArticleItemData {
     private String apkLink;
     private String author;
     private int chapterId;

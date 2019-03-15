@@ -5,6 +5,7 @@ import com.forgetsky.wanandroid.core.greendao.HistoryData;
 import com.forgetsky.wanandroid.core.http.BaseResponse;
 import com.forgetsky.wanandroid.core.http.HttpHelper;
 import com.forgetsky.wanandroid.core.preference.PreferenceHelper;
+import com.forgetsky.wanandroid.modules.hierarchy.bean.KnowledgeTreeData;
 import com.forgetsky.wanandroid.modules.homepager.banner.BannerData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleListData;
@@ -128,6 +129,16 @@ public class DataManager implements HttpHelper, DbHelper,PreferenceHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> getWxSearchData(int id, int page, String k) {
         return mHttpHelper.getWxSearchData(id, page, k);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<KnowledgeTreeData>>> getKnowledgeTreeData() {
+        return mHttpHelper.getKnowledgeTreeData();
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getKnowledgeListData(int page, int cid) {
+        return mHttpHelper.getKnowledgeListData(page, cid);
     }
 
     @Override

@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
-import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeHierarchyFragment;
+import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeFragment;
 import com.forgetsky.wanandroid.modules.homepager.ui.HomePagerFragment;
 import com.forgetsky.wanandroid.modules.main.contract.MainContract;
 import com.forgetsky.wanandroid.modules.main.presenter.MainPresenter;
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     //fragments
     private HomePagerFragment mHomePagerFragment;
-    private KnowledgeHierarchyFragment mKnowledgeHierarchyFragment;
+    private KnowledgeFragment mKnowledgeFragment;
     private NavigationFragment mNavigationFragment;
     private WxArticleFragment mWxArticleFragment;
     private ProjectFragment mProjectFragment;
@@ -105,11 +105,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 break;
             case Constants.TYPE_KNOWLEDGE:
                 mTitle.setText(getString(R.string.knowledge_hierarchy));
-                if (mKnowledgeHierarchyFragment == null) {
-                    mKnowledgeHierarchyFragment = KnowledgeHierarchyFragment.newInstance();
-                    transaction.add(R.id.fragment_group, mKnowledgeHierarchyFragment);
+                if (mKnowledgeFragment == null) {
+                    mKnowledgeFragment = KnowledgeFragment.newInstance();
+                    transaction.add(R.id.fragment_group, mKnowledgeFragment);
                 }
-                transaction.show(mKnowledgeHierarchyFragment);
+                transaction.show(mKnowledgeFragment);
                 break;
             case Constants.TYPE_NAVIGATION:
                 mTitle.setText(getString(R.string.navigation));
@@ -151,8 +151,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 }
                 break;
             case Constants.TYPE_KNOWLEDGE:
-                if (mKnowledgeHierarchyFragment != null) {
-                    transaction.hide(mKnowledgeHierarchyFragment);
+                if (mKnowledgeFragment != null) {
+                    transaction.hide(mKnowledgeFragment);
                 }
                 break;
             case Constants.TYPE_NAVIGATION:
@@ -305,11 +305,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     mHomePagerFragment.jumpToTheTop();
                 }
                 break;
-//            case Constants.TYPE_KNOWLEDGE:
-//                if (mKnowledgeHierarchyFragment != null) {
-//                    mKnowledgeHierarchyFragment.jumpToTheTop();
-//                }
-//                break;
+            case Constants.TYPE_KNOWLEDGE:
+                if (mKnowledgeFragment != null) {
+                    mKnowledgeFragment.jumpToTheTop();
+                }
+                break;
             case Constants.TYPE_WX_ARTICLE:
                 if (mWxArticleFragment != null) {
                     mWxArticleFragment.jumpToTheTop();

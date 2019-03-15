@@ -1,6 +1,7 @@
 package com.forgetsky.wanandroid.di.module;
 
 import com.forgetsky.wanandroid.di.component.BaseActivityComponent;
+import com.forgetsky.wanandroid.modules.hierarchy.ui.KnowledgeActivity;
 import com.forgetsky.wanandroid.modules.login.ui.LoginActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.ArticleDetailActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.CommonActivity;
@@ -28,5 +29,7 @@ public abstract class AbstractAllActivityModule {
     @ContributesAndroidInjector(modules = LoginActivityModule.class)
     abstract LoginActivity contributesLoginActivityInject();
 
+    @ContributesAndroidInjector(modules = KnowledgeActivityModule.class)
+    abstract KnowledgeActivity contributesKnowledgeActivityInject();
 
 }

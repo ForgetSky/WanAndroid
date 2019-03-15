@@ -2,10 +2,9 @@ package com.forgetsky.wanandroid.modules.navigation.bean;
 
 import com.forgetsky.wanandroid.modules.homepager.bean.ArticleItemData;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class NavigationListData implements Serializable {
+public class NavigationListData {
 
     private List<ArticleItemData> articles;
     private int cid;
