@@ -75,12 +75,10 @@
     <!-- Article detail -->
     <string name="share">Share</string>
     <string name="open_it_with_browser">Open it with the system browser</string>
-    <string name="share_type_url">%1$sShare【%2$s】special top：%3$s</string>
+    <string name="share_type_url" translatable="false">%1$sShare【%2$s】special top：%3$s</string>
     <string name="write_permission_not_allowed">Gets write permission failed</string>
 
     <!-- behavior -->
-    <string name="scale_down_show_behavior">com.forgetsky.wanandroid.widget.behavior.ScaleDownShowBehavior</string>
+    <string name="scale_down_show_behavior" translatable="false">com.forgetsky.wanandroid.widget.behavior.ScaleDownShowBehavior</string>
 
-
-    <string name="share_view">shareView</string>
 </resources>
