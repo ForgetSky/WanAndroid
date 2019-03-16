@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/viewbg"
+        android:background="@color/view_bg"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -23,9 +23,10 @@
             android:background="@color/colorPrimary"
             app:tabGravity="center"
             app:tabMode="scrollable"
-            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/tab_text"
+            app:tabIndicatorColor="@color/tab_selected"
             app:tabIndicatorHeight="2dp"
-            app:tabSelectedTextColor="@color/white"/>
+            app:tabSelectedTextColor="@color/tab_selected"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/knowledge_viewpager"

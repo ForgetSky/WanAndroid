@@ -193,7 +193,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
             field = mSearchView.getClass().getDeclaredField("mGoButton");
             field.setAccessible(true);
             ImageView mGoButton = (ImageView) field.get(mSearchView);
-            mGoButton.setImageResource(R.drawable.ic_search_white_24dp);
+            mGoButton.setImageResource(R.drawable.ic_search);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

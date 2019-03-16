@@ -1,6 +1,10 @@
 package com.forgetsky.wanandroid.core.db;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import com.forgetsky.wanandroid.app.WanAndroidApp;
+import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.greendao.DaoMaster;
 import com.forgetsky.wanandroid.core.greendao.DaoSession;
 import com.forgetsky.wanandroid.core.greendao.HistoryData;
 import com.forgetsky.wanandroid.core.greendao.HistoryDataDao;
@@ -27,7 +31,15 @@ public class DbHelperImpl implements DbHelper {
 
     @Inject
     DbHelperImpl() {
-        daoSession = WanAndroidApp.getDaoSession();
+        initGreenDao();
+    }
+
+    private void initGreenDao() {
+        DaoMaster.DevOpenHelper devOpenHelper =
+                new DaoMaster.DevOpenHelper(WanAndroidApp.getContext(), Constants.DB_NAME);
+        SQLiteDatabase database = devOpenHelper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(database);
+        daoSession = daoMaster.newSession();
     }
 
     @Override

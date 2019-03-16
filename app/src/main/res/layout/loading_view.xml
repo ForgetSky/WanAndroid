@@ -3,7 +3,7 @@
     android:id="@+id/loading_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/viewbg" >
+    android:background="@color/view_bg" >
 
     <ProgressBar
         android:id="@+id/loading"

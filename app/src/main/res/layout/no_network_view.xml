@@ -3,7 +3,7 @@
     android:id="@+id/no_network_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/viewbg" >
+    android:background="@color/view_bg" >
 
     <ImageView
         android:id="@+id/no_network_retry_view"

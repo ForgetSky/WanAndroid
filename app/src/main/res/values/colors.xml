@@ -3,21 +3,31 @@
     <color name="colorPrimary">#00ACC1</color>
     <color name="colorPrimaryDark">#00ACC1</color>
     <color name="colorAccent">#00ACC1</color>
-    <color name="white">#FFFFFF</color>
-    <color name="viewbg">@color/Grey100</color>
+    <color name="view_bg">@color/Grey100</color>
     <color name="line_divider">@color/Grey300</color>
     <color name="bottom_nav_checked">#00ACC1</color>
     <color name="bottom_nav_not_checked">#cccccc</color>
     <color name="nav_item_color_ic">#616161</color>
     <color name="nav_item_color_tv">#19191B</color>
-    <color name="colorCard">#FFFFFF</color>
+    <color name="card_view_bg">@color/white</color>
     <color name="item_title">#19191B</color>
     <color name="item_author">@color/Grey700</color>
     <color name="item_search_history">@color/Grey700</color>
     <color name="item_desc">@color/Grey800</color>
     <color name="arrow_color">@color/Grey700</color>
-    <color name="red">#f44336</color>
+    <color name="bottom_nav_bg">@color/white</color>
+    <color name="nav_header_tv">@color/white</color>
+    <color name="tab_selected">@color/white</color>
+    <color name="tab_text">@color/Grey200</color>
+    <color name="main_text_color">@color/white</color>
+    <color name="flow_layout_bg">@color/Grey200</color>
+    <color name="floating_button">@color/colorAccent</color>
 
+
+
+
+    <color name="red">#f44336</color>
+    <color name="white">#FFFFFF</color>
     <color name="Grey50">#FAFAFA</color>
     <color name="Grey100">#F5F5F5</color>
     <color name="Grey200">#EEEEEE</color>
@@ -26,6 +36,6 @@
     <color name="Grey500">#9e9e9e</color>
     <color name="Grey600">#757575</color>
     <color name="Grey700">#616161</color>
-    <color name="Grey800">#424242</color>
+    <color name="Grey800">#3D3D3D</color>
     <color name="Grey900">#212121</color>
 </resources>

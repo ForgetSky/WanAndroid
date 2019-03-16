@@ -3,11 +3,9 @@ package com.forgetsky.wanandroid.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AppCompatDelegate;
 
-import com.forgetsky.wanandroid.core.constant.Constants;
-import com.forgetsky.wanandroid.core.greendao.DaoMaster;
-import com.forgetsky.wanandroid.core.greendao.DaoSession;
+import com.forgetsky.wanandroid.core.DataManager;
 import com.forgetsky.wanandroid.di.component.DaggerAppComponent;
 import com.forgetsky.wanandroid.di.module.AppModule;
 import com.forgetsky.wanandroid.di.module.HttpModule;
@@ -32,7 +30,8 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
 
     private static Context context;
     private RefWatcher refWatcher;
-    private DaoSession mDaoSession;
+    @Inject
+    public DataManager mDataManager;
 
     @Override
     public void onCreate() {
@@ -44,7 +43,13 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
                 .httpModule(new HttpModule())
                 .build().inject(this);
 
-        initGreenDao();
+        if (mDataManager.isNightMode()) {
+            AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
         refWatcher = setupLeakCanary();
     }
@@ -65,16 +70,9 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
         return context;
     }
 
-    private void initGreenDao() {
-        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, Constants.DB_NAME);
-        SQLiteDatabase database = devOpenHelper.getWritableDatabase();
-        DaoMaster daoMaster = new DaoMaster(database);
-        mDaoSession = daoMaster.newSession();
-    }
-
-    public static DaoSession getDaoSession() {
+    public static boolean isNightMode() {
         WanAndroidApp application = (WanAndroidApp) context.getApplicationContext();
-        return application.mDaoSession;
+       return application.mDataManager.isNightMode();
     }
 
 }

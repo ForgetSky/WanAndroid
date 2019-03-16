@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorCard"
+    android:background="@color/view_bg"
     android:padding="@dimen/dp_10"
     android:orientation="vertical">
 
@@ -20,6 +20,7 @@
         android:id="@+id/item_navigation_flow_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/view_bg"
         android:padding="12dp"
         app:max_select="0" />
 

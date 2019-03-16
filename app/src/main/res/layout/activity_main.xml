@@ -26,6 +26,7 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="60dp"
+            app:backgroundTint="@color/floating_button"
             android:src="@drawable/ic_arrow_upward_white_24dp"
             app:layout_behavior="@string/scale_down_show_behavior" />
 
@@ -34,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/white"
+            android:background="@color/bottom_nav_bg"
             app:elevation="16dp"
             app:itemIconTint="@drawable/nav_item_color_selector"
             app:itemTextColor="@drawable/nav_item_color_selector"
@@ -49,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/view_bg"
         app:headerLayout="@layout/nav_header"
         app:insetForeground="@android:color/transparent"
         app:itemIconTint="@color/nav_item_color_ic"

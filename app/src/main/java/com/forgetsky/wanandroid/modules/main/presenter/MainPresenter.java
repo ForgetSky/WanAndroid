@@ -54,4 +54,14 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
                     }
                 }));
     }
+
+    @Override
+    public void setNightMode(boolean isNightMode) {
+        mDataManager.setNightMode(isNightMode);
+    }
+
+    @Override
+    public boolean isNightMode() {
+        return mDataManager.isNightMode();
+    }
 }

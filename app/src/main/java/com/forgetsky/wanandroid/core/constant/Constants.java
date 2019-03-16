@@ -107,7 +107,7 @@ public class Constants {
 
     public static final String NO_IMAGE_STATE = "no_image_state";
 
-    public static final String NIGHT_MODE_STATE = "night_mode_state";
+    public static final String NIGHT_MODE = "night_mode";
 
     /**
      * EventBus Tag

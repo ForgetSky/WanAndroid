@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:scrollbars="none"
         android:visibility="visible"
+        android:background="@color/view_bg"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout

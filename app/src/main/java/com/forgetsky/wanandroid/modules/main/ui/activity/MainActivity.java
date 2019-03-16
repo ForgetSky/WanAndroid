@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -241,6 +242,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     case R.id.nav_item_todo:
                         break;
                     case R.id.nav_item_night_mode:
+                        if (mPresenter.isNightMode()) {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                            mPresenter.setNightMode(false);
+                        } else {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                            mPresenter.setNightMode(true);
+                        }
+                        recreate();
                         break;
                     case R.id.nav_item_setting:
                         break;

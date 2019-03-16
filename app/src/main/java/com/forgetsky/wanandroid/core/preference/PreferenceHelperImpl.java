@@ -38,4 +38,14 @@ public class PreferenceHelperImpl implements PreferenceHelper {
     public String getLoginAccount() {
         return mPreferences.getString(Constants.ACCOUNT, "");
     }
+
+    @Override
+    public void setNightMode(boolean isNightMode) {
+        mPreferences.edit().putBoolean(Constants.NIGHT_MODE, isNightMode).apply();
+    }
+
+    @Override
+    public boolean isNightMode() {
+        return mPreferences.getBoolean(Constants.NIGHT_MODE, false);
+    }
 }

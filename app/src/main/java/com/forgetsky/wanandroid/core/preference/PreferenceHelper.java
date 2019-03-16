@@ -11,4 +11,7 @@ public interface PreferenceHelper {
 
     void setLoginAccount(String account);
     String getLoginAccount();
+
+    void setNightMode(boolean isNightMode);
+    boolean isNightMode();
 }

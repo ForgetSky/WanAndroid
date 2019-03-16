@@ -10,5 +10,7 @@ public interface MainContract {
 
     interface Presenter extends IPresenter<View> {
         void logout();
+        void setNightMode(boolean isNightMode);
+        boolean isNightMode();
     }
 }

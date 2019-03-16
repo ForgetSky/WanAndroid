@@ -119,10 +119,14 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
 
     @Override
     public void onDestroyView() {
-        fragmentSparseArray.clear();
-        fragmentSparseArray = null;
-        mProjectTreeData.clear();
-        mProjectTreeData = null;
+        if (fragmentSparseArray != null) {
+            fragmentSparseArray.clear();
+            fragmentSparseArray = null;
+        }
+        if (mProjectTreeData != null) {
+            mProjectTreeData.clear();
+            mProjectTreeData = null;
+        }
         super.onDestroyView();
     }
 }

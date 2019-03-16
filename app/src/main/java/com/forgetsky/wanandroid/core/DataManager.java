@@ -180,4 +180,14 @@ public class DataManager implements HttpHelper, DbHelper,PreferenceHelper {
     public String getLoginAccount() {
         return mPreferenceHelper.getLoginAccount();
     }
+
+    @Override
+    public void setNightMode(boolean isNightMode) {
+        mPreferenceHelper.setNightMode(isNightMode);
+    }
+
+    @Override
+    public boolean isNightMode() {
+        return mPreferenceHelper.isNightMode();
+    }
 }

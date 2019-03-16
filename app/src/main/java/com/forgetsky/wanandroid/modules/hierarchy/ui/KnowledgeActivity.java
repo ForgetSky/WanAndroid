@@ -147,10 +147,14 @@ public class KnowledgeActivity extends BaseActivity<KnowledgeActivityPresenter> 
 
     @Override
     public void onDestroy() {
-        fragmentSparseArray.clear();
-        fragmentSparseArray = null;
-        mKnowledgeTreeDataList.clear();
-        mKnowledgeTreeDataList = null;
+        if (fragmentSparseArray != null) {
+            fragmentSparseArray.clear();
+            fragmentSparseArray = null;
+        }
+        if (mKnowledgeTreeDataList != null) {
+            mKnowledgeTreeDataList.clear();
+            mKnowledgeTreeDataList = null;
+        }
         super.onDestroy();
     }
 }

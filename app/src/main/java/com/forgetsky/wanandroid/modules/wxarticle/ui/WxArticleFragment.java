@@ -119,10 +119,14 @@ public class WxArticleFragment extends BaseFragment<WxArticlePresenter> implemen
 
     @Override
     public void onDestroyView() {
-        fragmentSparseArray.clear();
-        fragmentSparseArray = null;
-        mWxChapterDataList.clear();
-        mWxChapterDataList = null;
+        if (fragmentSparseArray != null) {
+            fragmentSparseArray.clear();
+            fragmentSparseArray = null;
+        }
+        if (mWxChapterDataList != null) {
+            mWxChapterDataList.clear();
+            mWxChapterDataList = null;
+        }
         super.onDestroyView();
     }
 }
