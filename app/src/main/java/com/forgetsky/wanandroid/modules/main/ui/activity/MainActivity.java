@@ -237,7 +237,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                             CommonUtils.startLoginActivity(MainActivity.this);
                             ToastUtils.showToast(MainActivity.this, getString(R.string.login_first));
                         }
-
                         break;
                     case R.id.nav_item_todo:
                         break;
@@ -245,9 +244,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         if (mPresenter.isNightMode()) {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                             mPresenter.setNightMode(false);
+                            menuItem.setTitle(R.string.nav_day_mode);
                         } else {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                             mPresenter.setNightMode(true);
+                            menuItem.setTitle(R.string.nav_night_mode);
                         }
                         recreate();
                         break;
@@ -269,6 +270,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mUsTv.setText(mPresenter.getLoginStatus() ? mPresenter.getLoginAccount() : getString(R.string.login));
         mUsTv.setOnClickListener(v -> CommonUtils.startLoginActivity(MainActivity.this));
         mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(mPresenter.getLoginStatus());
+        MenuItem nightModeItem = mNavigationView.getMenu().findItem(R.id.nav_item_night_mode);
+        if (mPresenter.isNightMode()) {
+            nightModeItem.setIcon(R.drawable.ic_day);
+            nightModeItem.setTitle(R.string.nav_day_mode);
+        } else {
+            nightModeItem.setIcon(R.drawable.ic_night);
+            nightModeItem.setTitle(R.string.nav_night_mode);
+        }
     }
 
     @Override

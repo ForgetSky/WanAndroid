@@ -4,6 +4,7 @@
     <string name="my_collect">Collect</string>
     <string name="nav_todo">TODO</string>
     <string name="nav_night_mode">Night mode</string>
+    <string name="nav_day_mode">Day mode</string>
     <string name="setting">Setting</string>
     <string name="about_us">About Us</string>
     <string name="logout">Logout</string>

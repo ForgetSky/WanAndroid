@@ -4,6 +4,7 @@
     <string name="my_collect">我的收藏</string>
     <string name="nav_todo">TODO</string>
     <string name="nav_night_mode">夜间模式</string>
+    <string name="nav_day_mode">日间模式</string>
     <string name="setting">设置</string>
     <string name="about_us">关于</string>
     <string name="logout">退出登录</string>

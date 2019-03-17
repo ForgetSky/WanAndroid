@@ -2,7 +2,6 @@
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -44,8 +43,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="60dp"
         android:src="@drawable/ic_arrow_upward_white_24dp"
+        app:backgroundTint="@color/floating_button"
         app:layout_behavior="@string/scale_down_show_behavior" />
-
 
 </android.support.design.widget.CoordinatorLayout>
 
