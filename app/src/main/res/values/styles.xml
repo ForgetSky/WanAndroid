@@ -13,9 +13,20 @@
         <item name="colorControlNormal">@color/toolbar_button</item>
     </style>
 
-    <style name="Toolbar.MyStyle" parent="Base.Widget.AppCompat.Toolbar">
+    <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="android:colorBackground">@color/card_view_bg</item>
+        <item name="android:textColor">@color/item_title</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="popupTheme">@style/ToolbarPopupTheme</item>
+        <item name="theme">@style/ToolBarTheme</item>
+    </style>
+
+    <style name="ToolbarSearchStyle" parent="Base.Widget.AppCompat.Toolbar">
         <item name="contentInsetStart">0dp</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="theme">@style/ToolBarTheme</item>
     </style>
 
     <style name="TabLayoutStyle" parent="TextAppearance.Design.Tab">
