@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
@@ -77,11 +78,20 @@ public class CommonUtils {
     }
 
     public static AlertDialog getLoadingDialog(Context context, String message) {
-        View view = LayoutInflater.from(context).inflate(R.layout.loading_progressbar,null,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.loading_progressbar, null, false);
         TextView loadingText = view.findViewById(R.id.loading_text);
         loadingText.setText(message);
         AlertDialog dialog = new AlertDialog.Builder(context).setView(view).create();
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         return dialog;
     }
+
+    public static void hideKeyBoard(Context context, View view) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager.isActive()) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
 }

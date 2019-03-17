@@ -348,7 +348,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
      */
     @Override
     public void onBackPressedSupport() {
-
         if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             pop();
         } else {

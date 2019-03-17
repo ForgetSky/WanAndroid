@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#171818</color>
     <color name="colorPrimaryDark">#171818</color>
-    <color name="colorAccent">#00ACC1</color>
+    <color name="colorAccent">#0398AB</color>
     <color name="view_bg">@color/colorPrimary</color>
     <color name="line_divider">@color/Grey800</color>
     <color name="bottom_nav_checked">#00ACC1</color>

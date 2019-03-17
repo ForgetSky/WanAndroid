@@ -10,6 +10,7 @@ import com.classic.common.MultipleStatusView;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
 
 import javax.inject.Inject;
@@ -39,7 +40,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
     @Override
     protected void onViewCreated() {
         ViewGroup mNormalView = findViewById(R.id.normal_view);
-        if(mNormalView != null) {
+        if (mNormalView != null) {
             mNormalView.setVisibility(View.GONE);
         }
         mMultipleStatusView = findViewById(R.id.custom_multiple_status_view);
@@ -66,6 +67,11 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
         return mFragmentDispatchingAndroidInjector;
     }
 
+    @Override
+    public void onBackPressedSupport() {
+        CommonUtils.hideKeyBoard(this, this.getCurrentFocus());
+        super.onBackPressedSupport();
+    }
 
     @Override
     public void showErrorMsg(String errorMsg) {
@@ -76,7 +82,6 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
     public void showLoading() {
         if (mMultipleStatusView == null) return;
         mMultipleStatusView.showLoading();
-
     }
 
     @Override
@@ -106,6 +111,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
         if (mMultipleStatusView == null) return;
         mMultipleStatusView.showContent();
     }
+
     @Override
     public void handleLoginSuccess() {
     }
