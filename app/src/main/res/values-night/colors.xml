@@ -22,6 +22,7 @@
     <color name="main_text_color">@color/Grey100</color>
     <color name="flow_layout_bg">@color/Grey800</color>
     <color name="floating_button">@color/Grey900</color>
+    <color name="toolbar_button">@color/Grey200</color>
 
 
     <color name="white">#FFFFFF</color>

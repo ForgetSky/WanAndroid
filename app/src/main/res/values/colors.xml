@@ -22,7 +22,7 @@
     <color name="main_text_color">@color/white</color>
     <color name="flow_layout_bg">@color/Grey200</color>
     <color name="floating_button">@color/colorAccent</color>
-
+    <color name="toolbar_button">@color/white</color>
 
 
 

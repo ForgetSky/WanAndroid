@@ -31,6 +31,6 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:textColor="@color/main_text_color"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
     </android.support.v7.widget.Toolbar>
 </android.support.design.widget.AppBarLayout>
