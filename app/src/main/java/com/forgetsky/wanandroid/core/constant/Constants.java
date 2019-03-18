@@ -3,10 +3,6 @@ package com.forgetsky.wanandroid.core.constant;
 
 import android.graphics.Color;
 
-import com.forgetsky.wanandroid.app.WanAndroidApp;
-
-import java.io.File;
-
 
 public class Constants {
 
@@ -16,13 +12,6 @@ public class Constants {
      * url
      */
     public static final String COOKIE = "Cookie";
-
-    /**
-     * Path
-     */
-    public static final String PATH_DATA = WanAndroidApp.getContext().getCacheDir().getAbsolutePath() + File.separator + "data";
-
-    public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 
     /**
      * Tag fragment classify
@@ -47,10 +36,6 @@ public class Constants {
     public static final String PROJECT_CID = "project_cid";
     public static final String WX_CHAPTER_ID = "wx_chapter_id";
     public static final String KNOWLEDGE_DATA = "knowledge_data";
-
-    /**
-     * Intent params
-     */
 
     /**
      * Tab colors

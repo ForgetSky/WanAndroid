@@ -14,6 +14,7 @@ import com.forgetsky.wanandroid.modules.main.contract.CommonContract;
 import com.forgetsky.wanandroid.modules.main.presenter.CommonPresenter;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.CollectFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.SearchResultFragment;
+import com.forgetsky.wanandroid.modules.main.ui.fragment.SettingFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.UsefulSitesFragment;
 
 import butterknife.BindView;
@@ -51,6 +52,10 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
                 mTargetFragment = CollectFragment.newInstance();
                 title = getString(R.string.collect);
                 break;
+            case Constants.TYPE_SETTING:
+                mTargetFragment = SettingFragment.newInstance();
+                title = getString(R.string.setting);
+                break;
             default:
                 break;
         }
@@ -64,7 +69,6 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
             mTitle.setText(title);
 
         }
-
 
     }
 

@@ -239,6 +239,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         }
                         break;
                     case R.id.nav_item_todo:
+                        ToastUtils.showToast(MainActivity.this, getString(R.string.in_the_process));
                         break;
                     case R.id.nav_item_night_mode:
                         if (mPresenter.isNightMode()) {
@@ -253,8 +254,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         recreate();
                         break;
                     case R.id.nav_item_setting:
+                        CommonUtils.startFragmentInCommonActivity(MainActivity.this, Constants.TYPE_SETTING);
                         break;
                     case R.id.nav_item_about_us:
+                        ToastUtils.showToast(MainActivity.this, getString(R.string.in_the_process));
                         break;
                     case R.id.nav_item_logout:
                         mPresenter.logout();

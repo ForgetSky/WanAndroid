@@ -35,6 +35,8 @@ dependencies {
     //base
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation rootProject.ext.dependencies["preference-v7"]
+    implementation rootProject.ext.dependencies["preference-v14"]
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["constraint-layout"]
 

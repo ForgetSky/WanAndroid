@@ -1,0 +1,11 @@
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/cache_setting">
+        <!--android:layout="@layout/custom_preference_category"-->
+        <android.support.v7.preference.Preference
+            android:key="clearCache"
+            android:title="@string/clear_cache"
+            android:layout="@layout/custom_preference_layout"/>
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

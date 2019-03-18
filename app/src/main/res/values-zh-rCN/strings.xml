@@ -71,7 +71,10 @@
     <string name="failed_to_get_project_data">获取项目数据失败</string>
     <string name="failed_to_get_knowledge_hierarchy_data">获取知识体系数据失败</string>
     <string name="failed_to_get_wx_chapters_data">获取公众号数据失败</string>
+    <string name="in_the_process">正在开发中，敬请期待</string>
 
+    <string name="cache_setting">缓存设置</string>
+    <string name="clear_cache">清空缓存</string>
 
     <!-- Article detail -->
     <string name="share">分享</string>

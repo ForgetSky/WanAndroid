@@ -71,7 +71,11 @@
     <string name="failed_to_get_project_data">Failed to get project data</string>
     <string name="failed_to_get_knowledge_hierarchy_data">Failed to get knowledge hierarchy data</string>
     <string name="failed_to_get_wx_chapters_data">Failed to get wx chapters data</string>
+    <string name="in_the_process">In the process of development, please look forward to it.</string>
 
+    <!-- Setting detail -->
+    <string name="cache_setting">Cache Setting</string>
+    <string name="clear_cache">Clear Cache</string>
 
     <!-- Article detail -->
     <string name="share">Share</string>
