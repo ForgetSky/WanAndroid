@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:paddingEnd="?android:attr/scrollbarSize">
@@ -22,7 +23,8 @@
             android:fadingEdge="horizontal"
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceListItem"
-            android:textColor="@color/item_title" />
+            android:textColor="@color/item_title"
+            tools:text="title"/>
 
         <TextView
             android:id="@android:id/summary"
@@ -32,7 +34,8 @@
             android:layout_below="@android:id/title"
             android:maxLines="4"
             android:textColor="@color/item_desc"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="summary"/>
     </RelativeLayout>
     <!-- Preference should place its actual preference widget here. -->
     <LinearLayout
