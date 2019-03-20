@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ForgetSkyWanAndroid</string>
+    <string name="app_name">WanAndroid</string>
     <!-- navigation -->
     <string name="my_collect">Collect</string>
     <string name="nav_todo">TODO</string>
