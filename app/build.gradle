@@ -11,16 +11,35 @@ android {
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            storeFile file('sign.jks')
+            storePassword '123456'
+            keyAlias 'sign'
+            keyPassword '123456'
         }
     }
-    compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "WanAndroid-V${variant.versionName}-release.apk"
+                }
+            }
+        }
+
     }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 greendao {
@@ -28,6 +47,7 @@ greendao {
     targetGenDir 'src/main/java'
     daoPackage 'com.forgetsky.wanandroid.core.greendao'
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
