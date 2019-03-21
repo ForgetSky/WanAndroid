@@ -15,7 +15,6 @@ public class SettingFragment extends PreferenceFragmentCompat {
     public static SettingFragment newInstance() {
         return new SettingFragment();
     }
-
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.pref_setting);

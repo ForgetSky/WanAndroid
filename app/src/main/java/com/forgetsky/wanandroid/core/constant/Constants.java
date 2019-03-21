@@ -27,6 +27,7 @@ public class Constants {
     public static final int TYPE_SETTING = 6;
     public static final int TYPE_USEFULSITES = 7;
     public static final int TYPE_SEARCH_RESULT = 8;
+    public static final int TYPE_ABOUT_US = 9;
 
     public static final String TYPE_FRAGMENT_KEY = "type_fragment";
     public static final String CURRENT_FRAGMENT_KEY = "current_fragment";
@@ -105,4 +106,12 @@ public class Constants {
     public static final String KNOWLEDGE_PAGER = "knowledge_pager";
     public static final String WX_PAGER = "wx_pager";
     public static final String TAG_DEFAULT = "tag_default";
+
+    /**
+     * About Url
+     */
+    public static final String ABOUT_WEBSITE = "https://www.wanandroid.com/about";
+    public static final String ABOUT_SOURCE = "https://github.com/ForgetSky/ForgetSkyWanAndroid";
+    public static final String ABOUT_FEEDBACK = "https://github.com/ForgetSky/ForgetSkyWanAndroid/issues";
+
 }

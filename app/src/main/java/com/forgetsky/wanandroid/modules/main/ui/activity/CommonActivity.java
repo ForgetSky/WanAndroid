@@ -12,6 +12,7 @@ import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.main.contract.CommonContract;
 import com.forgetsky.wanandroid.modules.main.presenter.CommonPresenter;
+import com.forgetsky.wanandroid.modules.main.ui.fragment.AboutFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.CollectFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.SearchResultFragment;
 import com.forgetsky.wanandroid.modules.main.ui.fragment.SettingFragment;
@@ -55,6 +56,10 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
             case Constants.TYPE_SETTING:
                 mTargetFragment = SettingFragment.newInstance();
                 title = getString(R.string.setting);
+                break;
+            case Constants.TYPE_ABOUT_US:
+                mTargetFragment = AboutFragment.newInstance();
+                title = getString(R.string.about_us);
                 break;
             default:
                 break;

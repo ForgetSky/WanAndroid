@@ -257,7 +257,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         CommonUtils.startFragmentInCommonActivity(MainActivity.this, Constants.TYPE_SETTING);
                         break;
                     case R.id.nav_item_about_us:
-                        ToastUtils.showToast(MainActivity.this, getString(R.string.in_the_process));
+                        CommonUtils.startFragmentInCommonActivity(MainActivity.this, Constants.TYPE_ABOUT_US);
                         break;
                     case R.id.nav_item_logout:
                         mPresenter.logout();

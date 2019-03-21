@@ -86,4 +86,13 @@
     <!-- behavior -->
     <string name="scale_down_show_behavior" translatable="false">com.forgetsky.wanandroid.widget.behavior.ScaleDownShowBehavior</string>
 
+    <!-- about -->
+    <string name="about_upgrade">Upgrade</string>
+    <string name="about_website">About website</string>
+    <string name="about_source_code">Source code</string>
+    <string name="about_copyright">Copyright</string>
+    <string name="about_feedback">Feedback</string>
+
+    <string name="copyright_content">This APP is completely open source, only for learning and communication, not for any commercial use.</string>
+
 </resources>

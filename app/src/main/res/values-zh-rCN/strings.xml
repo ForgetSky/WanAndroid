@@ -81,4 +81,12 @@
     <string name="open_it_with_browser">用浏览器打开</string>
     <string name="write_permission_not_allowed">获取读写权限失败</string>
 
+    <!-- about -->
+    <string name="about_upgrade">检查更新</string>
+    <string name="about_website">关于网站</string>
+    <string name="about_source_code">APK源码</string>
+    <string name="about_copyright">版权声明</string>
+    <string name="about_feedback">意见反馈</string>
+    <string name="copyright_content">本APP完全开源，仅供学习交流，不可用于任何商业用途。</string>
+
 </resources>
