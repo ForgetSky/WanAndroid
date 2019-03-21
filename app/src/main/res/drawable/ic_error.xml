@@ -1,3 +1,19 @@
+<!--
+  ~     (C) Copyright 2019, ForgetSky.
+  ~
+  ~     Licensed under the Apache License, Version 2.0 (the "License");
+  ~     you may not use this file except in compliance with the License.
+  ~     You may obtain a copy of the License at
+  ~
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~     Unless required by applicable law or agreed to in writing, software
+  ~     distributed under the License is distributed on an "AS IS" BASIS,
+  ~     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~     See the License for the specific language governing permissions and
+  ~     limitations under the License.
+  -->
+
 <vector android:height="180dp" android:viewportHeight="1024"
     android:viewportWidth="1173" android:width="200dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#EBF0F8" android:pathData="M54.5,39.11c0,21.53 17.58,39.11 39.11,39.11s39.11,-17.58 39.11,-39.11 -17.58,-39.11 -39.11,-39.11 -39.11,17.58 -39.11,39.11m1004.66,817.44c-25.49,25.49 -66.8,25.49 -91.85,0 -10.99,10.11 -21.53,21.53 -32.08,32.08 -14.94,14.94 -30.32,28.57 -47.02,41.75H245.67c-16.26,-12.75 -32.08,-26.81 -47.02,-41.75C61.53,751.96 11.87,549.8 69.88,364.77L19.34,313.79c-25.49,-25.49 -25.49,-66.8 0,-92.29s66.8,-25.49 92.29,0l32.08,32.52c15.38,15.38 39.99,15.38 55.38,0s15.38,-39.99 0,-55.38L138.88,138.88c-15.38,-15.38 -15.38,-39.99 0,-55.38s39.99,-15.38 55.38,0L276.88,166.56c14.5,15.82 39.11,17.14 54.94,2.64 15.82,-14.5 17.14,-39.11 2.64,-54.94l-2.64,-2.64 -35.6,-35.6c245.67,-149.42 566.06,-71.2 715.04,174.48 58.01,95.81 83.94,207.88 73.39,319.51l74.71,75.15c15.38,15.38 15.38,39.99 0,55.38s-39.99,15.38 -55.38,0l-72.95,-73.39c-15.38,-15.38 -39.99,-15.38 -55.38,0s-15.38,39.99 0,55.38l83.5,82.18c25.05,25.49 25.05,66.8 0,91.85"/>
