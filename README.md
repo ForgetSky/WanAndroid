@@ -22,26 +22,18 @@
 
 
 ## 应用截图
-<figure class="third">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_01.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_02.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_03.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_04.jpg">
-</figure>
 
-<figure class="third">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_05.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_06.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_07.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_08.jpg">
-</figure>
+<div align="center">
+<img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_01.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_02.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_03.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_04.jpg" width=20%>
+</div>
 
-<figure class="third">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_09.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_10.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_11.jpg">
-    <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_12.jpg">
-</figure>
+<div align="center">
+<img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_05.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_06.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_07.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_08.jpg" width=20%>
+</div>
+
+<div align="center">
+<img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_09.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_10.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_11.jpg" width=20%><img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_12.jpg" width=20%>
+</div>
 
 ## API
 [**玩 Android 开放 API**](http://www.wanandroid.com/blog/show/2)
