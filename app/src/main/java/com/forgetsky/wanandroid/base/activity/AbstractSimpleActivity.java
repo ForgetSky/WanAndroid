@@ -37,7 +37,6 @@ public abstract class AbstractSimpleActivity extends SupportActivity {
         ImmersionBar.with(this)
                 .statusBarView(findViewById(R.id.status_bar_view))
                 .keyboardEnable(true)
-//                .statusBarDarkFont(true, 0.2f)
                 .init();
         unBinder = ButterKnife.bind(this);
         onViewCreated();

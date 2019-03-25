@@ -85,7 +85,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
 
     @Override
     public void onBackPressedSupport() {
-        CommonUtils.hideKeyBoard(this, this.getCurrentFocus());
+        CommonUtils.hideKeyBoard(this, this.getWindow().getDecorView().getRootView());
         super.onBackPressedSupport();
     }
 
