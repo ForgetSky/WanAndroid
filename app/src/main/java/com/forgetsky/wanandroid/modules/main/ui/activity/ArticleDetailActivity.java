@@ -109,9 +109,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
             mTitle.setText(Html.fromHtml(title));
         }
 
-        mToolbar.setNavigationOnClickListener(v -> {
-            onBackPressedSupport();
-        });
+        mToolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 
     @SuppressLint("SetJavaScriptEnabled")

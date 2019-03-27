@@ -40,7 +40,7 @@
     <color name="floating_button">@color/colorAccent</color>
     <color name="toolbar_button">@color/white</color>
     <color name="splash_bg">@color/white</color>
-
+    <color name="scrollbar">@color/Grey400</color>
 
     <color name="red">#f44336</color>
     <color name="white">#FFFFFF</color>

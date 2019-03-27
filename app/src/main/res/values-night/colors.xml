@@ -40,6 +40,7 @@
     <color name="floating_button">@color/Grey900</color>
     <color name="toolbar_button">@color/Grey200</color>
     <color name="splash_bg">@color/colorPrimary</color>
+    <color name="scrollbar">@color/Grey800</color>
 
 
     <color name="white">#FFFFFF</color>
