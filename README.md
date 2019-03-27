@@ -13,7 +13,7 @@
 [6]:https://github.com/ForgetSky/ForgetSkyWanAndroid/releases/latest
 
 [7]:https://img.shields.io/badge/license-Apache%202-blue.svg
-[8]:https://github.com/iceCola7/WanAndroid/blob/master/LICENSE
+[8]:http://www.apache.org/licenses/LICENSE-2.0
 
 
 
