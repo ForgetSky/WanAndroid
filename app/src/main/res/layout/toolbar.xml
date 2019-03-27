@@ -41,9 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:textColor="@color/main_text_color"
             android:textSize="18sp" />

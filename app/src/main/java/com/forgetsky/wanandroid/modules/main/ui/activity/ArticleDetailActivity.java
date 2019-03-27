@@ -25,9 +25,10 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
@@ -107,14 +108,22 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
             mTitle.setText(Html.fromHtml(title));
+            mTitle.setSelected(true);
         }
 
         mToolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void initEventAndData() {
+        WebChromeClient webChromeClient = new WebChromeClient() {
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+                mTitle.setText(Html.fromHtml(title));
+            }
+        };
+
         CoordinatorLayout.LayoutParams layoutParams = new CoordinatorLayout.LayoutParams(-1, -1);
         layoutParams.setBehavior(new AppBarLayout.ScrollingViewBehavior());
         NestedScrollAgentWebView mNestedWebView = new NestedScrollAgentWebView(this);
@@ -122,6 +131,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
                 .setAgentWebParent(mContent, layoutParams)
                 .useDefaultIndicator()
                 .setWebView(mNestedWebView)
+                .setWebChromeClient(webChromeClient)
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
                 .createAgentWeb()
@@ -130,8 +140,10 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return mAgentWeb.handleKeyEvent(keyCode, event) || super.onKeyDown(keyCode, event);
+    public void onBackPressedSupport() {
+        if (!mAgentWeb.back()) {
+            super.onBackPressedSupport();
+        }
     }
 
     @Override
