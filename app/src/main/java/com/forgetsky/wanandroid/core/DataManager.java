@@ -30,9 +30,12 @@ import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoItemData;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoListData;
 import com.forgetsky.wanandroid.modules.wxarticle.bean.WxChapterData;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 
@@ -155,6 +158,31 @@ public class DataManager implements HttpHelper, DbHelper,PreferenceHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> getKnowledgeListData(int page, int cid) {
         return mHttpHelper.getKnowledgeListData(page, cid);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoListData>> getTodoListData(int page, Map<String, Object> map) {
+        return mHttpHelper.getTodoListData(page, map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemData>> addTodo(Map<String, Object> map) {
+        return mHttpHelper.addTodo(map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemData>> updateTodo(int id, Map<String, Object> map) {
+        return mHttpHelper.updateTodo(id, map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemData>> deleteTodo(int id) {
+        return mHttpHelper.deleteTodo(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemData>> updateTodoStatus(int id, int status) {
+        return mHttpHelper.updateTodoStatus(id, status);
     }
 
     @Override

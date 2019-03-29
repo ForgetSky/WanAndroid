@@ -25,9 +25,12 @@ import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoItemData;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoListData;
 import com.forgetsky.wanandroid.modules.wxarticle.bean.WxChapterData;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 
@@ -84,5 +87,14 @@ public interface HttpHelper {
 
     Observable<BaseResponse<ArticleListData>> getKnowledgeListData(int page, int cid);
 
+    Observable<BaseResponse<TodoListData>> getTodoListData(int page, Map<String, Object> map);
+
+    Observable<BaseResponse<TodoItemData>> addTodo(Map<String, Object> map);
+
+    Observable<BaseResponse<TodoItemData>> updateTodo(int id, Map<String, Object> map);
+
+    Observable<BaseResponse<TodoItemData>> deleteTodo(int id);
+
+    Observable<BaseResponse<TodoItemData>> updateTodoStatus(int id, int status);
 
 }

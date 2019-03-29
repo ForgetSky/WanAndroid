@@ -26,9 +26,12 @@ import com.forgetsky.wanandroid.modules.main.bean.TopSearchData;
 import com.forgetsky.wanandroid.modules.main.bean.UsefulSiteData;
 import com.forgetsky.wanandroid.modules.navigation.bean.NavigationListData;
 import com.forgetsky.wanandroid.modules.project.bean.ProjectTreeData;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoItemData;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoListData;
 import com.forgetsky.wanandroid.modules.wxarticle.bean.WxChapterData;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -153,5 +156,30 @@ public class HttpHelperImpl implements HttpHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> getKnowledgeListData(int page, int cid) {
         return mApiService.getKnowledgeListData(page, cid);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoListData>> getTodoListData(int page, Map<String, Object> map) {
+        return mApiService.getTodoListData(page, map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemData>> addTodo(Map<String, Object> map) {
+        return mApiService.addTodo(map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemData>> updateTodo(int id, Map<String, Object> map) {
+        return mApiService.updateTodo(id, map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemData>> deleteTodo(int id) {
+        return mApiService.deleteTodo(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemData>> updateTodoStatus(int id, int status) {
+        return mApiService.updateTodoStatus(id, status);
     }
 }
