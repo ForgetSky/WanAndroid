@@ -23,6 +23,7 @@ import com.forgetsky.wanandroid.modules.main.ui.activity.ArticleDetailActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.CommonActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.MainActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.SearchActivity;
+import com.forgetsky.wanandroid.modules.todo.ui.TodoActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -47,5 +48,8 @@ public abstract class AbstractAllActivityModule {
 
     @ContributesAndroidInjector(modules = KnowledgeActivityModule.class)
     abstract KnowledgeActivity contributesKnowledgeActivityInject();
+
+    @ContributesAndroidInjector(modules = TodoActivityModule.class)
+    abstract TodoActivity contributesTodoActivityInject();
 
 }

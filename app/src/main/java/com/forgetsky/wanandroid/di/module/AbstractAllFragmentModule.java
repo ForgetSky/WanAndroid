@@ -29,6 +29,7 @@ import com.forgetsky.wanandroid.modules.main.ui.fragment.UsefulSitesFragment;
 import com.forgetsky.wanandroid.modules.navigation.ui.NavigationFragment;
 import com.forgetsky.wanandroid.modules.project.ui.ProjectFragment;
 import com.forgetsky.wanandroid.modules.project.ui.ProjectListFragment;
+import com.forgetsky.wanandroid.modules.todo.ui.TodoListFragment;
 import com.forgetsky.wanandroid.modules.wxarticle.ui.WxArticleFragment;
 import com.forgetsky.wanandroid.modules.wxarticle.ui.WxArticleListFragment;
 
@@ -79,4 +80,7 @@ public abstract class AbstractAllFragmentModule {
 
     @ContributesAndroidInjector(modules = AboutFragmentModule.class)
     abstract AboutFragment contributesAboutFragmentInject();
+
+    @ContributesAndroidInjector(modules = TodoListFragmentModule.class)
+    abstract TodoListFragment contributesTodoListFragmentInject();
 }

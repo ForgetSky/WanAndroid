@@ -109,6 +109,11 @@
     <string name="about_copyright">Copyright</string>
     <string name="about_feedback">Feedback</string>
 
+    <!-- todo -->
+    <string name="todo_title">TODO</string>
+    <string name="todo">Todo</string>
+    <string name="done_todo">Done</string>
+
     <string name="copyright_content">This APP is completely open source, only for learning and communication, not for any commercial use.</string>
 
 </resources>

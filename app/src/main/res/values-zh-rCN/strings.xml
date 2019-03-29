@@ -105,4 +105,10 @@
     <string name="about_feedback">意见反馈</string>
     <string name="copyright_content">本APP完全开源，仅供学习交流，不可用于任何商业用途。</string>
 
+
+    <!-- todo -->
+    <string name="todo_title">TODO</string>
+    <string name="todo">待办</string>
+    <string name="done_todo">已完成</string>
+
 </resources>

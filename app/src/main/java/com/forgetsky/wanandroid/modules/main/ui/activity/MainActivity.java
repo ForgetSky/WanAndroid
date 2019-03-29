@@ -45,6 +45,7 @@ import com.forgetsky.wanandroid.modules.main.contract.MainContract;
 import com.forgetsky.wanandroid.modules.main.presenter.MainPresenter;
 import com.forgetsky.wanandroid.modules.navigation.ui.NavigationFragment;
 import com.forgetsky.wanandroid.modules.project.ui.ProjectFragment;
+import com.forgetsky.wanandroid.modules.todo.ui.TodoActivity;
 import com.forgetsky.wanandroid.modules.wxarticle.ui.WxArticleFragment;
 import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
@@ -255,7 +256,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         }
                         break;
                     case R.id.nav_item_todo:
-                        ToastUtils.showToast(MainActivity.this, getString(R.string.in_the_process));
+                        Intent intent = new Intent(MainActivity.this, TodoActivity.class);
+                        startActivity(intent);
+//                        ToastUtils.showToast(MainActivity.this, getString(R.string.in_the_process));
                         break;
                     case R.id.nav_item_night_mode:
                         if (mPresenter.isNightMode()) {
