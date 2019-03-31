@@ -16,18 +16,32 @@
 
 package com.forgetsky.wanandroid.modules.todo.ui;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.util.SparseArray;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
+import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.event.TodoStatusEvent;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoTypeData;
 import com.forgetsky.wanandroid.modules.todo.contract.TodoContract;
 import com.forgetsky.wanandroid.modules.todo.presenter.TodoPresenter;
+
+import org.simple.eventbus.EventBus;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -49,8 +63,18 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
     @BindView(R.id.todo_viewpager)
     ViewPager mViewPager;
 
+    private ArrayList<TodoTypeData> mTodoTypeDataList;
+    private SparseArray<TodoListFragment> fragmentSparseArray = new SparseArray<>();
+
+    private static int mTodoStatus = 0;
+
+    public static int getTodoStatus() {
+        return mTodoStatus;
+    }
+
     @Override
     protected void initView() {
+        mTodoStatus = 0;
         initBottomNavigationView();
     }
 
@@ -72,25 +96,92 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
         mToolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 
+    @Override
+    protected void initEventAndData() {
+        initTodoTypeList();
+        initViewPagerAndTabLayout();
+    }
+
+    private void initTodoTypeList() {
+        mTodoTypeDataList = new ArrayList<>();
+        mTodoTypeDataList.add(new TodoTypeData(0, getString(R.string.todo_all)));
+        mTodoTypeDataList.add(new TodoTypeData(1, getString(R.string.todo_work)));
+        mTodoTypeDataList.add(new TodoTypeData(2, getString(R.string.todo_study)));
+        mTodoTypeDataList.add(new TodoTypeData(3, getString(R.string.todo_life)));
+        mTodoTypeDataList.add(new TodoTypeData(4, getString(R.string.todo_other)));
+    }
+
+    private void initViewPagerAndTabLayout() {
+        mViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                TodoListFragment todoListFragment = fragmentSparseArray.get(position);
+                if (todoListFragment != null) {
+                    return todoListFragment;
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(Constants.TODO_TYPE, mTodoTypeDataList.get(position).getType());
+                    todoListFragment = TodoListFragment.newInstance(bundle);
+                    fragmentSparseArray.put(position, todoListFragment);
+                    return todoListFragment;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return mTodoTypeDataList == null ? 0 : mTodoTypeDataList.size();
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return Html.fromHtml(mTodoTypeDataList.get(position).getName());
+            }
+
+            @Override
+            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+            }
+        });
+        
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                //取消页面切换动画
+                mViewPager.setCurrentItem(tab.getPosition(), false);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+    }
+
     private void initBottomNavigationView() {
         mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.action_not_todo:
-
+                    if (mTodoStatus == 1) {
+                        mTodoStatus = 0;
+                        EventBus.getDefault().post(new TodoStatusEvent(0));
+                    }
                     break;
                 case R.id.action_todo_done:
-
+                    if(mTodoStatus == 0) {
+                        mTodoStatus = 1;
+                        EventBus.getDefault().post(new TodoStatusEvent(1));
+                    }
                     break;
-
                 default:
                     break;
             }
             return true;
         });
-    }
-
-    @Override
-    protected void initEventAndData() {
-
     }
 }

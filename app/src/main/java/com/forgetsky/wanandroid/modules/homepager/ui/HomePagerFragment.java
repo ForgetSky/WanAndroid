@@ -51,7 +51,6 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     @BindView(R.id.home_pager_recycler_view)
     RecyclerView mRecyclerView;
 
-    private List<ArticleItemData> mArticleList;
     private ArticleListAdapter mAdapter;
     private List<String> mBannerTitleList;
     private List<String> mBannerUrlList;
@@ -83,7 +82,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
     }
 
     private void initRecyclerView() {
-        mArticleList = new ArrayList<>();
+        List<ArticleItemData> mArticleList = new ArrayList<>();
         mAdapter = new ArticleListAdapter(R.layout.item_article_list, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
@@ -128,14 +127,12 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
         switch (view.getId()) {
             case R.id.tv_article_chapterName:
                 //todo chapter click
-//                startSingleChapterKnowledgePager(position);
                 break;
             case R.id.iv_article_like:
                 collectClickEvent(position);
                 break;
             case R.id.tv_article_tag:
                 //todo tag click
-//                clickTag(position);
                 break;
             default:
                 break;
@@ -161,10 +158,8 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter> implemen
             return;
         }
         if (isRefresh) {
-            mArticleList = articleListData.getDatas();
             mAdapter.replaceData(articleListData.getDatas());
         } else {
-            mArticleList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
         }
     }

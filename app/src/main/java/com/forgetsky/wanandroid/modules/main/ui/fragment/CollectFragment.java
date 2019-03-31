@@ -110,11 +110,9 @@ public class CollectFragment extends BaseFragment<CollectPresenter> implements C
             case R.id.iv_article_like:
                 cancelCollect(position);
                 break;
-//            case R.id.item_search_pager_chapterName:
-//                startSingleChapterKnowledgePager(position);
+//            case R.id.tv_article_chapterName:
 //                break;
-//            case R.id.item_search_pager_tag_red_tv:
-//                clickTag(position);
+//            case R.id.tv_article_tag:
 //                break;
             default:
                 break;
@@ -135,10 +133,8 @@ public class CollectFragment extends BaseFragment<CollectPresenter> implements C
             return;
         }
         if (isRefresh) {
-            mCollectList = articleListData.getDatas();
             mAdapter.replaceData(articleListData.getDatas());
         } else {
-            mCollectList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
         }
     }

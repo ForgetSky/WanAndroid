@@ -18,16 +18,18 @@ package com.forgetsky.wanandroid.modules.todo.contract;
 
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoListData;
 
 public interface TodoListContract {
 
     interface View extends IView {
-
+        void showTodoListData(TodoListData todoListData);
+        void todoStatusChange(int status);
     }
 
-    interface Presenter extends IPresenter<TodoListContract.View> {
+    interface Presenter extends IPresenter<View> {
+        void getTodoListData(int type, int status, int currentPage, boolean isShowStatusView);
 
-
-
+        void loadMore(int currentPage);
     }
 }

@@ -56,7 +56,7 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
         }
         mMultipleStatusView = view.findViewById(R.id.custom_multiple_status_view);
         if (mMultipleStatusView != null) {
-            mMultipleStatusView.setOnClickListener(v -> mPresenter.reload());
+            mMultipleStatusView.setOnRetryClickListener(v -> mPresenter.reload());
         }
         if (mPresenter != null) {
             mPresenter.attachView(this);

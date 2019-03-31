@@ -116,14 +116,12 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
         switch (view.getId()) {
             case R.id.tv_article_chapterName:
                 //todo chapter click
-//                startSingleChapterKnowledgePager(position);
                 break;
             case R.id.iv_article_like:
                 collectClickEvent(position);
                 break;
             case R.id.tv_article_tag:
                 //todo tag click
-//                clickTag(position);
                 break;
             default:
                 break;
@@ -149,10 +147,8 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
             return;
         }
         if (isRefresh) {
-            mArticleList = articleListData.getDatas();
             mAdapter.replaceData(articleListData.getDatas());
         } else {
-            mArticleList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
         }
     }

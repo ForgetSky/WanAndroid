@@ -110,5 +110,13 @@
     <string name="todo_title">TODO</string>
     <string name="todo">待办</string>
     <string name="done_todo">已完成</string>
+    <string name="todo_all">全部</string>
+    <string name="todo_work">工作</string>
+    <string name="todo_study">学习</string>
+    <string name="todo_life">生活</string>
+    <string name="todo_other">其他</string>
+    <string name="todo_priority">重要</string>
+    <string name="failed_to_obtain_todo_list">获取TODO数据失败</string>
+
 
 </resources>

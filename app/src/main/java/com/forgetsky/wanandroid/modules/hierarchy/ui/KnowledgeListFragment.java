@@ -40,14 +40,13 @@ import butterknife.BindView;
 
 public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> implements KnowledgeListContract.View {
 
-    private static final String TAG = "ProjectListFragment";
+    private static final String TAG = "KnowledgeListFragment";
 
     @BindView(R.id.smart_refresh_layout)
     SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.project_list_recycler_view)
     RecyclerView mRecyclerView;
 
-    private List<ArticleItemData> mArticleList;
     private ArticleListAdapter mAdapter;
 
     private int cid;
@@ -83,7 +82,7 @@ public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> 
     }
 
     private void initRecyclerView() {
-        mArticleList = new ArrayList<>();
+        List<ArticleItemData> mArticleList = new ArrayList<>();
         mAdapter = new ArticleListAdapter(R.layout.item_article_list, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
@@ -122,14 +121,12 @@ public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> 
         switch (view.getId()) {
             case R.id.tv_article_chapterName:
                 //todo chapter click
-//                startSingleChapterKnowledgePager(position);
                 break;
             case R.id.iv_article_like:
                 collectClickEvent(position);
                 break;
             case R.id.tv_article_tag:
                 //todo tag click
-//                clickTag(position);
                 break;
             default:
                 break;
@@ -155,10 +152,8 @@ public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> 
             return;
         }
         if (isRefresh) {
-            mArticleList = articleListData.getDatas();
             mAdapter.replaceData(articleListData.getDatas());
         } else {
-            mArticleList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
         }
     }

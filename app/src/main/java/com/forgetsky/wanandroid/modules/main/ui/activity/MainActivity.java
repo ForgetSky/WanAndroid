@@ -246,7 +246,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 switch (menuItem.getItemId()) {
-                    //TODO navigation item
                     case R.id.nav_item_my_collect:
                         if (mPresenter.getLoginStatus()) {
                             CommonUtils.startFragmentInCommonActivity(MainActivity.this, Constants.TYPE_COLLECT);
@@ -256,9 +255,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         }
                         break;
                     case R.id.nav_item_todo:
-                        Intent intent = new Intent(MainActivity.this, TodoActivity.class);
-                        startActivity(intent);
-//                        ToastUtils.showToast(MainActivity.this, getString(R.string.in_the_process));
+                        if (mPresenter.getLoginStatus()) {
+                            Intent intent = new Intent(MainActivity.this, TodoActivity.class);
+                            startActivity(intent);
+                        } else {
+                            CommonUtils.startLoginActivity(MainActivity.this);
+                            ToastUtils.showToast(MainActivity.this, getString(R.string.login_first));
+                        }
                         break;
                     case R.id.nav_item_night_mode:
                         if (mPresenter.isNightMode()) {

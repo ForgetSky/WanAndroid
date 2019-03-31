@@ -42,7 +42,6 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
     @BindView(R.id.knowledge_list_recycler_view)
     RecyclerView mRecyclerView;
 
-    private List<KnowledgeTreeData> mKnowledgeTreeData;
     private KnowledgeTreeAdapter mAdapter;
 
     public static KnowledgeFragment newInstance() {
@@ -67,7 +66,7 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
     }
 
     private void initRecyclerView() {
-        mKnowledgeTreeData = new ArrayList<>();
+        List<KnowledgeTreeData> mKnowledgeTreeData = new ArrayList<>();
         mAdapter = new KnowledgeTreeAdapter(R.layout.item_knowledge_tree_list, mKnowledgeTreeData);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startKnowledgeActivity(position));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
@@ -97,8 +96,7 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
     @Override
     public void showKnowledgeTreeData(List<KnowledgeTreeData> knowledgeTreeData) {
         if (mAdapter.getData().size() < knowledgeTreeData.size()) {
-            mKnowledgeTreeData = knowledgeTreeData;
-            mAdapter.replaceData(mKnowledgeTreeData);
+            mAdapter.replaceData(knowledgeTreeData);
         }
     }
 }

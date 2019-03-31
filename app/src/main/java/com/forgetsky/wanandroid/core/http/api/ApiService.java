@@ -285,12 +285,11 @@ public interface ApiService {
      * status 状态， 1-完成；0未完成; 默认全部展示；
      * type 创建时传入的类型, 默认全部展示
      * priority 创建时传入的优先级；默认全部展示
-     * orderby 1:完成日期顺序；2.完成日期逆序；3.创建日期顺序；4.创建日期逆序(默认)；
+     * orderby 1:完成日期顺序；2.完成日期逆序；3.创建日期顺序；4.创建日期逆序(默认)；（1和2只能获取到已完成的TODO）
      *
      * @return
      */
     @GET("lg/todo/v2/list/{page}/json")
-    @FormUrlEncoded
     Observable<BaseResponse<TodoListData>> getTodoListData(@Path("page") int page, @QueryMap Map<String, Object> map);
 
     /**

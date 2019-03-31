@@ -31,7 +31,6 @@ import java.util.List;
 
 public class ArticleListAdapter extends BaseQuickAdapter<ArticleItemData, BaseViewHolder> {
 
-
     public ArticleListAdapter(int layoutResId, @Nullable List<ArticleItemData> data) {
         super(layoutResId, data);
     }
