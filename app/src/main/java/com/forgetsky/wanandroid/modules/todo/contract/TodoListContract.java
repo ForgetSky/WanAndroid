@@ -23,13 +23,15 @@ import com.forgetsky.wanandroid.modules.todo.bean.TodoListData;
 public interface TodoListContract {
 
     interface View extends IView {
-        void showTodoListData(TodoListData todoListData);
+        void showTodoListData(TodoListData todoListData, boolean isRefresh);
         void todoStatusChange(int status);
     }
 
     interface Presenter extends IPresenter<View> {
-        void getTodoListData(int type, int status, int currentPage, boolean isShowStatusView);
+        void refreshLayout(int type, int status, boolean isShowStatusView);
 
-        void loadMore(int currentPage);
+        void getTodoListData(boolean isShowStatusView);
+
+        void loadMore();
     }
 }

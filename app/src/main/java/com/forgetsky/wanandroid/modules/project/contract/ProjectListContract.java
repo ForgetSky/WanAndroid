@@ -26,10 +26,11 @@ public interface ProjectListContract {
     }
 
     interface Presenter extends CollectEventContract.Presenter<View> {
+        void refreshLayout(int cid, boolean isShowStatusView);
 
-        void getProjectListData(int cid, boolean isShowStatusView);
+        void getProjectListData(boolean isShowStatusView);
 
-        void loadMore(int cid);
+        void loadMore();
 
     }
 }

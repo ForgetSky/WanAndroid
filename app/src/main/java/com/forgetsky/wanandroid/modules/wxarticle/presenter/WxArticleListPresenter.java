@@ -43,13 +43,20 @@ public class WxArticleListPresenter extends CollectEventPresenter<WxArticleListC
     private int id;
 
     @Override
-    public void reload() {
-        getWxArticlesData(id, true);
+    public void refreshLayout(int id, boolean isShowStatusView) {
+        isRefresh = true;
+        currentPage = 1;
+        this.id = id;
+        getWxArticlesData(isShowStatusView);
     }
 
     @Override
-    public void getWxArticlesData(int id, boolean isShowStatusView) {
-        this.id = id;
+    public void reload() {
+        refreshLayout(id, true);
+    }
+
+    @Override
+    public void getWxArticlesData(boolean isShowStatusView) {
         addSubscribe(mDataManager.getWxArticlesData(id, currentPage)
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
@@ -92,7 +99,7 @@ public class WxArticleListPresenter extends CollectEventPresenter<WxArticleListC
     public void loadMore() {
         isRefresh = false;
         currentPage++;
-        getWxArticlesData(id,false);
+        getWxArticlesData(false);
     }
 
     @Override

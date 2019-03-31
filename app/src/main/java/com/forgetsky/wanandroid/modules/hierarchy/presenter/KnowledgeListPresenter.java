@@ -43,8 +43,15 @@ public class KnowledgeListPresenter extends CollectEventPresenter<KnowledgeListC
     private int cid;
 
     @Override
-    public void getKnowledgeListData(int cid, boolean isShowStatusView) {
+    public void refreshLayout(int cid, boolean isShowStatusView) {
+        isRefresh = true;
+        currentPage = 0;
         this.cid = cid;
+        getKnowledgeListData(isShowStatusView);
+    }
+
+    @Override
+    public void getKnowledgeListData(boolean isShowStatusView) {
         addSubscribe(mDataManager.getKnowledgeListData(currentPage, cid)
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
@@ -65,14 +72,14 @@ public class KnowledgeListPresenter extends CollectEventPresenter<KnowledgeListC
 
     @Override
     public void reload() {
-        getKnowledgeListData(cid, true);
+        refreshLayout(cid, true);
     }
 
     @Override
-    public void loadMore(int cid) {
+    public void loadMore() {
         isRefresh = false;
         currentPage++;
-        getKnowledgeListData(cid, false);
+        getKnowledgeListData(false);
     }
 
     @Override

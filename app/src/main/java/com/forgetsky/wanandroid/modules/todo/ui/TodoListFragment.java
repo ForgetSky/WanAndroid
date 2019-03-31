@@ -53,9 +53,6 @@ public class TodoListFragment extends BaseFragment<TodoListPresenter> implements
     private boolean isVisible = false;
     private boolean isLoaded = false;
 
-    private int currentPage = 1;
-    private boolean isRefresh = true;
-
     public static TodoListFragment newInstance(Bundle bundle) {
         TodoListFragment fragment = new TodoListFragment();
         fragment.setArguments(bundle);
@@ -79,7 +76,7 @@ public class TodoListFragment extends BaseFragment<TodoListPresenter> implements
         //使用最新状态
         status = TodoActivity.getTodoStatus();
         initRefreshLayout();
-        mPresenter.getTodoListData(type, status, currentPage,true);
+        mPresenter.refreshLayout(type, status,true);
         isLoaded =true;
 
     }
@@ -102,15 +99,11 @@ public class TodoListFragment extends BaseFragment<TodoListPresenter> implements
 
     private void initRefreshLayout() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            isRefresh = true;
-            currentPage = 1;
-            mPresenter.getTodoListData(type, status, currentPage,false);
+            mPresenter.refreshLayout(type, status, false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            isRefresh = false;
-            currentPage++;
-            mPresenter.loadMore(currentPage);
+            mPresenter.loadMore();
             refreshLayout.finishLoadMore();
         });
     }
@@ -123,7 +116,7 @@ public class TodoListFragment extends BaseFragment<TodoListPresenter> implements
     }
 
     @Override
-    public void showTodoListData(TodoListData todoListData) {
+    public void showTodoListData(TodoListData todoListData, boolean isRefresh) {
         if (mAdapter == null) {
             return;
         }
@@ -143,10 +136,8 @@ public class TodoListFragment extends BaseFragment<TodoListPresenter> implements
         lastStatus = this.status;
         this.status = status;
         if (isVisible) {
-            isRefresh = true;
-            mPresenter.reload();
+            mPresenter.refreshLayout(type, status, true);
         }
-
     }
 
     /**
@@ -159,8 +150,8 @@ public class TodoListFragment extends BaseFragment<TodoListPresenter> implements
         this.isVisible = isVisibleToUser;
         if (isVisibleToUser && isLoaded && status != lastStatus) {
             status = TodoActivity.getTodoStatus();
-            isRefresh = true;
-            mPresenter.reload();
+            lastStatus = status;
+            mPresenter.refreshLayout(type, status, true);
         }
     }
 

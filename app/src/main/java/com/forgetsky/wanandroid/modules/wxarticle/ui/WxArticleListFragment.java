@@ -72,7 +72,7 @@ public class WxArticleListFragment extends BaseFragment<WxArticleListPresenter> 
         assert getArguments() != null;
         id = getArguments().getInt(Constants.WX_CHAPTER_ID);
         initRefreshLayout();
-        mPresenter.getWxArticlesData(id, true);
+        mPresenter.refreshLayout(id, true);
     }
 
     private void initRecyclerView() {
@@ -89,7 +89,7 @@ public class WxArticleListFragment extends BaseFragment<WxArticleListPresenter> 
 
     private void initRefreshLayout() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.getWxArticlesData(id, false);
+            mPresenter.refreshLayout(id, false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {

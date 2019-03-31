@@ -43,8 +43,15 @@ public class ProjectListPresenter extends CollectEventPresenter<ProjectListContr
     private int cid;
 
     @Override
-    public void getProjectListData(int cid, boolean isShowStatusView) {
+    public void refreshLayout(int cid, boolean isShowStatusView) {
+        isRefresh = true;
+        currentPage = 1;
         this.cid = cid;
+        getProjectListData(isShowStatusView);
+    }
+
+    @Override
+    public void getProjectListData(boolean isShowStatusView) {
         addSubscribe(mDataManager.getProjectListData(currentPage, cid)
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
@@ -65,14 +72,14 @@ public class ProjectListPresenter extends CollectEventPresenter<ProjectListContr
 
     @Override
     public void reload() {
-        getProjectListData(cid, true);
+        refreshLayout(cid, true);
     }
 
     @Override
-    public void loadMore(int cid) {
+    public void loadMore() {
         isRefresh = false;
         currentPage++;
-        getProjectListData(cid, false);
+        getProjectListData(false);
     }
 
     @Override

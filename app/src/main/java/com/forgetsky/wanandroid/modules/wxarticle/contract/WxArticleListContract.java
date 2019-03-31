@@ -25,8 +25,9 @@ public interface WxArticleListContract {
     }
 
     interface Presenter extends CollectEventContract.Presenter<View> {
+        void refreshLayout(int id, boolean isShowStatusView);
 
-        void getWxArticlesData(int id, boolean isShowStatusView);
+        void getWxArticlesData(boolean isShowStatusView);
 
         void getWxSearchData(int id, String k, boolean isShowStatusView);
 

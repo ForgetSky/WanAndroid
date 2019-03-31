@@ -78,7 +78,7 @@ public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> 
         assert getArguments() != null;
         cid = getArguments().getInt(Constants.KNOWLEDGE_CID);
         initRefreshLayout();
-        mPresenter.getKnowledgeListData(cid, true);
+        mPresenter.refreshLayout(cid, true);
     }
 
     private void initRecyclerView() {
@@ -95,11 +95,11 @@ public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> 
 
     private void initRefreshLayout() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.getKnowledgeListData(cid, false);
+            mPresenter.refreshLayout(cid, false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            mPresenter.loadMore(cid);
+            mPresenter.loadMore();
             refreshLayout.finishLoadMore();
         });
     }

@@ -26,9 +26,11 @@ public interface KnowledgeListContract {
 
     interface Presenter extends CollectEventContract.Presenter<View> {
 
-        void getKnowledgeListData(int cid, boolean isShowStatusView);
+        void refreshLayout(int cid, boolean isShowStatusView);
 
-        void loadMore(int cid);
+        void getKnowledgeListData(boolean isShowStatusView);
+
+        void loadMore();
 
     }
 }

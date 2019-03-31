@@ -40,23 +40,22 @@ public class TodoListPresenter extends BasePresenter<TodoListContract.View>
     TodoListPresenter() {
     }
 
+    private int currentPage = 1;
+    private boolean isRefresh = true;
     private int type;
     private int status;
 
     @Override
-    public void registerEventBus() {
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void unregisterEventBus() {
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Override
-    public void getTodoListData(int type, int status, int currentPage, boolean isShowStatusView) {
+    public void refreshLayout(int type, int status, boolean isShowStatusView) {
         this.type = type;
         this.status = status;
+        isRefresh = true;
+        currentPage = 1;
+        getTodoListData(isShowStatusView);
+    }
+
+    @Override
+    public void getTodoListData(boolean isShowStatusView) {
         Map<String, Object> map = new HashMap<>();
         map.put("type", type);
         map.put("status", status);
@@ -78,7 +77,7 @@ public class TodoListPresenter extends BasePresenter<TodoListContract.View>
                                 todoListData.getDatas().size() < 1) {
                             mView.showEmpty();
                         } else {
-                            mView.showTodoListData(todoListData);
+                            mView.showTodoListData(todoListData, isRefresh);
                         }
                     }
                 }));
@@ -86,17 +85,30 @@ public class TodoListPresenter extends BasePresenter<TodoListContract.View>
 
     @Override
     public void reload() {
-        getTodoListData(type, status, 1, true);
+        refreshLayout(type, status, true);
+    }
+
+
+
+    @Override
+    public void loadMore() {
+        isRefresh = false;
+        currentPage++;
+        getTodoListData(false);
     }
 
     @Override
-    public void loadMore(int currentPage) {
-        getTodoListData(type, status, currentPage,false);
+    public void registerEventBus() {
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void unregisterEventBus() {
+        EventBus.getDefault().unregister(this);
     }
 
     @Subscriber()
     public void TodoStatusEvent(TodoStatusEvent todoEvent) {
-        status = todoEvent.getStatus();
         mView.todoStatusChange(todoEvent.getStatus());
     }
 }

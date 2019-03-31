@@ -78,7 +78,7 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
         assert getArguments() != null;
         cid = getArguments().getInt(Constants.PROJECT_CID);
         initRefreshLayout();
-        mPresenter.getProjectListData(cid, true);
+        mPresenter.refreshLayout(cid, true);
     }
 
     private void initRecyclerView() {
@@ -95,11 +95,11 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
 
     private void initRefreshLayout() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.getProjectListData(cid, false);
+            mPresenter.refreshLayout(cid, false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            mPresenter.loadMore(cid);
+            mPresenter.loadMore();
             refreshLayout.finishLoadMore();
         });
     }
