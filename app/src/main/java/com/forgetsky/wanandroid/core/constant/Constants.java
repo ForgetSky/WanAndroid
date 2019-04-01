@@ -54,7 +54,7 @@ public class Constants {
     public static final String WX_CHAPTER_ID = "wx_chapter_id";
     public static final String KNOWLEDGE_DATA = "knowledge_data";
     public static final String TODO_TYPE = "todo_type";
-    public static final String TODO_STATUS = "todo_status";
+    public static final String TODO_TITLE = "todo_title";
 
     /**
      * Tab colors

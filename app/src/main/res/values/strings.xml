@@ -120,6 +120,19 @@
     <string name="todo_other">Other</string>
     <string name="todo_priority">Priority</string>
     <string name="failed_to_obtain_todo_list">Failed gets the todo list data</string>
+    <string name="tv_add_todo_title">Title:</string>
+    <string name="tv_add_todo_content">Content:</string>
+    <string name="tv_add_todo_label">Label:</string>
+    <string name="tv_add_todo_priority">Priority:</string>
+    <string name="tv_add_todo_date">Date:</string>
+    <string name="hint_add_todo_not_null">not null</string>
+    <string name="hint_add_todo_null_able">null able</string>
+    <string name="todo_no_label">No Label</string>
+    <string name="todo_priority_1">Important</string>
+    <string name="todo_priority_2">General</string>
+    <string name="todo_edit_title">Edit</string>
+    <string name="bt_todo_save">Save</string>
+
 
     <string name="copyright_content">This APP is completely open source, only for learning and communication, not for any commercial use.</string>
 

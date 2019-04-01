@@ -28,6 +28,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.SparseArray;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -38,12 +39,14 @@ import com.forgetsky.wanandroid.core.event.TodoStatusEvent;
 import com.forgetsky.wanandroid.modules.todo.bean.TodoTypeData;
 import com.forgetsky.wanandroid.modules.todo.contract.TodoContract;
 import com.forgetsky.wanandroid.modules.todo.presenter.TodoPresenter;
+import com.forgetsky.wanandroid.utils.ToastUtils;
 
 import org.simple.eventbus.EventBus;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by ForgetSky on 19-3-29.
@@ -183,5 +186,19 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
             }
             return true;
         });
+    }
+
+    @OnClick({R.id.todo_floating_action_btn})
+    void OnClick(View view){
+        switch (view.getId()) {
+            case R.id.todo_floating_action_btn:
+                ToastUtils.showToast(this, getString(R.string.in_the_process));
+//                Intent intent = new Intent(TodoActivity.this, AddTodoActivity.class);
+//                intent.putExtra(Constants.TODO_TITLE,getString(R.string.todo_edit_title));
+//                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 }
