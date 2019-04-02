@@ -18,7 +18,7 @@
 
 
 ## 简介
-本项目主要使用[玩Android](http://www.wanandroid.com/blog/show/2)网站提供的API, 并实现其主要功能；项目基于 `Material Design` + `MVP` + `dagger2` + `RxJava` + `Retrofit` + `Glide` + `greendao` 等架构进行设计实现，MVP模式中的Model使用`DataManager`模式统一管理，代码结构清晰，功能详实，是一个不错的Android应用开发学习参考项目。项目会持续更新维护，同时也欢迎大家提升问题和建议，使项目更加完善。
+本项目主要使用[玩Android](http://www.wanandroid.com/blog/show/2)网站提供的API, 并实现其主要功能；项目基于 `Material Design` + `MVP` + `dagger2` + `RxJava` + `Retrofit` + `Glide` + `greendao` 等架构进行设计实现，MVP模式中的Model使用`DataManager`模式统一管理，代码结构清晰，功能详实，是一个不错的Android应用开发学习参考项目。项目会持续更新维护，同时也欢迎大家提问题和建议，使项目更加完善。
 
 
 ## 应用截图

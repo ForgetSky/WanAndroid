@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="todo_labels">
+        <item>@string/todo_no_label</item>
+        <item>@string/todo_work</item>
+        <item>@string/todo_study</item>
+        <item>@string/todo_life</item>
+        <item>@string/todo_other</item>
+    </string-array>
+</resources>

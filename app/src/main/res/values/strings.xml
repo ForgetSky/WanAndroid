@@ -131,7 +131,11 @@
     <string name="todo_priority_1">Important</string>
     <string name="todo_priority_2">General</string>
     <string name="todo_edit_title">Edit</string>
+    <string name="todo_new_title">New</string>
     <string name="bt_todo_save">Save</string>
+    <string name="bt_choose_label">Choose Label</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
 
     <string name="copyright_content">This APP is completely open source, only for learning and communication, not for any commercial use.</string>

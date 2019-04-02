@@ -16,6 +16,7 @@
 
 package com.forgetsky.wanandroid.modules.todo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -39,7 +40,6 @@ import com.forgetsky.wanandroid.core.event.TodoStatusEvent;
 import com.forgetsky.wanandroid.modules.todo.bean.TodoTypeData;
 import com.forgetsky.wanandroid.modules.todo.contract.TodoContract;
 import com.forgetsky.wanandroid.modules.todo.presenter.TodoPresenter;
-import com.forgetsky.wanandroid.utils.ToastUtils;
 
 import org.simple.eventbus.EventBus;
 
@@ -192,10 +192,8 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
     void OnClick(View view){
         switch (view.getId()) {
             case R.id.todo_floating_action_btn:
-                ToastUtils.showToast(this, getString(R.string.in_the_process));
-//                Intent intent = new Intent(TodoActivity.this, AddTodoActivity.class);
-//                intent.putExtra(Constants.TODO_TITLE,getString(R.string.todo_edit_title));
-//                startActivity(intent);
+                Intent intent = new Intent(TodoActivity.this, AddTodoActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

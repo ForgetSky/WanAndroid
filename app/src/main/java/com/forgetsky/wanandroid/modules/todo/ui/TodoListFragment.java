@@ -16,6 +16,7 @@
 
 package com.forgetsky.wanandroid.modules.todo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -112,7 +113,9 @@ public class TodoListFragment extends BaseFragment<TodoListPresenter> implements
         if (mAdapter.getData().size() <= 0 || mAdapter.getData().size() < position) {
             return;
         }
-        //todo
+        Intent intent = new Intent(_mActivity, AddTodoActivity.class);
+        intent.putExtra(Constants.TODO_DATA, mAdapter.getData().get(position));
+        _mActivity.startActivity(intent);
     }
 
     @Override

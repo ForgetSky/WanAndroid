@@ -16,7 +16,9 @@
 
 package com.forgetsky.wanandroid.modules.todo.bean;
 
-public class TodoItemData {
+import java.io.Serializable;
+
+public class TodoItemData implements Serializable {
 
     private String completeDate;
     private String completeDateStr;

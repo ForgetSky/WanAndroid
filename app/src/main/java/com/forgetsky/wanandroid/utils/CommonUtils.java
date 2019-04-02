@@ -34,6 +34,10 @@ import com.forgetsky.wanandroid.modules.login.ui.LoginActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.ArticleDetailActivity;
 import com.forgetsky.wanandroid.modules.main.ui.activity.CommonActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Random;
 
@@ -108,6 +112,25 @@ public class CommonUtils {
         if (inputMethodManager.isActive()) {
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    public static String getCurrentDate() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat.getDateInstance();
+        return simpleDateFormat.format(new Date());
+    }
+
+    public static Calendar dateString2Calendar(String dateString) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
     }
 
 }
