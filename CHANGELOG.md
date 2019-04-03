@@ -6,7 +6,7 @@
 ## [1.1.2](https://github.com/ForgetSky/ForgetSkyWanAndroid) (2019-04-03)
 
 - 新增TODO功能模块
-- 修复退出页面隐藏软件盘时崩溃问题
+- 修复退出页面隐藏软键盘时崩溃问题
 - 修复部分页面刷新问题
 - 优化页面显示
 
