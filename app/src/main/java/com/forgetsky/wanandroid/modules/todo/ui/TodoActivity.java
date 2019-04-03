@@ -27,7 +27,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +35,11 @@ import android.widget.TextView;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
-import com.forgetsky.wanandroid.core.event.TodoStatusEvent;
-import com.forgetsky.wanandroid.modules.todo.bean.TodoTypeData;
+import com.forgetsky.wanandroid.core.event.RefreshTodoEvent;
 import com.forgetsky.wanandroid.modules.todo.contract.TodoContract;
 import com.forgetsky.wanandroid.modules.todo.presenter.TodoPresenter;
 
 import org.simple.eventbus.EventBus;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -66,8 +62,8 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
     @BindView(R.id.todo_viewpager)
     ViewPager mViewPager;
 
-    private ArrayList<TodoTypeData> mTodoTypeDataList;
-    private SparseArray<TodoListFragment> fragmentSparseArray = new SparseArray<>();
+    private SparseArray<TodoListFragment> fragmentSparseArray = new SparseArray<>(5);
+    private SparseArray<String> mTodoTypeArray = new SparseArray<>(5);
 
     private static int mTodoStatus = 0;
 
@@ -106,12 +102,11 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
     }
 
     private void initTodoTypeList() {
-        mTodoTypeDataList = new ArrayList<>();
-        mTodoTypeDataList.add(new TodoTypeData(0, getString(R.string.todo_all)));
-        mTodoTypeDataList.add(new TodoTypeData(1, getString(R.string.todo_work)));
-        mTodoTypeDataList.add(new TodoTypeData(2, getString(R.string.todo_study)));
-        mTodoTypeDataList.add(new TodoTypeData(3, getString(R.string.todo_life)));
-        mTodoTypeDataList.add(new TodoTypeData(4, getString(R.string.todo_other)));
+        mTodoTypeArray.put(Constants.TODO_TYPE_ALL, getString(R.string.todo_all));
+        mTodoTypeArray.put(Constants.TODO_TYPE_WORK, getString(R.string.todo_work));
+        mTodoTypeArray.put(Constants.TODO_TYPE_STUDY, getString(R.string.todo_study));
+        mTodoTypeArray.put(Constants.TODO_TYPE_LIFE, getString(R.string.todo_life));
+        mTodoTypeArray.put(Constants.TODO_TYPE_OTHER, getString(R.string.todo_other));
     }
 
     private void initViewPagerAndTabLayout() {
@@ -123,7 +118,7 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
                     return todoListFragment;
                 } else {
                     Bundle bundle = new Bundle();
-                    bundle.putInt(Constants.TODO_TYPE, mTodoTypeDataList.get(position).getType());
+                    bundle.putInt(Constants.TODO_TYPE, position);
                     todoListFragment = TodoListFragment.newInstance(bundle);
                     fragmentSparseArray.put(position, todoListFragment);
                     return todoListFragment;
@@ -132,19 +127,19 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
 
             @Override
             public int getCount() {
-                return mTodoTypeDataList == null ? 0 : mTodoTypeDataList.size();
+                return mTodoTypeArray == null ? 0 : mTodoTypeArray.size();
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
-                return Html.fromHtml(mTodoTypeDataList.get(position).getName());
+                return mTodoTypeArray.get(position);
             }
 
             @Override
             public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             }
         });
-        
+
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -172,13 +167,13 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
                 case R.id.action_not_todo:
                     if (mTodoStatus == 1) {
                         mTodoStatus = 0;
-                        EventBus.getDefault().post(new TodoStatusEvent(0));
+                        EventBus.getDefault().post(new RefreshTodoEvent(0));
                     }
                     break;
                 case R.id.action_todo_done:
-                    if(mTodoStatus == 0) {
+                    if (mTodoStatus == 0) {
                         mTodoStatus = 1;
-                        EventBus.getDefault().post(new TodoStatusEvent(1));
+                        EventBus.getDefault().post(new RefreshTodoEvent(1));
                     }
                     break;
                 default:
@@ -189,10 +184,11 @@ public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoCon
     }
 
     @OnClick({R.id.todo_floating_action_btn})
-    void OnClick(View view){
+    void OnClick(View view) {
         switch (view.getId()) {
             case R.id.todo_floating_action_btn:
                 Intent intent = new Intent(TodoActivity.this, AddTodoActivity.class);
+                intent.putExtra(Constants.TODO_TYPE, mViewPager.getCurrentItem());
                 startActivity(intent);
                 break;
             default:

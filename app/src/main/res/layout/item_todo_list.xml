@@ -55,7 +55,7 @@
                 android:paddingTop="1dp"
                 android:paddingRight="2dp"
                 android:paddingBottom="1dp"
-                android:text="@string/todo_priority"
+                android:text="@string/todo_priority_1"
                 android:textColor="@color/red"
                 android:textSize="8sp"
                 android:visibility="gone"

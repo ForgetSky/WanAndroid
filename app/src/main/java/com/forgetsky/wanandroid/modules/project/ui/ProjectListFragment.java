@@ -63,12 +63,6 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-
-    @Override
     protected void initView() {
         initRecyclerView();
     }

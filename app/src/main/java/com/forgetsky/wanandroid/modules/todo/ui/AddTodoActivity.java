@@ -1,8 +1,8 @@
 package com.forgetsky.wanandroid.modules.todo.ui;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.SparseArray;
@@ -16,17 +16,22 @@ import android.widget.TextView;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.base.activity.BaseActivity;
 import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.event.RefreshTodoEvent;
 import com.forgetsky.wanandroid.modules.todo.bean.TodoItemData;
 import com.forgetsky.wanandroid.modules.todo.contract.AddTodoContract;
 import com.forgetsky.wanandroid.modules.todo.presenter.AddTodoPresenter;
 import com.forgetsky.wanandroid.utils.CommonUtils;
 import com.forgetsky.wanandroid.utils.ToastUtils;
 
+import org.simple.eventbus.EventBus;
+
 import java.util.Calendar;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.forgetsky.wanandroid.core.constant.Constants.TODO_TYPE;
 import static com.forgetsky.wanandroid.core.constant.Constants.TODO_TYPE_ALL;
 import static com.forgetsky.wanandroid.core.constant.Constants.TODO_TYPE_LIFE;
 import static com.forgetsky.wanandroid.core.constant.Constants.TODO_TYPE_OTHER;
@@ -59,6 +64,10 @@ public class AddTodoActivity extends BaseActivity<AddTodoPresenter> implements A
 
     private SparseArray<String> mTodoLabelArray = new SparseArray<>(5);
     String choiceLabel;
+    private int mTodoId = -1;
+    private int mTodoStatus = 0;
+    private AlertDialog mDialog;
+
     @Override
     protected void initView() {
     }
@@ -90,6 +99,8 @@ public class AddTodoActivity extends BaseActivity<AddTodoPresenter> implements A
 
         TodoItemData todoItemData = (TodoItemData) getIntent().getSerializableExtra(Constants.TODO_DATA);
         if (todoItemData != null) {
+            mTodoId = todoItemData.getId();
+            mTodoStatus = todoItemData.getStatus();
             mTitle.setText(R.string.todo_edit_title);
             mAddTodoTitle.setText(todoItemData.getTitle());
             mAddTodoContent.setText(todoItemData.getContent());
@@ -110,8 +121,9 @@ public class AddTodoActivity extends BaseActivity<AddTodoPresenter> implements A
             }
 
         } else {
+            mTodoId = -1;
             mTitle.setText(R.string.todo_new_title);
-            mAddTodoLabel.setText(R.string.todo_no_label);
+            mAddTodoLabel.setText(mTodoLabelArray.get(getIntent().getIntExtra(TODO_TYPE, 0)));
             mAddTodoDate.setText(CommonUtils.getCurrentDate());
         }
     }
@@ -149,11 +161,55 @@ public class AddTodoActivity extends BaseActivity<AddTodoPresenter> implements A
                 datePickerDialog.show();
                 break;
             case R.id.bt_todo_save:
-                ToastUtils.showToast(this, getString(R.string.in_the_process));
+                HashMap<String, Object> map = new HashMap<>();
+                map.put(Constants.KEY_TODO_TITLE, mAddTodoTitle.getText().toString());
+                map.put(Constants.KEY_TODO_CONTENT, mAddTodoContent.getText().toString());
+                map.put(Constants.KEY_TODO_DATE, mAddTodoDate.getText().toString());
+                map.put(Constants.KEY_TODO_TYPE, mTodoLabelArray.indexOfValue(
+                        mAddTodoLabel.getText().toString()));
+                map.put(Constants.KEY_TODO_STATUS, mTodoStatus);
+                map.put(Constants.KEY_TODO_PRIORITY, mTodoPriority1.isChecked() ?
+                        Constants.TODO_PRIORITY_FIRST : Constants.TODO_PRIORITY_SECOND);
+
+                if (mTodoId == -1) {
+                    mPresenter.addTodo(map);
+                } else {
+                    mPresenter.updateTodo(mTodoId, map);
+                }
+
                 break;
             default:
                 break;
         }
     }
 
+    @Override
+    public void addTodoSuccess(TodoItemData todoItemData) {
+        EventBus.getDefault().post(new RefreshTodoEvent(-1));
+        ToastUtils.showToast(this, getString(R.string.add_todo_success));
+        finish();
+    }
+
+    @Override
+    public void updateTodoSuccess(TodoItemData todoItemData) {
+        ToastUtils.showToast(this, getString(R.string.update_todo_success));
+        EventBus.getDefault().post(new RefreshTodoEvent(-1));
+        finish();
+    }
+
+    @Override
+    public void showLoading() {
+        if (mDialog == null) {
+            mDialog = CommonUtils.getLoadingDialog(this, getString(R.string.saving));
+        }
+        mDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        if (mDialog != null) {
+            mDialog.dismiss();
+            mDialog = null;
+        }
+    }
 }

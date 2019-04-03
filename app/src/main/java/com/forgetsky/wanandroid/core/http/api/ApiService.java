@@ -335,7 +335,6 @@ public interface ApiService {
      * @return
      */
     @POST("lg/todo/delete/{id}/json")
-    @FormUrlEncoded
     Observable<BaseResponse<TodoItemData>> deleteTodo(@Path("id") int id);
 
     /**

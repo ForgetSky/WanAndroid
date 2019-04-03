@@ -18,13 +18,19 @@ package com.forgetsky.wanandroid.modules.todo.contract;
 
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoItemData;
 import com.forgetsky.wanandroid.modules.todo.bean.TodoListData;
 
 public interface TodoListContract {
 
     interface View extends IView {
         void showTodoListData(TodoListData todoListData, boolean isRefresh);
+
         void todoStatusChange(int status);
+
+        void updateTodoStatusSuccess(TodoItemData todoItemData);
+
+        void deleteTodoSuccess(TodoItemData todoItemData);
     }
 
     interface Presenter extends IPresenter<View> {
@@ -33,5 +39,9 @@ public interface TodoListContract {
         void getTodoListData(boolean isShowStatusView);
 
         void loadMore();
+
+        void updateTodoStatus(int id, int status);
+
+        void deleteTodo(int id);
     }
 }

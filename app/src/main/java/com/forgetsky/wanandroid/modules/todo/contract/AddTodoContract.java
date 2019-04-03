@@ -18,13 +18,20 @@ package com.forgetsky.wanandroid.modules.todo.contract;
 
 import com.forgetsky.wanandroid.base.presenter.IPresenter;
 import com.forgetsky.wanandroid.base.view.IView;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoItemData;
+
+import java.util.HashMap;
 
 public interface AddTodoContract {
     interface View extends IView {
+        void addTodoSuccess(TodoItemData todoItemData);
 
+        void updateTodoSuccess(TodoItemData todoItemData);
     }
 
     interface Presenter extends IPresenter<View> {
+        void addTodo(HashMap<String, Object> map);
 
+        void updateTodo(int id, HashMap<String, Object> map);
     }
 }

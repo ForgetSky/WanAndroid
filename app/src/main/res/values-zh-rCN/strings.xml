@@ -105,7 +105,6 @@
     <string name="about_feedback">意见反馈</string>
     <string name="copyright_content">本APP完全开源，仅供学习交流，不可用于任何商业用途。</string>
 
-
     <!-- todo -->
     <string name="todo_title">TODO</string>
     <string name="todo">待办</string>
@@ -115,8 +114,34 @@
     <string name="todo_study">学习</string>
     <string name="todo_life">生活</string>
     <string name="todo_other">其他</string>
-    <string name="todo_priority">重要</string>
     <string name="failed_to_obtain_todo_list">获取TODO数据失败</string>
-
-
+    <string name="tv_add_todo_title">标题:</string>
+    <string name="tv_add_todo_content">详情:</string>
+    <string name="tv_add_todo_label">标签:</string>
+    <string name="tv_add_todo_priority">优先级:</string>
+    <string name="tv_add_todo_date">日期:</string>
+    <string name="hint_add_todo_not_null">必填</string>
+    <string name="hint_add_todo_null_able">非必填</string>
+    <string name="todo_no_label">无标签</string>
+    <string name="todo_priority_1">重要</string>
+    <string name="todo_priority_2">一般</string>
+    <string name="todo_edit_title">编辑</string>
+    <string name="todo_new_title">新建</string>
+    <string name="bt_todo_save">保存</string>
+    <string name="bt_choose_label">选择标签</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="add_todo_success">已保存</string>
+    <string name="add_todo_failed">保存失败</string>
+    <string name="update_todo_success">已更新</string>
+    <string name="update_todo_failed">更新失败</string>
+    <string name="update_todo_status_success">操作成功</string>
+    <string name="update_todo_status_failed">操作失败</string>
+    <string name="delete_todo_success">删除成功</string>
+    <string name="delete_todo_failed">删除失败</string>
+    <string name="saving">正在保存…</string>
+    <string name="marked_completed">标为已完成</string>
+    <string name="marked_todo">标为未完成</string>
+    <string name="delete_todo">删除</string>
+    <string name="confirm_delete_todo">确认删除？</string>
 </resources>

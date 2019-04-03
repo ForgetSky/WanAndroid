@@ -22,9 +22,12 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.forgetsky.wanandroid.R;
@@ -133,4 +136,45 @@ public class CommonUtils {
         return calendar;
     }
 
+    public static PopupWindow showPopupWindow(View anchorView, View contentView) {
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setBackgroundDrawable(contentView.getBackground());
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setTouchable(true);
+        int windowPos[] = calculatePopWindowPos(anchorView, contentView);
+        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, windowPos[0], windowPos[1]);
+        return popupWindow;
+    }
+    /**
+     * 计算出来的位置，y方向就在anchorView的中心对齐显示，x方向就是与View的中心点对齐
+     *
+     * @param anchorView  呼出window的view
+     * @param contentView window的内容布局
+     * @return window显示的左上角的xOff, yOff坐标
+     */
+    private static int[] calculatePopWindowPos(final View anchorView, final View contentView) {
+        final int windowPos[] = new int[2];
+        final int anchorLoc[] = new int[2];
+        anchorView.getLocationOnScreen(anchorLoc);
+        final int anchorHeight = anchorView.getHeight();
+        final int anchorWidth = anchorView.getWidth();
+        final int screenHeight = anchorView.getContext().getResources().getDisplayMetrics().heightPixels;
+        final int screenWidth = anchorView.getContext().getResources().getDisplayMetrics().widthPixels;
+        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        final int windowHeight = contentView.getMeasuredHeight();
+        final int windowWidth = contentView.getMeasuredWidth();
+        // 判断需要向上弹出还是向下弹出显示
+        final boolean isNeedShowUp = (anchorLoc[1] >  screenHeight / 3);
+        //偏移，否则会弹出在屏幕外
+        int offset = windowWidth > anchorWidth ? (windowWidth - anchorWidth) : 0;
+        //实际坐标中心点为触发view的中间
+        windowPos[0] = (anchorLoc[0] + anchorWidth / 2) + offset;
+        int offset2 = windowPos[0] + windowWidth - screenWidth;
+        if (offset2 > 0) {
+            windowPos[0] = windowPos[0] - offset2;
+        }
+        windowPos[1] = isNeedShowUp ? anchorLoc[1] - windowHeight + anchorHeight / 2 : anchorLoc[1] + anchorHeight / 2;
+        return windowPos;
+    }
 }

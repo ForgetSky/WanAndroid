@@ -41,6 +41,8 @@
     <color name="toolbar_button">@color/Grey200</color>
     <color name="splash_bg">@color/colorPrimary</color>
     <color name="scrollbar">@color/Grey800</color>
+    <color name="popup_window_bg">@color/card_view_bg</color>
+    <color name="popup_window_bg_press">@color/colorPrimary</color>
 
 
     <color name="white">#FFFFFF</color>

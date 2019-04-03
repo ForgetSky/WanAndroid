@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="3dp"
+    app:cardBackgroundColor="@color/popup_window_bg"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="6dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/todo_change_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="12dp"
+            android:text="@string/marked_completed"
+            android:textColor="@color/item_title"
+            android:background="@drawable/pw_bt_color_selector"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/todo_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/todo_change_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="12dp"
+            android:text="@string/delete_todo"
+            android:textColor="@color/item_title"
+            android:background="@drawable/pw_bt_color_selector"
+            android:textSize="16sp" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

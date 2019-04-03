@@ -19,8 +19,10 @@ package com.forgetsky.wanandroid.modules.todo.presenter;
 import com.forgetsky.wanandroid.R;
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.forgetsky.wanandroid.base.presenter.BasePresenter;
-import com.forgetsky.wanandroid.core.event.TodoStatusEvent;
+import com.forgetsky.wanandroid.core.constant.Constants;
+import com.forgetsky.wanandroid.core.event.RefreshTodoEvent;
 import com.forgetsky.wanandroid.core.rx.BaseObserver;
+import com.forgetsky.wanandroid.modules.todo.bean.TodoItemData;
 import com.forgetsky.wanandroid.modules.todo.bean.TodoListData;
 import com.forgetsky.wanandroid.modules.todo.contract.TodoListContract;
 import com.forgetsky.wanandroid.utils.RxUtils;
@@ -29,7 +31,6 @@ import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -56,20 +57,20 @@ public class TodoListPresenter extends BasePresenter<TodoListContract.View>
 
     @Override
     public void getTodoListData(boolean isShowStatusView) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("type", type);
-        map.put("status", status);
-        map.put("priority", 0); //默认全部
+        HashMap<String, Object> map = new HashMap<>();
+        map.put(Constants.KEY_TODO_TYPE, type);
+        map.put(Constants.KEY_TODO_STATUS, status);
+        map.put(Constants.KEY_TODO_PRIORITY, 0); //默认全部
         if (status == 1) {
-            map.put("orderby", 2);
+            map.put(Constants.KEY_TODO_ORDERBY, 2);
         } else {
-            map.put("orderby", 4);
+            map.put(Constants.KEY_TODO_ORDERBY, 4);
         }
         addSubscribe(mDataManager.getTodoListData(currentPage, map)
                 .compose(RxUtils.SchedulerTransformer())
                 .filter(todoListData -> mView != null)
                 .subscribeWith(new BaseObserver<TodoListData>(mView,
-                        WanAndroidApp.getContext().getString(R.string.failed_to_obtain_article_list),
+                        WanAndroidApp.getContext().getString(R.string.failed_to_obtain_todo_list),
                         isShowStatusView) {
                     @Override
                     public void onSuccess(TodoListData todoListData) {
@@ -98,6 +99,36 @@ public class TodoListPresenter extends BasePresenter<TodoListContract.View>
     }
 
     @Override
+    public void updateTodoStatus(int id, int status) {
+        addSubscribe(mDataManager.updateTodoStatus(id, status)
+                .compose(RxUtils.SchedulerTransformer())
+                .filter(todoItemData -> mView != null)
+                .subscribeWith(new BaseObserver<TodoItemData>(mView,
+                        WanAndroidApp.getContext().getString(R.string.update_todo_status_failed),
+                        false) {
+                    @Override
+                    public void onSuccess(TodoItemData todoItemData) {
+                        mView.updateTodoStatusSuccess(todoItemData);
+                    }
+                }));
+    }
+
+    @Override
+    public void deleteTodo(int id) {
+        addSubscribe(mDataManager.deleteTodo(id)
+                .compose(RxUtils.SchedulerTransformer())
+                .filter(todoItemData -> mView != null)
+                .subscribeWith(new BaseObserver<TodoItemData>(mView,
+                        WanAndroidApp.getContext().getString(R.string.delete_todo_failed),
+                        false) {
+                    @Override
+                    public void onSuccess(TodoItemData todoItemData) {
+                        mView.deleteTodoSuccess(todoItemData);
+                    }
+                }));
+    }
+
+    @Override
     public void registerEventBus() {
         EventBus.getDefault().register(this);
     }
@@ -108,7 +139,7 @@ public class TodoListPresenter extends BasePresenter<TodoListContract.View>
     }
 
     @Subscriber()
-    public void TodoStatusEvent(TodoStatusEvent todoEvent) {
-        mView.todoStatusChange(todoEvent.getStatus());
+    public void RefreshTodoEvent(RefreshTodoEvent refreshTodoEvent) {
+        mView.todoStatusChange(refreshTodoEvent.getStatus());
     }
 }
