@@ -16,7 +16,7 @@
 [8]:http://www.apache.org/licenses/LICENSE-2.0
     
     
-## 新版上线，新增TODO模块（V1.1.2）
+## 新版上线，新增TODO模块（V1.1.2） [下载体验](https://github.com/ForgetSky/ForgetSkyWanAndroid/releases/download/v1.1.2/WanAndroid-V1.1.2-release.apk)
     
     
 ## 简介
