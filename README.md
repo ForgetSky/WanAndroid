@@ -9,14 +9,16 @@
 [3]:https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat
 [4]:https://android-arsenal.com/api?level=21
 
-[5]:https://img.shields.io/badge/Version-V1.1.1-brightgreen.svg
+[5]:https://img.shields.io/badge/Version-V1.1.2-brightgreen.svg
 [6]:https://github.com/ForgetSky/ForgetSkyWanAndroid/releases/latest
 
 [7]:https://img.shields.io/badge/license-Apache%202-blue.svg
 [8]:http://www.apache.org/licenses/LICENSE-2.0
-
-
-
+    
+    
+## 新版上线，新增TODO模块（V1.1.2）
+    
+    
 ## 简介
 本项目主要使用[玩Android](http://www.wanandroid.com/blog/show/2)网站提供的API, 并实现其主要功能；项目基于 `Material Design` + `MVP` + `dagger2` + `RxJava` + `Retrofit` + `Glide` + `greendao` 等架构进行设计实现，MVP模式中的Model使用`DataManager`模式统一管理，代码结构清晰，功能详实，是一个不错的Android应用开发学习参考项目。项目会持续更新维护，同时也欢迎大家提问题和建议，使项目更加完善。
 
@@ -33,6 +35,10 @@
 
 <div align="center">
 <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_09.jpg" width=23%> <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_10.jpg" width=23%> <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_11.jpg" width=23%> <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_12.jpg" width=23%>
+</div>
+
+<div align="center">
+<img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_13.jpg" width=23%> <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_14.jpg" width=23%> <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_15.jpg" width=23%> <img src="https://github.com/ForgetSky/ForgetSkyWanAndroid/blob/master/screenshots/Screenshot_16.jpg" width=23%>
 </div>
 
 ## API
@@ -59,7 +65,7 @@
 
 ## APK下载
 
-- [点击下载apk](https://github.com/ForgetSky/ForgetSkyWanAndroid/releases/download/v1.1.1/WanAndroid-V1.1.1-release.apk)
+- [点击下载apk](https://github.com/ForgetSky/ForgetSkyWanAndroid/releases/download/v1.1.2/WanAndroid-V1.1.2-release.apk)
 
 - 扫描二维码下载(由于微信屏蔽了扫描直接下载，请使用其他工具扫描下载)
 
