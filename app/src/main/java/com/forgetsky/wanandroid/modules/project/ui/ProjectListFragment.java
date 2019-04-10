@@ -46,7 +46,6 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
     @BindView(R.id.project_list_recycler_view)
     RecyclerView mRecyclerView;
 
-    private List<ArticleItemData> mArticleList;
     private ProjectListAdapter mAdapter;
 
     private int cid;
@@ -76,7 +75,7 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
     }
 
     private void initRecyclerView() {
-        mArticleList = new ArrayList<>();
+        List<ArticleItemData> mArticleList = new ArrayList<>();
         mAdapter = new ProjectListAdapter(R.layout.item_project_list, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
@@ -140,10 +139,8 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
             return;
         }
         if (isRefresh) {
-            mArticleList = articleListData.getDatas();
             mAdapter.replaceData(articleListData.getDatas());
         } else {
-            mArticleList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
         }
     }

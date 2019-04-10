@@ -46,7 +46,6 @@ public class WxArticleListFragment extends BaseFragment<WxArticleListPresenter> 
     @BindView(R.id.wx_list_recycler_view)
     RecyclerView mRecyclerView;
 
-    private List<ArticleItemData> mArticleList;
     private WxArticleListAdapter mAdapter;
 
     private int id;
@@ -76,7 +75,7 @@ public class WxArticleListFragment extends BaseFragment<WxArticleListPresenter> 
     }
 
     private void initRecyclerView() {
-        mArticleList = new ArrayList<>();
+        List<ArticleItemData> mArticleList = new ArrayList<>();
         mAdapter = new WxArticleListAdapter(R.layout.item_article_list, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
@@ -140,10 +139,8 @@ public class WxArticleListFragment extends BaseFragment<WxArticleListPresenter> 
             return;
         }
         if (isRefresh) {
-            mArticleList = articleListData.getDatas();
             mAdapter.replaceData(articleListData.getDatas());
         } else {
-            mArticleList.addAll(articleListData.getDatas());
             mAdapter.addData(articleListData.getDatas());
         }
     }

@@ -48,7 +48,6 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.search_result_recycler_view)
     RecyclerView mRecyclerView;
-    private List<ArticleItemData> mArticleList;
     private ArticleListAdapter mAdapter;
     private String mSearchKey = "";
 
@@ -77,7 +76,7 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     }
 
     private void initRecyclerView() {
-        mArticleList = new ArrayList<>();
+        List<ArticleItemData> mArticleList = new ArrayList<>();
         mAdapter = new ArticleListAdapter(R.layout.item_article_list, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
