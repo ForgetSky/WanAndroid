@@ -65,7 +65,7 @@ public class ScaleDownShowBehavior extends FloatingActionButton.Behavior {
                     isShow = false;
                 }
             });
-        } else if ((dyConsumed < 0 || dyUnconsumed < 0 && !isAnimateIng && !isShow)) {
+        } else if ((dyConsumed < 0 || dyUnconsumed < 0) && !isAnimateIng && !isShow) {
             // 手指下滑，显示FAB
             AnimatorUtil.translateShow(child, new StateListener() {
                 @Override

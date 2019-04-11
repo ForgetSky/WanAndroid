@@ -15,6 +15,7 @@
  */
 package com.forgetsky.wanandroid.widget.behavior;
 
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
@@ -87,8 +88,9 @@ public class AnimatorUtil {
      */
     public static void translateHide(View view, ViewPropertyAnimatorListener viewPropertyAnimatorListener) {
         view.setVisibility(View.VISIBLE);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) view.getLayoutParams();
         ViewCompat.animate(view)
-                .translationY(350)
+                .translationY(view.getHeight() + layoutParams.bottomMargin)
                 .setDuration(400)
                 .setInterpolator(FAST_OUT_SLOW_IN_INTERPOLATOR)
                 .setListener(viewPropertyAnimatorListener)
