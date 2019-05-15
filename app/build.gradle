@@ -16,7 +16,14 @@
 
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'bugly'
+//apply from: 'tinker-support.gradle'
 
+bugly {
+    appId = "03be19dd60"
+    appKey = "ff11433f-8ef9-4f2c-a123-9bcbe6d0605e"
+    debug = true
+}
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
@@ -134,6 +141,7 @@ dependencies {
     implementation rootProject.ext.dependencies["fragmentation"]
     implementation rootProject.ext.dependencies["fragmentation-swipeback"]
     implementation rootProject.ext.dependencies["crashreport_upgrade"]
+    implementation rootProject.ext.dependencies["nativecrashreport"]
     implementation rootProject.ext.dependencies["logger"]
     implementation rootProject.ext.dependencies["ByeBurger"]
     implementation rootProject.ext.dependencies["stetho"]

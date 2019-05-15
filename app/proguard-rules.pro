@@ -242,6 +242,10 @@
 -keep public class com.tencent.bugly.**{*;}
 -keep class android.support.**{*;}
 
+# tinker
+-dontwarn com.tencent.tinker.**
+-keep class com.tencent.tinker.** { *; }
+
 ################ autolayout ###############
 -keep class com.zhy.autolayout.** { *; }
 -keep interface com.zhy.autolayout.** { *; }

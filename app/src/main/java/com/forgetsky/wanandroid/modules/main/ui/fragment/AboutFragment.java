@@ -28,6 +28,7 @@ import com.forgetsky.wanandroid.core.constant.Constants;
 import com.forgetsky.wanandroid.modules.main.contract.AboutContract;
 import com.forgetsky.wanandroid.modules.main.presenter.AboutPresenter;
 import com.forgetsky.wanandroid.utils.CommonUtils;
+import com.tencent.bugly.beta.Beta;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -77,6 +78,7 @@ public class AboutFragment extends BaseFragment<AboutPresenter> implements About
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.about_upgrade:
+                Beta.checkUpgrade();
                 break;
             case R.id.about_website:
                 CommonUtils.startArticleDetailActivity(_mActivity, -1,

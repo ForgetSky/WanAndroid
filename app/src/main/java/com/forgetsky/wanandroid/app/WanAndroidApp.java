@@ -21,12 +21,14 @@ import android.app.Application;
 import android.content.Context;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.forgetsky.wanandroid.BuildConfig;
 import com.forgetsky.wanandroid.core.DataManager;
 import com.forgetsky.wanandroid.di.component.DaggerAppComponent;
 import com.forgetsky.wanandroid.di.module.AppModule;
 import com.forgetsky.wanandroid.di.module.HttpModule;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.tencent.bugly.Bugly;
 
 import javax.inject.Inject;
 
@@ -68,6 +70,8 @@ public class WanAndroidApp extends Application implements HasActivityInjector {
         }
 
         refWatcher = setupLeakCanary();
+
+        Bugly.init(getApplicationContext(), "03be19dd60", BuildConfig.DEBUG);
     }
 
     private RefWatcher setupLeakCanary() {
