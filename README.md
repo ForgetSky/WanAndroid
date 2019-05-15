@@ -16,9 +16,6 @@
 [8]:http://www.apache.org/licenses/LICENSE-2.0
     
     
-## 新版上线，新增TODO模块（V1.1.2） [下载体验](https://github.com/ForgetSky/ForgetSkyWanAndroid/releases/download/v1.1.2/WanAndroid-V1.1.2-release.apk)
-    
-    
 ## 简介
 本项目主要使用[玩Android](http://www.wanandroid.com/blog/show/2)网站提供的API, 并实现其主要功能；项目基于 `Material Design` + `MVP` + `dagger2` + `RxJava` + `Retrofit` + `Glide` + `greendao` 等架构进行设计实现，MVP模式中的Model使用`DataManager`模式统一管理，代码结构清晰，功能详实，是一个不错的Android应用开发学习参考项目。项目会持续更新维护，同时也欢迎大家提问题和建议，使项目更加完善。
 
@@ -65,7 +62,7 @@
 
 ## APK下载
 
-- [点击下载apk](https://github.com/ForgetSky/ForgetSkyWanAndroid/releases/download/v1.1.2/WanAndroid-V1.1.2-release.apk)
+- [点击下载apk](https://github.com/ForgetSky/ForgetSkyWanAndroid/releases/download/v1.1.3/WanAndroid-V1.1.3-release.apk)
 
 - 扫描二维码下载(由于微信屏蔽了扫描直接下载，请使用其他工具扫描下载)
 
