@@ -109,6 +109,7 @@ ext {
             "espresso-accessibility"            : "com.android.support.test.espresso:espresso-accessibility:3.0.2",
             "espresso-web"                      : "com.android.support.test.espresso:espresso-web:3.0.2",
             "idling-concurrent"                 : "com.android.support.test.espresso.idling:idling-concurrent:3.0.2",
+            "ViewServer"                        : "com.github.romainguy:ViewServer:10c563a0b6",
 
             //unit test , 为了整合mockito和PowerMockito，mockito暂时最高只支持2.8.9
             "junit"                             : "junit:junit:4.12",

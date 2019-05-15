@@ -18,7 +18,10 @@ package com.forgetsky.wanandroid.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
+import com.android.debug.hv.ViewServer;
+import com.forgetsky.wanandroid.BuildConfig;
 import com.forgetsky.wanandroid.R;
 import com.gyf.barlibrary.ImmersionBar;
 
@@ -43,6 +46,9 @@ public abstract class AbstractSimpleActivity extends SupportActivity {
         initToolbar();
         initView();
         initEventAndData();
+        if (BuildConfig.DEBUG) {
+            ViewServer.get(this).addWindow(this);
+        }
     }
 
     @Override
@@ -52,6 +58,18 @@ public abstract class AbstractSimpleActivity extends SupportActivity {
         if (unBinder != null && unBinder != Unbinder.EMPTY) {
             unBinder.unbind();
             unBinder = null;
+        }
+        if (BuildConfig.DEBUG) {
+            ViewServer.get(this).removeWindow(this);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (BuildConfig.DEBUG) {
+            Log.d("jiahui", "debug");
+            ViewServer.get(this).setFocusedWindow(this);
         }
     }
 
