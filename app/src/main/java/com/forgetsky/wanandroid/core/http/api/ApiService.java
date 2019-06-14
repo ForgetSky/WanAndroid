@@ -289,6 +289,7 @@ public interface ApiService {
      *
      * @return
      */
+    @Headers("Cache-Control: max-age=0")
     @GET("lg/todo/v2/list/{page}/json")
     Observable<BaseResponse<TodoListData>> getTodoListData(@Path("page") int page, @QueryMap Map<String, Object> map);
 
@@ -304,6 +305,7 @@ public interface ApiService {
      *
      * @return
      */
+    @Headers("Cache-Control: max-age=0")
     @POST("lg/todo/add/json")
     @FormUrlEncoded
     Observable<BaseResponse<TodoItemData>> addTodo(@FieldMap Map<String, Object> map);
@@ -322,6 +324,7 @@ public interface ApiService {
      *
      * @return
      */
+    @Headers("Cache-Control: max-age=0")
     @POST("lg/todo/update/{id}/json")
     @FormUrlEncoded
     Observable<BaseResponse<TodoItemData>> updateTodo(@Path("id") int id, @FieldMap Map<String, Object> map);
@@ -334,6 +337,7 @@ public interface ApiService {
 
      * @return
      */
+    @Headers("Cache-Control: max-age=0")
     @POST("lg/todo/delete/{id}/json")
     Observable<BaseResponse<TodoItemData>> deleteTodo(@Path("id") int id);
 
@@ -345,6 +349,7 @@ public interface ApiService {
      * status: 0或1，传1代表未完成到已完成，反之则反之。
      * @return
      */
+    @Headers("Cache-Control: max-age=0")
     @POST("lg/todo/done/{id}/json")
     @FormUrlEncoded
     Observable<BaseResponse<TodoItemData>> updateTodoStatus(@Path("id") int id, @Field("status") int status);

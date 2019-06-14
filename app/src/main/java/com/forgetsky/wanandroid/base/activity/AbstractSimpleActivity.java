@@ -18,7 +18,6 @@ package com.forgetsky.wanandroid.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.android.debug.hv.ViewServer;
 import com.forgetsky.wanandroid.BuildConfig;
@@ -68,7 +67,6 @@ public abstract class AbstractSimpleActivity extends SupportActivity {
     protected void onResume() {
         super.onResume();
         if (BuildConfig.DEBUG) {
-            Log.d("jiahui", "debug");
             ViewServer.get(this).setFocusedWindow(this);
         }
     }

@@ -21,6 +21,7 @@ import com.forgetsky.wanandroid.app.WanAndroidApp;
 import com.forgetsky.wanandroid.core.http.api.ApiService;
 import com.forgetsky.wanandroid.core.http.interceptor.NetCacheInterceptor;
 import com.forgetsky.wanandroid.core.http.interceptor.OfflineCacheInterceptor;
+import com.forgetsky.wanandroid.utils.CacheUtils;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
@@ -76,7 +77,7 @@ public class HttpModule {
             builder.addInterceptor(loggingInterceptor);
         }
         //设置缓存
-        File cacheFile = new File(WanAndroidApp.getContext().getCacheDir(), "cache");
+        File cacheFile = new File(CacheUtils.getCacheDir());
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50); //50M
         builder.addNetworkInterceptor(new NetCacheInterceptor());
         builder.addInterceptor(new OfflineCacheInterceptor());

@@ -16,12 +16,20 @@
 
 package com.forgetsky.wanandroid.utils;
 
+import android.os.Build;
 import android.os.Environment;
 
 import com.forgetsky.wanandroid.app.WanAndroidApp;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 
 /**
  * Created by ForgetSky on 2019/3/18.
@@ -37,20 +45,30 @@ public class CacheUtils {
     }
 
     public static long getFolderSize(File file) {
-        long size = 0;
+        final long[] size = {0};
         try {
-            File[] fileList = file.listFiles();
-            for (File aFileList : fileList) {
-                if (aFileList.isDirectory()) {
-                    size = size + getFolderSize(aFileList);
-                } else {
-                    size = size + aFileList.length();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Files.walkFileTree(Paths.get(file.getPath()), new SimpleFileVisitor<Path>(){
+                    @Override
+                    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                        size[0] += file.toFile().length();
+                        return super.visitFile(file, attrs);
+                    }
+                });
+            } else {
+                File[] fileList = file.listFiles();
+                for (File aFileList : fileList) {
+                    if (aFileList.isDirectory()) {
+                        size[0] = size[0] + getFolderSize(aFileList);
+                    } else {
+                        size[0] = size[0] + aFileList.length();
+                    }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return size;
+        return size[0];
     }
 
     private static String getFormatSize(double size) {
@@ -82,6 +100,17 @@ public class CacheUtils {
         BigDecimal result4 = new BigDecimal(teraBytes);
         return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()
                 + "TB";
+    }
+
+    public static String getCacheDir() {
+        String cachePath = null;
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+                || !Environment.isExternalStorageRemovable()) {
+            cachePath = WanAndroidApp.getContext().getExternalCacheDir().getPath();
+        } else {
+            cachePath = WanAndroidApp.getContext().getCacheDir().getPath();
+        }
+        return cachePath;
     }
 
     public static void clearAllCache() {
