@@ -1,40 +1,19 @@
-/*
- *     (C) Copyright 2019, ForgetSky.
- *
- *     Licensed under the Apache License, Version 2.0 (the "License");
- *     you may not use this file except in compliance with the License.
- *     You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *     Unless required by applicable law or agreed to in writing, software
- *     distributed under the License is distributed on an "AS IS" BASIS,
- *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *     See the License for the specific language governing permissions and
- *     limitations under the License.
- */
-
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
-apply plugin: 'bugly'
-//apply from: 'tinker-support.gradle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
-bugly {
-    appId = "03be19dd60"
-    appKey = "ff11433f-8ef9-4f2c-a123-9bcbe6d0605e"
-    debug = true
-}
 android {
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    compileSdkVersion Versions.compileSdk
+
     defaultConfig {
         applicationId "com.forgetsky.wanandroid"
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
 
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
     signingConfigs {
         release {
             storeFile file('sign.jks')
@@ -43,12 +22,10 @@ android {
             keyPassword '123456'
         }
     }
-
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
@@ -56,122 +33,14 @@ android {
                 }
             }
         }
-
     }
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
-
 }
-
-greendao {
-    schemaVersion 1
-    targetGenDir 'src/main/java'
-    daoPackage 'com.forgetsky.wanandroid.core.greendao'
-}
-
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    //base
-    implementation rootProject.ext.dependencies["appcompat-v7"]
-    implementation rootProject.ext.dependencies["cardview-v7"]
-    implementation rootProject.ext.dependencies["preference-v7"]
-    implementation rootProject.ext.dependencies["preference-v14"]
-    implementation rootProject.ext.dependencies["design"]
-    implementation rootProject.ext.dependencies["constraint-layout"]
-
-    //ui
-    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
-    implementation rootProject.ext.dependencies["SmartRefreshHeader"]
-    implementation rootProject.ext.dependencies["banner"]
-    implementation rootProject.ext.dependencies["VerticalTabLayout"]
-    implementation rootProject.ext.dependencies["flowlayout-lib"]
-    implementation rootProject.ext.dependencies["agentweb"]
-    implementation rootProject.ext.dependencies["autosize"]
-    implementation rootProject.ext.dependencies["statusbar"]
-    implementation rootProject.ext.dependencies["multipleStatusView"]
-
-    //net
-    implementation rootProject.ext.dependencies["gson"]
-    implementation rootProject.ext.dependencies["okhttp"]
-    implementation rootProject.ext.dependencies["logging-interceptor"]
-    implementation rootProject.ext.dependencies["retrofit"]
-    implementation rootProject.ext.dependencies["converter-gson"]
-    implementation rootProject.ext.dependencies["adapter-rxjava2"]
-    implementation rootProject.ext.dependencies["glide"]
-    annotationProcessor rootProject.ext.dependencies["glide_compiler"]
-
-    //dao
-    implementation rootProject.ext.dependencies["greendao"]
-
-    //rx
-    implementation rootProject.ext.dependencies["rxjava"]
-    implementation rootProject.ext.dependencies["rxandroid"]
-    implementation rootProject.ext.dependencies["rxbinding"]
-    implementation rootProject.ext.dependencies["rxpermissions"]
-
-    //di
-    implementation rootProject.ext.dependencies["dagger2"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-    implementation rootProject.ext.dependencies["dagger2-android"]
-    implementation rootProject.ext.dependencies["dagger2-android-support"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
-    implementation rootProject.ext.dependencies["javax_annotation"]
-    implementation rootProject.ext.dependencies["butterknife"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-
-    //multidex
-    implementation rootProject.ext.dependencies["multidex"]
-
-    //canary
-    debugImplementation rootProject.ext.dependencies["leakcanary-android"]
-    releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
-    testImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
-
-    //kotlin
-//    implementation rootProject.ext.dependencies["kotlin-stdlib"]
-
-    //other
-    implementation rootProject.ext.dependencies["androideventbus"]
-    implementation rootProject.ext.dependencies["lottie"]
-    implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
-    implementation rootProject.ext.dependencies["fragmentation"]
-    implementation rootProject.ext.dependencies["fragmentation-swipeback"]
-    implementation rootProject.ext.dependencies["crashreport_upgrade"]
-    implementation rootProject.ext.dependencies["nativecrashreport"]
-    implementation rootProject.ext.dependencies["logger"]
-    implementation rootProject.ext.dependencies["ByeBurger"]
-    implementation rootProject.ext.dependencies["stetho"]
-    implementation rootProject.ext.dependencies["stetho-okhttp3"]
-    implementation rootProject.ext.dependencies["PersistentCookieJar"]
-    implementation rootProject.ext.dependencies["ViewServer"]
-
-    // ui test
-//    androidTestImplementation (rootProject.ext.dependencies["espresso-core"]) {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    }
-//    implementation (rootProject.ext.dependencies["espresso-idling-resource"]) {
-//        exclude module: 'support-annotations'
-//    }
-//    androidTestImplementation rootProject.ext.dependencies["espresso-contrib"]
-//    androidTestImplementation rootProject.ext.dependencies["espresso-intents"]
-//    androidTestImplementation rootProject.ext.dependencies["espresso-accessibility"]
-//    androidTestImplementation rootProject.ext.dependencies["espresso-web"]
-//    androidTestImplementation rootProject.ext.dependencies["idling-concurrent"]
-
-    //unit test
-//    testImplementation rootProject.ext.dependencies["junit"]
-//    testImplementation rootProject.ext.dependencies["mockito"]
-//    testImplementation rootProject.ext.dependencies["powermock-module-junit4"]
-//    testImplementation rootProject.ext.dependencies["powermock-module-junit4-rule"]
-//    testImplementation rootProject.ext.dependencies["powermock-api-mockito2"] //注意这里是mockito2
-//    testImplementation rootProject.ext.dependencies["powermock-classloading-xstream"]
-//    testImplementation rootProject.ext.dependencies["robolectric"]
-//    testImplementation rootProject.ext.dependencies["shadows-support-v4"]
-//    testImplementation rootProject.ext.dependencies["shadows-multidex"] //支持Multidex功能
-//    androidTestImplementation rootProject.ext.dependencies["runner"]
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation Deps.kotlin_stdlib
+    implementation Deps.core_ktx
+    implementation Deps.appcompat
+    implementation Deps.constraintlayout
 
 }

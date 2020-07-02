@@ -1,78 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~     (C) Copyright 2019, ForgetSky.
-  ~
-  ~     Licensed under the Apache License, Version 2.0 (the "License");
-  ~     you may not use this file except in compliance with the License.
-  ~     You may obtain a copy of the License at
-  ~
-  ~         http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~     Unless required by applicable law or agreed to in writing, software
-  ~     distributed under the License is distributed on an "AS IS" BASIS,
-  ~     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~     See the License for the specific language governing permissions and
-  ~     limitations under the License.
-  -->
-
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.main.ui.activity.MainActivity">
+    tools:context=".MainActivity">
 
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include layout="@layout/toolbar" />
-
-        <FrameLayout
-            android:id="@+id/fragment_group"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/main_floating_action_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="60dp"
-            app:backgroundTint="@color/floating_button"
-            android:src="@drawable/ic_arrow_upward_white_24dp"
-            app:layout_behavior="@string/scale_down_show_behavior" />
-
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_navigation_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/bottom_nav_bg"
-            app:elevation="16dp"
-            app:itemIconTint="@drawable/nav_item_color_selector"
-            app:itemTextColor="@drawable/nav_item_color_selector"
-            app:labelVisibilityMode="labeled"
-            app:layout_behavior="@string/bye_burger_bottom_behavior"
-            app:menu="@menu/bottom_navigation" />
-
-    </android.support.design.widget.CoordinatorLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/view_bg"
-        app:headerLayout="@layout/nav_header"
-        app:insetForeground="@android:color/transparent"
-        app:itemIconTint="@color/nav_item_color_ic"
-        app:itemTextColor="@color/nav_item_color_tv"
-        app:menu="@menu/nav_menu">
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.design.widget.NavigationView>
-
-</android.support.v4.widget.DrawerLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

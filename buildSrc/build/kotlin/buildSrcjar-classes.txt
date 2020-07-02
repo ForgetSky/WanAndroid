@@ -1,0 +1,1 @@
+H:\jiahui\MyProjects\ForgetSkyWanAndroid\buildSrc\build\classes\kotlin\main\Deps.class;H:\jiahui\MyProjects\ForgetSkyWanAndroid\buildSrc\build\classes\kotlin\main\Versions.class
