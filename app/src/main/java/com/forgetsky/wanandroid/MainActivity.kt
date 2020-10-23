@@ -1,11 +1,19 @@
 package com.forgetsky.wanandroid
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.forgetsky.base.mvvm.view.BaseActivity
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity() {
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+
     }
 }
+
+

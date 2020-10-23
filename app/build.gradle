@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -14,6 +16,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    dataBinding {
+        enabled = true
+    }
     signingConfigs {
         release {
             storeFile file('sign.jks')
@@ -22,6 +28,8 @@ android {
             keyPassword '123456'
         }
     }
+    kotlinOptions { jvmTarget = 1.8}
+
     buildTypes {
         release {
             minifyEnabled false
@@ -42,5 +50,11 @@ dependencies {
     implementation Deps.core_ktx
     implementation Deps.appcompat
     implementation Deps.constraintlayout
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+    implementation 'androidx.activity:activity-ktx:1.1.0'
+    implementation project(path: ':base')
 
 }
